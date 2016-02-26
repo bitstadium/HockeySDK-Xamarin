@@ -11,7 +11,7 @@ var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
 };
 
-var TARGET = Argument ("target", Argument ("t", "libs"));
+var TARGET = Argument ("target", Argument ("t", "all"));
 
 Task ("libs")
 	.IsDependentOn ("externals")
@@ -96,6 +96,8 @@ Task ("components")
 	}
 	
 });
+
+Task ("all").IsDependenOn ("nuget").IsDependentOn ("components");
 
 Task ("clean").Does (() =>
 {
