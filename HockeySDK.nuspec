@@ -13,7 +13,7 @@
     </description>
     <copyright>Copyright 2016</copyright>
     <licenseUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/component/icons/hockeyapp_128x128.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/component/ios/icons/hockeyapp_128x128.png</iconUrl>
   </metadata>
   <files>
 
