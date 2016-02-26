@@ -1,0 +1,13 @@
+*.userprefs
+*.suo
+*.xam
+*.nupkg
+
+Resource.designer.cs
+component.yaml
+
+bin/
+obj/
+packages/
+externals/
+tools/

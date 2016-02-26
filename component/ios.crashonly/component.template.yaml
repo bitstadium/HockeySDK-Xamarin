@@ -1,0 +1,16 @@
+version: $version$
+name: HockeyApp for iOS (Crash Only)
+id: hockeyappios-crashonly
+publisher: Microsoft
+publisher-url: "http://hockeyapp.net"
+icons: 
+  - ./icons/hockeyapp_128x128.png
+  - ./icons/hockeyapp_512x512.png
+no_build: true
+summary: "HockeyApp is a platform to collect live crash reports, get feedback from your users, distribute your betas, recruit new testers, and analyze your test coverage."
+libraries:
+  ios-unified: ../../source/ios/bin/crashonly/Release/HockeySDK.CrashOnly.dll
+samples:
+  - name: "iOS Crash Only Sample"
+    path: ../../samples/HockeyAppSampleiOSCrashOnly.sln
+    configuration: "Release|iPhone"

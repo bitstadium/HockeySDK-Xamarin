@@ -1,0 +1,34 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+    <!-- Rename com.nokia.* -->
+  <attr path="/api/package[@name='net.hockeyapp.android']" name="managedName">HockeyApp</attr>
+
+  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='LoginTask']" />
+  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='CheckUpdateTask']" />
+  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='DownloadFileTask']" />
+  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='ParseFeedbackTask']" />
+  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='SendFeedbackTask']" />
+
+  <attr path="/api/package[@name='net.hockeyapp.android.adapters']" name="managedName">HockeyApp.Adapters</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.listeners']" name="managedName">HockeyApp.Listeners</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.metrics']" name="managedName">HockeyApp.Metrics</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.metrics.model']" name="managedName">HockeyApp.Metrics.Model</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.objects']" name="managedName">HockeyApp.Objects</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.tasks']" name="managedName">HockeyApp.Tasks</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.utils']" name="managedName">HockeyApp.Utils</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.views']" name="managedName">HockeyApp.Views</attr>
+
+
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='UpdateActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='FeedbackActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
+
+  <remove-node path="/api/package[@name='net.hockeyapp.android.metrics']/class[@name='MetricsManager']/constructor[@name='MetricsManager' and count(parameter)=5 and parameter[1][@type='android.content.Context'] and parameter[2][@type='net.hockeyapp.android.metrics.TelemetryContext'] and parameter[3][@type='net.hockeyapp.android.metrics.Sender'] and parameter[4][@type='net.hockeyapp.android.metrics.Persistence'] and parameter[5][@type='net.hockeyapp.android.metrics.Channel']]" />
+
+</metadata>
