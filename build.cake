@@ -97,7 +97,7 @@ Task ("components")
 	
 });
 
-Task ("all").IsDependenOn ("nuget").IsDependentOn ("components");
+Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
 
 Task ("clean").Does (() =>
 {
