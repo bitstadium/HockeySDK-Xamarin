@@ -2,7 +2,8 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var VERSION = "4.0.0";
+var COMPONENT_VERSION = "4.0.0";
+var NUGET_VERSION = "4.0.0-alpha1";
 
 var ANDROID_URL = "https://download.hockeyapp.net/preseason/sdk/android/4.0.0-alpha.1/HockeySDK-Android-4.0.0-alpha.1.zip";
 var IOS_URL = "https://download.hockeyapp.net/preseason/sdk/ios/HockeySDK-iOS-4.0.0-alpha.1.zip";
@@ -74,7 +75,7 @@ Task ("nuget")
 	var basePath = IsRunningOnUnix () ? "././" : "./";
 
 	NuGetPack ("./HockeySDK.nuspec", new NuGetPackSettings {
-		Version = VERSION,
+		Version = NUGET_VERSION,
 		BasePath = basePath,
 		Verbosity = NuGetVerbosity.Detailed,
 	});
@@ -87,7 +88,7 @@ Task ("components")
 	var yamls = GetFiles ("./**/component.template.yaml");
 
 	foreach (var yaml in yamls) {
-		var contents = FileReadText (yaml).Replace ("$version$", VERSION);
+		var contents = FileReadText (yaml).Replace ("$version$", COMPONENT_VERSION);
 		
 		var fixedFile = yaml.GetDirectory ().CombineWithFilePath ("component.yaml");
 		FileWriteText (fixedFile, contents);
