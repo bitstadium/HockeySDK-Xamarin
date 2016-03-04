@@ -1,19 +1,16 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>HockeySDK</id>
-    <title>HockeyApp SDK for Xamarin</title>
+    <id>HockeySDK.Xamarin</id>
+    <title>HockeySDK.Xamarin</title>
     <version>$version$</version>
-    <authors>Microsoft</authors>
-    <owners>Microsoft</owners>
+    <authors>hockeyapp</authors>
+    <owners>hockeyapp</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Collect crash reports with HockeyApp in your Xamarin apps.</summary>
-    <description>
-      Collect crash reports with HockeyApp in your Xamarin apps.
-    </description>
-    <copyright>Copyright 2016</copyright>
+    <summary>Use the HockeyApp platform from Xamarin apps. Collect crash reports, provide feedback-functionality and automatic updates.</summary>
+    <copyright>Copyright (c) 2016 Bit Stadium GmbH</copyright>
     <licenseUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/component/ios/icons/hockeyapp_128x128.png</iconUrl>
+    <iconUrl>https://rink.hockeyapp.net/images/icon-120.png</iconUrl>
   </metadata>
   <files>
 
