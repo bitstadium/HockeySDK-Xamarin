@@ -42,9 +42,9 @@ Also note that you can wire up unhandled exception and unobserved task exception
 After your initial setup is complete, you can access the `BITHockeyManager.SharedHockeyManager` share instance everywhere else in your app.  For example, you can show existing feedback or show a form for submitting new feedback to the user:
 
 ```
-BITHockeyManager.FeedbackManager.ShowFeedbackListView();
+BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView();
 
-BITHockeyManager.FeedbackManager.ShowFeedbackComposeView();
+BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackComposeView();
 ```
 
 
@@ -55,3 +55,7 @@ If you would like your app to target iOS 6.0 you will need to add the following 
 2. Under Build -> iOS Build
 3. Go to the Additional Options -> Additional mtouch arguments and add:
    `-cxx -gcc_flags "-lc++"`
+
+## Troubleshooting
+
+HockeyApp may not be compatible with other crash reporting libraries.  If you find that HockeyApp causes crashes or other issues in your app, please try removing all other libraries with crash reporting functionality and try again.

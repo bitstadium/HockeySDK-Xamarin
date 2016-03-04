@@ -47,3 +47,8 @@ If you would like your app to target iOS 6.0 you will need to add the following 
 2. Under Build -> iOS Build
 3. Go to the Additional Options -> Additional mtouch arguments and add:
    `-cxx -gcc_flags "-lc++"`
+   
+
+## Troubleshooting
+
+HockeyApp may not be compatible with other crash reporting libraries.  If you find that HockeyApp causes crashes or other issues in your app, please try removing all other libraries with crash reporting functionality and try again.
