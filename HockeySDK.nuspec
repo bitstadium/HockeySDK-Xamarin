@@ -7,7 +7,10 @@
     <authors>Microsoft</authors>
     <owners>hockeyapp</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Use the HockeyApp platform from Xamarin apps. Collect crash reports, provide feedback-functionality and automatic updates.</summary>
+    <summary>HockeyApp SDK for Xamarin Applications. Use HockeyApp to collect crash reports.</summary>
+    <description>
+      HockeyApp SDK for Xamarin Applications. Use HockeyApp to collect crash reports.
+    </description>
     <copyright>Copyright © Microsoft Corporation. All Rights Reserved.</copyright>
     <licenseUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md</licenseUrl>
     <iconUrl>https://rink.hockeyapp.net/images/icon-120.png</iconUrl>
