@@ -83,7 +83,7 @@ Task ("nuget")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/*.nupkg", "./output");
+	CopyFiles ("./**/HockeySDK*.nupkg", "./output");
 });
 
 Task ("components")
