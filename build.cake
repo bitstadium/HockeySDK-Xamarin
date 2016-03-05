@@ -79,6 +79,11 @@ Task ("nuget")
 		BasePath = basePath,
 		Verbosity = NuGetVerbosity.Detailed,
 	});
+
+	if (!DirectoryExists ("./output"))
+		CreateDirectory ("./output");
+
+	CopyFiles ("./**/*.nupkg", "./output");
 });
 
 Task ("components")
@@ -95,7 +100,11 @@ Task ("components")
 		
 		PackageComponent (fixedFile.GetDirectory (), new XamarinComponentSettings ());
 	}
-	
+
+	if (!DirectoryExists ("./output"))
+		CreateDirectory ("./output");
+
+	CopyFiles ("./**/*.xam", "./output");
 });
 
 Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
