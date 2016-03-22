@@ -10,8 +10,8 @@ var IOS_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/Hoc
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
-	"./samples/HockeyAppSampleiOS.sln",
-	"./samples/HockeyAppSampleiOSCrashOnly.sln",
+	// "./samples/HockeyAppSampleiOS.sln",
+	// "./samples/HockeyAppSampleiOSCrashOnly.sln",
 };
 
 var TARGET = Argument ("target", Argument ("t", "all"));
