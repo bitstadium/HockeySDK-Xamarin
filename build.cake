@@ -2,11 +2,11 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var COMPONENT_VERSION = "4.0.0";
-var NUGET_VERSION = "4.0.0-alpha1";
+var COMPONENT_VERSION = "4.1.0";
+var NUGET_VERSION = "4.1.0-alpha1";
 
-var ANDROID_URL = "https://download.hockeyapp.net/preseason/sdk/android/4.0.0-alpha.1/HockeySDK-Android-4.0.0-alpha.1.zip";
-var IOS_URL = "https://download.hockeyapp.net/preseason/sdk/ios/HockeySDK-iOS-4.0.0-alpha.1.zip";
+var ANDROID_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-Android-4.1.0-alpha.1.zip";
+var IOS_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-iOS-4.1.0-alpha.1.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
