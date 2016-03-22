@@ -112,6 +112,24 @@ namespace HockeyApp
         BITAuthenticator Authenticator { get; }
         #endif
 
+
+        #if !CRASHONLY
+        // @property (nonatomic, strong, readonly) BITMetricsManager* metricsManager;
+        [Export ("metricsManager", ArgumentSemantic.Strong)]
+        BITMetricsManager MetricsManager { get; }
+
+        // @property (nonatomic, getter = isMetricsManagerDisabled) BOOL disableMetricsManager;
+        /// <summary>
+        /// Gets or sets the disable metrics manager.  Must be set before calling StartManager
+        /// </summary>
+        /// <value>If the MetricsManager is disabled.</value>
+        [Export ("disableMetricsManager")]
+        bool DisableMetricsManager {
+            [Bind ("isMetricsManagerDisabled")] get;
+            set;
+        }
+        #endif
+
         // Added in 3.8.4
         //@property (nonatomic, readonly) BITEnvironment appEnvironment;
         [Export ("appEnvironment")]
@@ -211,6 +229,21 @@ namespace HockeyApp
 
         [Export("publicInstallationIdentifier")]
         string PublicInstallationIdentifier { get; }
+    }
+    #endif
+
+    #if !CRASHONLY
+    [BaseType (typeof (BITHockeyBaseManager))]
+    public partial interface BITMetricsManager
+    {
+        // @property (nonatomic, assign) BOOL disabled;
+
+        [Export ("disabled", ArgumentSemantic.Assign)]
+        bool Disabled { get; set; }
+
+        // - (void)trackEventWithName:(NSString*)eventName;
+        [Export ("trackEventWithName:")]
+        void TrackEvent (string eventName);
     }
     #endif
 
