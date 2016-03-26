@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyAppSampleMac", "HockeyAppSampleMac\HockeyAppSampleMac.csproj", "{3748BCFB-11F6-440D-BAB3-63230825B350}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.Mac", "..\source\mac\HockeySDK.Mac.csproj", "{11CBD344-6A1D-476A-A007-6E81EAD6FB06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3748BCFB-11F6-440D-BAB3-63230825B350}.Debug|x86.ActiveCfg = Debug|x86
+		{3748BCFB-11F6-440D-BAB3-63230825B350}.Debug|x86.Build.0 = Debug|x86
+		{3748BCFB-11F6-440D-BAB3-63230825B350}.Release|x86.ActiveCfg = Release|x86
+		{3748BCFB-11F6-440D-BAB3-63230825B350}.Release|x86.Build.0 = Release|x86
+		{11CBD344-6A1D-476A-A007-6E81EAD6FB06}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11CBD344-6A1D-476A-A007-6E81EAD6FB06}.Debug|x86.Build.0 = Debug|Any CPU
+		{11CBD344-6A1D-476A-A007-6E81EAD6FB06}.Release|x86.ActiveCfg = Release|Any CPU
+		{11CBD344-6A1D-476A-A007-6E81EAD6FB06}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

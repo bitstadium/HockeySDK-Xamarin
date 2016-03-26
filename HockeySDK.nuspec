@@ -23,5 +23,8 @@
     <!-- iOS -->
     <file src="./source/ios/bin/full/Release/HockeySDK.dll" target="lib\Xamarin.iOS10" />
     
+    <!-- Mac -->
+    <file src="./source/mac/bin/Release/HockeySDK.dll" target="lib\Xamarin.Mac10" />
+    
   </files>
 </package>
