@@ -3,10 +3,10 @@
 #addin nuget:?package=Cake.FileHelpers
 
 var COMPONENT_VERSION = "4.1.0";
-var NUGET_VERSION = "4.1.0-alpha1";
+var NUGET_VERSION = "4.1.0-alpha2";
 
 var ANDROID_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-Android-4.1.0-alpha.1.zip";
-var IOS_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-iOS-4.1.0-alpha.1.zip";
+var IOS_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-iOS-4.1.0-alpha.2.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
@@ -113,8 +113,8 @@ Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
 
 Task ("clean").Does (() =>
 {
-	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals/", true);
+	if (DirectoryExists ("./externals"))
+		DeleteDirectory ("./externals", true);
 
 	CleanDirectories ("./**/bin");
 	CleanDirectories ("./**/obj");
