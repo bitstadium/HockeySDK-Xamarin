@@ -19,8 +19,6 @@ namespace HockeyAppSampleMac
             buttonCrash.Activated += delegate {
                 HockeyApp.HockeyManager.SharedHockeyManager.CrashManager.GenerateTestCrash ();
             };
-
-
         }
 
         public override NSObject RepresentedObject {

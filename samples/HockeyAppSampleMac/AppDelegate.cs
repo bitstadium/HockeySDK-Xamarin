@@ -12,7 +12,7 @@ namespace HockeyAppSampleMac
         public override void DidFinishLaunching (NSNotification notification)
         {
             // Insert code here to initialize your application
-            HockeyApp.HockeyManager.SharedHockeyManager.Configure ("d25ad82136f447d78dfda2b9ab899cbf");
+            HockeyApp.HockeyManager.SharedHockeyManager.Configure ("YOUR-APP-KEY");
 
             HockeyApp.HockeyManager.SharedHockeyManager.StartManager ();
         }

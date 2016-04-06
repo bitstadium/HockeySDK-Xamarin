@@ -44,16 +44,11 @@
   <ItemGroup>
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <NativeReference Include="..\..\externals\mac\HockeySDK.framework">
-      <IsCxx>False</IsCxx>
-      <Kind>Framework</Kind>
-    </NativeReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\mac\libHockeySDK.a">
-      <Link>libHockeySDK.a</Link>
-    </ObjcBindingNativeLibrary>
+    <NativeReference Include="..\..\externals\mac\HockeySDK.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
   </ItemGroup>
 </Project>

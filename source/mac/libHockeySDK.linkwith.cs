@@ -1,5 +1,6 @@
 using ObjCRuntime;
 
-[assembly: LinkWith ("libHockeySDK.a", 
-    SmartLink = true, 
-    ForceLoad = true)]
+//[assembly: LinkWith ("HockeySDK.framework")]
+//[assembly: LinkWith ("libHockeySDK.a", 
+//    SmartLink = true, 
+//    ForceLoad = true)]

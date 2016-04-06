@@ -30,6 +30,10 @@
     <UseRefCounting>true</UseRefCounting>
     <Profiling>true</Profiling>
     <PlatformTarget>x86</PlatformTarget>
+    <PackageSigningKey>Developer ID Installer</PackageSigningKey>
+    <MonoBundlingExtraArgs>-v -v -v -v -v</MonoBundlingExtraArgs>
+    <CodeSignEntitlements></CodeSignEntitlements>
+    <CodeSignResourceRules></CodeSignResourceRules>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>true</Optimize>
