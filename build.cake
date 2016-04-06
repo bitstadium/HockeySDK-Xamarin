@@ -7,6 +7,7 @@ var NUGET_VERSION = "4.1.0-alpha3";
 
 var ANDROID_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-Android-4.1.0-alpha.2.zip";
 var IOS_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-iOS-4.1.0-alpha.2.zip";
+var MAC_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-Mac-4.1.0-alpha2.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
@@ -65,8 +66,21 @@ Task ("externals-ios")
 	CopyDirectory ("./externals/ios/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle", "./externals/ios/HockeySDKResources.bundle");
 });
 
+Task ("externals-mac")
+	.WithCriteria (!FileExists ("./externals/mac/hockeyapp.mac.zip"))
+	.Does (() => 
+{
+	if (!DirectoryExists ("./externals/mac"))
+		CreateDirectory ("./externals/mac");
+
+	DownloadFile (MAC_URL, "./externals/mac/hockeyapp.mac.zip");
+	Unzip ("./externals/mac/hockeyapp.mac.zip", "./externals/mac/");
+});
+
+
+
 // Create a common externals task depending on platform specific ones
-Task ("externals").IsDependentOn ("externals-ios").IsDependentOn ("externals-android");
+Task ("externals").IsDependentOn ("externals-ios").IsDependentOn ("externals-mac").IsDependentOn ("externals-android");
 
 
 Task ("nuget")
