@@ -10,7 +10,7 @@ using Process = System.Diagnostics.Process;
 
 namespace HockeyApp
 {
-    public static class TraceWriter
+    internal static class TraceWriter
     {
         private static CrashManagerListener _Listener;
 

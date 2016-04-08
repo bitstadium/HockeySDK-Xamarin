@@ -25,6 +25,16 @@
   <attr path="/api/package[@name='net.hockeyapp.android.utils']" name="managedName">HockeyApp.Utils</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.views']" name="managedName">HockeyApp.Views</attr>
 
+  <!-- Remapping CrashManager Register Methods in order to Add C# Extension Methods -->
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" name="visibility">internal</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" name="managedName">DoRegister</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String']]" name="visibility">internal</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String']]" name="managedName">DoRegister</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='net.hockeyapp.android.CrashManagerListener']]" name="visibility">internal</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='net.hockeyapp.android.CrashManagerListener']]" name="managedName">DoRegister</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=4 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.String'] and parameter[4][@type='net.hockeyapp.android.CrashManagerListener']]" name="visibility">internal</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=4 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.String'] and parameter[4][@type='net.hockeyapp.android.CrashManagerListener']]" name="managedName">DoRegister</attr>
+
 
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='UpdateActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='FeedbackActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
