@@ -1,11 +1,15 @@
 ﻿using System;
 using Android.Runtime;
 using System.Threading.Tasks;
+using HockeyApp.Utils;
 
 namespace HockeyApp
 {
 	public partial class CrashManager
 	{
+		private static bool connectedToUnhandledExceptionEvents = false;
+		private static readonly object crashManagerLock = new object();
+
 		public static void Register(global::Android.Content.Context context)
 		{
 			DoRegister(context);
@@ -32,16 +36,33 @@ namespace HockeyApp
 
 		private static void ConnectUnhandledExceptionEvents()
 		{
-			TraceWriter.Initialize();
+			if (connectedToUnhandledExceptionEvents)
+			{
+				HockeyLog.Debug("Crash Manager has already been registered.");
+				return;
+			}
 
-			AndroidEnvironment.UnhandledExceptionRaiser += (sender, e) => {
-				TraceWriter.WriteTrace(e.Exception);
-				e.Handled = true;
-			};
+			lock (crashManagerLock)
+			{
+				if (connectedToUnhandledExceptionEvents)
+				{
+					HockeyLog.Debug("Crash Manager has already been registered.");
+					return;
+				};
 
-			AppDomain.CurrentDomain.UnhandledException += (sender, e) => TraceWriter.WriteTrace(e.ExceptionObject);;
+				TraceWriter.Initialize();
 
-			TaskScheduler.UnobservedTaskException += (sender, e) => TraceWriter.WriteTrace(e.Exception);
+				AndroidEnvironment.UnhandledExceptionRaiser += (sender, e) => {
+					TraceWriter.WriteTrace(e.Exception);
+					e.Handled = true;
+				};
+
+				AppDomain.CurrentDomain.UnhandledException += (sender, e) => TraceWriter.WriteTrace(e.ExceptionObject);
+
+				TaskScheduler.UnobservedTaskException += (sender, e) => TraceWriter.WriteTrace(e.Exception);
+
+				connectedToUnhandledExceptionEvents = true;
+			}
 		}
 	}
 }

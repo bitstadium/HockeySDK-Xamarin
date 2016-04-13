@@ -26,6 +26,7 @@
   <attr path="/api/package[@name='net.hockeyapp.android.views']" name="managedName">HockeyApp.Views</attr>
 
   <!-- Remapping CrashManager Register Methods in order to Add C# Extension Methods -->
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='CrashManager' and count(parameter)=0]" name="visibility">private</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" name="visibility">internal</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" name="managedName">DoRegister</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String']]" name="visibility">internal</attr>
