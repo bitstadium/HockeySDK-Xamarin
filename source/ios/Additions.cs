@@ -2,49 +2,63 @@
 using System.Runtime.InteropServices;
 using Foundation;
 using ObjCRuntime;
+using System.Threading.Tasks;
 
 namespace HockeyApp
 {
-	public partial class Setup
+	public partial class BITHockeyManager
 	{
-		public Setup ()
-		{
-		}
+		private static bool startedManager = false;
+		private static readonly object setupLock= new object();
 
 		[DllImport ("libc")]
 		private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
 
-		enum Signal {
+		private enum Signal {
 			SIGBUS = 10,
 			SIGSEGV = 11
 		}
 
-		public static void EnableCustomCrashReporting (Action customCrashReportingEnableCode)
+		private BITHockeyManager () {}
+
+		public void StartManager()
 		{
-			IntPtr sigbus = Marshal.AllocHGlobal (512);
-			IntPtr sigsegv = Marshal.AllocHGlobal (512);
+			if (startedManager) return;
 
-			// Store Mono SIGSEGV and SIGBUS handlers
-			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
-			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
+			lock (setupLock)
+			{
+				if (startedManager) return;
 
-			// Enable crash reporting libraries
-			customCrashReportingEnableCode ();
+				IntPtr sigbus = Marshal.AllocHGlobal(512);
+				IntPtr sigsegv = Marshal.AllocHGlobal(512);
 
-			// Restore Mono SIGSEGV and SIGBUS handlers            
-			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
-			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+				// Store Mono SIGSEGV and SIGBUS handlers
+				sigaction(Signal.SIGBUS, IntPtr.Zero, sigbus);
+				sigaction(Signal.SIGSEGV, IntPtr.Zero, sigsegv);
 
-			Marshal.FreeHGlobal (sigbus);
-			Marshal.FreeHGlobal (sigsegv);
+				// Enable crash reporting libraries
+				DoStartManager();
+
+				AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
+				TaskScheduler.UnobservedTaskException += (sender, e) => ThrowExceptionAsNative(e.Exception);
+
+				// Restore Mono SIGSEGV and SIGBUS handlers            
+				sigaction(Signal.SIGBUS, sigbus, IntPtr.Zero);
+				sigaction(Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+
+				Marshal.FreeHGlobal(sigbus);
+				Marshal.FreeHGlobal(sigsegv);
+
+				startedManager = true;
+			}
 		}
 
-		public static void ThrowExceptionAsNative(Exception exception)
+		private void ThrowExceptionAsNative(Exception exception)
 		{
 			ConvertToNsExceptionAndAbort (exception);
 		}
 
-		public static void ThrowExceptionAsNative(object exception)
+		private void ThrowExceptionAsNative(object exception)
 		{
 			ConvertToNsExceptionAndAbort (exception);
 		}
@@ -54,7 +68,7 @@ namespace HockeyApp
         #else
         [DllImport(global::MonoTouch.Constants.FoundationLibrary, EntryPoint = "NSGetUncaughtExceptionHandler")]
         #endif
-		static extern IntPtr NSGetUncaughtExceptionHandler();
+		private static extern IntPtr NSGetUncaughtExceptionHandler();
 
 		private delegate void ReporterDelegate(IntPtr ex);
 
@@ -66,7 +80,7 @@ namespace HockeyApp
 //			dele(nse.Handle);
 //		}
 
-		static void ConvertToNsExceptionAndAbort(object e)
+		private void ConvertToNsExceptionAndAbort(object e)
 		{	
 			var name = "Managed Xamarin.iOS .NET Exception";
 			var msg = e.ToString();
