@@ -74,12 +74,12 @@ Task ("nuget")
 	.Does (() => 
 {
 	// NuGet on mac trims out the first ./ so adding it twice works around
-	var basePath = IsRunningOnUnix () ? "././" : "./";
+	var basePath = IsRunningOnUnix () ? (System.IO.Directory.GetCurrentDirectory().ToString() + @"/.") : "./";
 
 	NuGetPack ("./HockeySDK.nuspec", new NuGetPackSettings {
 		Version = NUGET_VERSION,
 		BasePath = basePath,
-		Verbosity = NuGetVerbosity.Detailed,
+		Verbosity = NuGetVerbosity.Detailed
 	});
 
 	if (!DirectoryExists ("./output"))
