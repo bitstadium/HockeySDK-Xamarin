@@ -86,9 +86,9 @@ namespace HockeyApp
 			var msg = e.ToString();
 
 			var ex = e as Exception;
-			if(ex != null) 
-				name = string.Format("{0}: {1}", ex.GetType().FullName, ex.Message);
-
+			if (ex != null) {
+				name = ex.GetType ().FullName;
+			}
 			name = name.Replace("%", "%%"); 
 			msg = msg.Replace("%", "%%");
 			var nse = new NSException(name, msg, null);
