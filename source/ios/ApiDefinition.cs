@@ -50,6 +50,7 @@ namespace HockeyApp
     }
 
     [BaseType (typeof(NSObject))]
+    [DisableDefaultCtor]
     public partial interface BITHockeyManager
     {
         [Static]
@@ -71,8 +72,9 @@ namespace HockeyApp
         [Export("configureWithBetaIdentifier:liveIdentifier:delegate:")]
         void ConfigureWithIdentifier(string betaIdentifier, string liveIdentifier, NSObject managerDelegate);
 
+        [Internal]
         [Export("startManager")]
-        void StartManager();
+        void DoStartManager();
 
         [Export ("serverURL", ArgumentSemantic.Retain)]
         string ServerURL { get; set; }

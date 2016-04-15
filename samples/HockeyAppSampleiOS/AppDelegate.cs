@@ -22,30 +22,19 @@ namespace HockeyAppSampleiOS
 
         public override bool FinishedLaunching (UIApplication app, NSDictionary options)
         {
-            Setup.EnableCustomCrashReporting (() => {
+            //Get the shared instance
+            var manager = BITHockeyManager.SharedHockeyManager;
 
-                //Get the shared instance
-                var manager = BITHockeyManager.SharedHockeyManager;
+            //Configure it to use our APP_ID
+            manager.Configure (HOCKEYAPP_APPID);
 
-                //Configure it to use our APP_ID
-                manager.Configure (HOCKEYAPP_APPID);
+            //Start the manager
+            manager.StartManager ();
 
-                //Start the manager
-                manager.StartManager ();
-
-                #if !CRASHONLY
-                //Authenticate (there are other authentication options)
-                manager.Authenticator.AuthenticateInstallation ();
-                #endif
-
-                //Rethrow any unhandled .NET exceptions as native iOS 
-                // exceptions so the stack traces appear nicely in HockeyApp
-                AppDomain.CurrentDomain.UnhandledException += (sender, e) => 
-                    Setup.ThrowExceptionAsNative (e.ExceptionObject);
-
-                TaskScheduler.UnobservedTaskException += (sender, e) => 
-                    Setup.ThrowExceptionAsNative (e.Exception);
-            });
+            #if !CRASHONLY
+            //Authenticate (there are other authentication options)
+            manager.Authenticator.AuthenticateInstallation ();
+            #endif
 
             // create a new window instance based on the screen size
             window = new UIWindow (UIScreen.MainScreen.Bounds);
