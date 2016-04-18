@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Android.OS;
 using Environment = System.Environment;
 using Process = System.Diagnostics.Process;
+using System.Threading;
 
 namespace HockeyApp
 {
@@ -92,159 +93,13 @@ namespace HockeyApp
         /// longer able to invoke JNI methods, for example in the case of a crash in the pure c# managed space.</remarks>
         public static void WriteTrace(object exception, bool terminate)
         {
-            //if the exception came from java, then we should be able to invoke it
             if (exception is Java.Lang.Exception)
-            {
-                ExceptionHandler.SaveException(exception as Java.Lang.Exception, _Listener);
-            }
+                ExceptionHandler.SaveException(exception as Java.Lang.Exception, exception.ToString(), Java.Lang.Thread.CurrentThread(), _Listener);
             else
+                ExceptionHandler.SaveException(Java.Lang.Throwable.FromException(exception as Exception), null, Java.Lang.Thread.CurrentThread(), _Listener);
+
+            if (terminate)
             {
-                var date = DateTime.Now;
-                var filename = Guid.NewGuid().ToString();
-                var path = Path.Combine(_FilesPath, filename + ".stacktrace");
-                Console.WriteLine("Writing unhandled exception to: {0}", path);
-                try
-                {
-                    using (var f = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
-                    using (var sw = new StreamWriter(f))
-                    {
-                        // Write the stacktrace to disk
-                        sw.WriteLine("Package: {0}", _AppPackage);
-                        sw.WriteLine("Version: {0}", _AppVersion);
-                        if (_IncludeDeviceData)
-                        {
-                            sw.WriteLine("Android: {0}", _AndroidVersion);
-                            sw.WriteLine("Manufacturer: {0}", _PhoneManufacturer);
-                            sw.WriteLine("Model: {0}", _PhoneModel);
-                        }
-                        sw.WriteLine("Date: {0}", date);
-                        sw.WriteLine();
-                        //make sure there is something actually on disk
-                        sw.Flush();
-                        try
-                        {
-                            if (!(exception is Exception))
-                            {
-                                sw.WriteLine(exception);
-                            }
-                            else
-                            {
-                                while ((exception as AggregateException) != null)
-                                    exception = (exception as AggregateException).InnerException;
-
-                                var e = (Exception)exception;
-                                var trace = e.StackTrace;
-                                if (trace == null)
-                                {
-                                    sw.WriteLine(e);
-                                }
-                                else
-                                {
-                                    sw.WriteLine("{0}: {1}", e.GetType().FullName, e.Message);
-                                    foreach (Match m in _StackTraceLine.Matches(trace))
-                                    {
-                                        var method = m.Groups[1].Value;
-                                        if (AppNamespaces != null)
-                                        {
-                                            //use an application provided list of classes to determine which namespaces
-                                            //should be mapped into the package name so hockey app can pick out the correct
-                                            //top stacktrace line.  It unfortunately means you end up with an extra copy of
-                                            //package name at the beginning of your c# crash traces
-                                            foreach (var prefix in AppNamespaces)
-                                            {
-                                                if (method.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-                                                {
-                                                    method = _AppPackage + "." + method;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            //default to things that don't match mono/android/java, again, this forces an extra copy of
-                                            //package name at the beginning of your c# crash traces
-                                            if (!method.StartsWith("mono", StringComparison.OrdinalIgnoreCase) &&
-                                                !method.StartsWith("android", StringComparison.OrdinalIgnoreCase) &&
-                                                !method.StartsWith("system", StringComparison.OrdinalIgnoreCase) &&
-                                                !method.StartsWith("java", StringComparison.OrdinalIgnoreCase))
-                                            {
-                                                method = _AppPackage + "." + method;
-                                            }
-                                        }
-                                        //this forces the arguments part to look more like the file line number part that
-                                        //android stack traces normally have
-                                        var arguments = m.Groups[2].Value.Trim();
-                                        arguments = arguments.Replace(' ', '_');
-                                        arguments = arguments.Replace(',', '_');
-
-                                        sw.WriteLine("\tat {0}({1}.args:1337)", method, arguments);
-                                    }
-                                }
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            // log something just in case something triggers the null refrence with the attached exception
-                            // see https://bugzilla.xamarin.com/show_bug.cgi?id=10379
-                            sw.WriteLine();
-                            sw.WriteLine("Exception writing exception: {0}", e);
-                            throw new Exception("Problem writing exception", e);
-                        }
-                        //make sure there is something actually on disk
-                        sw.Flush();
-                        if (_Listener != null)
-                        {
-                            try
-                            {
-                                File.WriteAllText(Path.Combine(_FilesPath, filename + ".user"), ClipString(_Listener.UserID), Encoding.UTF8);
-                            }
-                            catch (Exception)
-                            {
-                                if (_User != null)
-                                {
-                                    sw.WriteLine();
-                                    sw.WriteLine("UserId was cached");
-                                    File.WriteAllText(Path.Combine(_FilesPath, filename + ".user"), ClipString(_User),
-                                        Encoding.UTF8);
-                                }
-                            }
-                            try
-                            {
-                                File.WriteAllText(Path.Combine(_FilesPath, filename + ".contact"), ClipString(_Listener.Contact), Encoding.UTF8);
-                            }
-                            catch (Exception)
-                            {
-                                if (_Contact != null)
-                                {
-                                    sw.WriteLine();
-                                    sw.WriteLine("Contact was cached");
-
-                                    File.WriteAllText(Path.Combine(_FilesPath, filename + ".contact"), ClipString(_Contact), Encoding.UTF8);
-                                }
-                            }
-                            try
-                            {
-                                File.WriteAllText(Path.Combine(_FilesPath, filename + ".description"), _Listener.Description, Encoding.UTF8);
-                            }
-                            catch (Exception)
-                            {
-                                if (AllowCachedDescription &&_Description != null)
-                                {
-                                    sw.WriteLine();
-                                    sw.WriteLine("Description was cached");
-                                    File.WriteAllText(Path.Combine(_FilesPath, filename + ".description"), _Description, Encoding.UTF8);
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception another)
-                {
-                    Console.WriteLine("Error saving exception stacktrace! {0}", another);
-                }
-            }
-            
-            if (terminate) {
                 Process.GetCurrentProcess ().Kill ();
                 Environment.Exit (10);
             }
