@@ -10,7 +10,7 @@ using Process = System.Diagnostics.Process;
 
 namespace HockeyApp
 {
-    internal static class TraceWriter
+    public static class TraceWriter
     {
         private static CrashManagerListener _Listener;
 
@@ -80,7 +80,7 @@ namespace HockeyApp
          to
          \tat android.support.v4.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:1343)
         */
-        static Regex _StackTraceLine = new Regex(@"\s*at\s*(\S+)\s*\(([^\)]*)\)");
+        static Regex _StackTraceLine = new Regex(@"\s*at\s*(\S+)\s*\([^\)]*\)\s\[0x[\d\w]+\]\sin\s\S+[\\/](\S+)");
 
         /// <summary>
         /// Writes the given object (usually an exception) to disc so that it can be picked up by the CrashManager and send to Hockeyapp.
@@ -173,11 +173,9 @@ namespace HockeyApp
                                         }
                                         //this forces the arguments part to look more like the file line number part that
                                         //android stack traces normally have
-                                        var arguments = m.Groups[2].Value.Trim();
-                                        arguments = arguments.Replace(' ', '_');
-                                        arguments = arguments.Replace(',', '_');
+                                        var fileAndLine = m.Groups[2].Value.Trim();
 
-                                        sw.WriteLine("\tat {0}({1}.args:1337)", method, arguments);
+                                        sw.WriteLine("\tat {0}({1})", method, fileAndLine);
                                     }
                                 }
                             }
