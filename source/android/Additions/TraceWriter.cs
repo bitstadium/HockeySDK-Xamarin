@@ -90,9 +90,9 @@ namespace HockeyApp
         public static void WriteTrace(object exception, bool terminate)
         {
             if (exception is Java.Lang.Exception)
-                ExceptionHandler.SaveException(exception as Java.Lang.Exception, exception.ToString(), Java.Lang.Thread.CurrentThread(), _Listener);
+                ExceptionHandler.SaveNativeException(exception as Java.Lang.Exception, exception.ToString(), Java.Lang.Thread.CurrentThread(), _Listener);
             else
-                ExceptionHandler.SaveException(Java.Lang.Throwable.FromException(exception as Exception), null, Java.Lang.Thread.CurrentThread(), _Listener);
+                ExceptionHandler.SaveManagedException(Java.Lang.Throwable.FromException(exception as Exception), Java.Lang.Thread.CurrentThread(), _Listener);
 
             if (terminate)
             {
