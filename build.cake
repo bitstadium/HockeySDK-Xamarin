@@ -5,7 +5,7 @@
 var COMPONENT_VERSION = "4.1.0";
 var NUGET_VERSION = "4.1.0-alpha3";
 
-var ANDROID_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-Android-4.1.0-alpha.2.zip";
+var ANDROID_URL = "https://s3.amazonaws.com/hockey-app-download/sdk/xamarin/android/HockeySDK-Android-4.1.0-beta.1.zip";
 var IOS_URL = "http://xamarin-components-binaries.s3.amazonaws.com/HockeySDK/HockeySDK-iOS-4.1.0-alpha.2.zip";
 
 var SAMPLES = new [] {
