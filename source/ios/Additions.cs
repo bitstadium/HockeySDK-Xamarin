@@ -86,14 +86,17 @@ namespace HockeyApp
 			var msg = e.ToString();
 
 			var ex = e as Exception;
-			if(ex != null) 
-				name = string.Format("{0}: {1}", ex.GetType().FullName, ex.Message);
-
+			if (ex != null) {
+				name = ex.GetType ().FullName;
+				if (ex.StackTrace != null) {
+					msg = msg.Insert (msg.IndexOf('\n'), "Xamarin Exception Stack:");
+				}
+			}
 			name = name.Replace("%", "%%"); 
 			msg = msg.Replace("%", "%%");
 			var nse = new NSException(name, msg, null);
 			var sel = new Selector("raise");
-            global::Xamarin.ObjCRuntime.Messaging.void_objc_msgSend(nse.Handle, sel.Handle);
+			global::Xamarin.ObjCRuntime.Messaging.void_objc_msgSend(nse.Handle, sel.Handle);
 		}
 	}
 }
