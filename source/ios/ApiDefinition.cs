@@ -246,6 +246,9 @@ namespace HockeyApp
         // - (void)trackEventWithName:(NSString*)eventName;
         [Export ("trackEventWithName:")]
         void TrackEvent (string eventName);
+
+		[Export ("serverURL", ArgumentSemantic.Retain)]
+		string ServerURL { get; set; }
     }
     #endif
 
