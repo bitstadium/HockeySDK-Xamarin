@@ -23,14 +23,13 @@ The following features are currently supported:
 
 This document contains the following sections:
 
+[//]: # (4. [Add user metrics](#user-metrics))
+
 1. [Requirements](#requirements)
 2. [Setup](#setup)
  1. [Obtain an app identifier](#app-identifier)
  2. [Integrate HockeySDK](#integrate-sdk)
  3. [Add crash reporting](#crash-reporting)
-
-[//]: # (4. [Add user metrics](#user-metrics))
-
  5. [Add Update Distribution](#updated-distribution)
  6. [Add in-app feedback](#feedback)
  7. [Add authentication](#authentication)
@@ -111,15 +110,10 @@ namespace YourNameSpace {
 
  [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
  public class MainActivity : Activity {
- 
   protected override void OnCreate(Bundle savedInstanceState) {
    base.OnCreate(savedInstanceState);
    // ... your own OnCreate implementation
-   CheckForCrashes();
-  }
-
-  private void CheckForCrashes() {
-   CrashManager.register(this, "Your-App-Id");
+   CrashManager.Register(this, "Your-App-Id");
   }
  }
 }
@@ -217,31 +211,37 @@ When the activity is created, the update manager checks for new updates in the b
 ### 2.6 Add in-app feedback
 This will add the ability for your users to provide feedback from right inside your app. Detailed configuration options are in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
 
+#### For iOS
+```C#
+using HockeyApp;
+
+var feedbackManager = BITHockeyManager.SharedHockeyManager.FeedbackManager;
+```
+
+Please check the [documentation](#documentation) of the `BITFeedbackManager` class on more information on how to leverage this feature.
+
+#### For Android
+
 1. You'll typically only want to show the feedback interface upon user interaction, for this example we assume you have a button `feedback_button` in your view for this.
 2. Add the following lines to your respective activity, handling the touch events and showing the feedback interface:
 
 ```C#
-import net.hockeyapp.android.FeedbackManager;
+using HockeyApp;
 
-public class YourActivity extends Activitiy {
+namespace YourNameSpace {
+ public class YourActivity : Activitiy {
+  protected override void OnCreate(Bundle savedInstanceState) {
+   base.OnCreate(savedInstanceState);
+   // Your own code to create the view
+   // ...
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    // Your own code to create the view
-    // ...
+   FeedbackManager.Register(this, "Your-App-Id");
 
-    FeedbackManager.register(this);
-
-    Button feedbackButton = (Button) findViewById(R.id.feedback_button);
-    feedbackButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            FeedbackManager.showFeedbackActivity(MainActivity.this);
-        }
-    });
+   Button feedbackButton = FindViewById<Button>(Resource.Id.feedback_button);
+   feedbackButton.Click += delegate {
+    FeedbackManager.ShowFeedbackActivity(ApplicationContext);
+   });
   }
-  
 }
 ```
 
@@ -301,19 +301,18 @@ manager.StartManager();
 #### For Android
 ```C#
 using HockeyApp.Util;
-using Android.Util;
 
-HockeyLog.LogLevel(Log.Debug);
+HockeyLog.LogLevel(3);
 ```
 
 The different log levels match Android's own log levels.
 
 ```C#
-HockeyLog.LogLevel(Log.Verbose); // show all log statements
-HockeyLog.LogLevel(Log.Debug); // show most log statements – useful for debugging
-HockeyLog.LogLevel(Log.Info); // show informative or higher log messages
-HockeyLog.LogLevel(Log.Warn); // show warnings and errors
-HockeyLog.LogLevel(Log.Error); // show only errors – the default log level
+HockeyLog.LogLevel(2); // Verbose, show all log statements
+HockeyLog.LogLevel(3); // Debug, show most log statements – useful for debugging
+HockeyLog.LogLevel(4); // Info, show informative or higher log messages
+HockeyLog.LogLevel(5); // Warn, show warnings and errors
+HockeyLog.LogLevel(6); // Error, show only errors – the default log level
 ```
 
 <a id="documentation"></a>
