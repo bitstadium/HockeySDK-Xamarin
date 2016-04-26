@@ -5,12 +5,13 @@
 
 ## Introduction
 HockeySDK-Xamarin implements support for using HockeyApp in your iOS and Android applications.
+Please refer to [HockeySDK-iOS](https://github.com/bitstadium/HockeySDK-iOS) and [HockeySDK-Android](https://github.com/bitstadium/HockeySDK-Android) for advanced platform-specific behaviours
 
 The following features are currently supported:
 
 1. **Collect crash reports:** If your app crashes, a crash log is written to the device's storage. If the user starts the app again, they will be asked asked to submit the crash report to HockeyApp. This works for both beta and live apps, i.e. those submitted to the App Store. Crash logs contain viable information for you to help resolve the issue. Furthermore, you as a developer can add additional information to the report as well.
 
-2. **User Metrics:** Understand user behavior to improve your app. Track usage through daily and monthly active users. Monitor crash impacted users. Measure customer engagement through session count. This feature requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).
+[//]: # (2. **User Metrics:** Understand user behavior to improve your app. Track usage through daily and monthly active users. Monitor crash impacted users. Measure customer engagement through session count. This feature requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).)
 
 3. **Update Ad-Hoc / Enterprise apps:** The app will check with HockeyApp if a new version for your Ad-Hoc or Enterprise build is available. If yes, it will show an alert view to the user and let him see the release notes, the version history and start the installation process right away.
 
@@ -27,7 +28,9 @@ This document contains the following sections:
  1. [Obtain an app identifier](#app-identifier)
  2. [Integrate HockeySDK](#integrate-sdk)
  3. [Add crash reporting](#crash-reporting)
- 4. [Add user metrics](#user-metrics)
+
+[//]: # (4. [Add user metrics](#user-metrics))
+
  5. [Add Update Distribution](#updated-distribution)
  6. [Add in-app feedback](#feedback)
  7. [Add authentication](#authentication)
@@ -74,32 +77,7 @@ For each iOS and Android project desired, add the HockeySDK-Xamarin nuget.
 
 <a id="crash-reporting"></a>
 ### 2.4 Add crash reporting
-This will add crash reporting capabilities to your app. Advanced ways to configure crash reporting are covered in [advanced setup](#advancedsetup).
-
-#### For Android
-1. Open your `MainActivity.cs` file.
-2. Add the following lines:
-
-```C#
-using HockeyApp;
-
-namespace YourNameSpace {
-
-	[Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
- public class MainActivity : Activity {
- 
-  protected override void OnCreate(Bundle bundle) {
-   base.OnCreate();
-   // ... your own OnCreate implementation
-   checkForCrashes();
-  }
-
-  private void checkForCrashes() {
-   CrashManager.register(this, "Your-App-Id");
-  }
- }
-}
-```
+This will add crash reporting capabilities to your app. Advanced ways to configure crash reporting are covered in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
 
 #### For iOS
 1. Open your `AppDelegate.cs` file.
@@ -122,55 +100,245 @@ namespace YourNameSpace {
 }
 ```
 
+#### For Android
+1. Open your `MainActivity.cs` file.
+2. Add the following lines:
+
+```C#
+using HockeyApp;
+
+namespace YourNameSpace {
+
+ [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
+ public class MainActivity : Activity {
+ 
+  protected override void OnCreate(Bundle savedInstanceState) {
+   base.OnCreate(savedInstanceState);
+   // ... your own OnCreate implementation
+   CheckForCrashes();
+  }
+
+  private void CheckForCrashes() {
+   CrashManager.register(this, "Your-App-Id");
+  }
+ }
+}
+```
+
 When the app is resumed, the crash manager is triggered and checks if a new crash was created before. If yes, it presents a dialog to ask the user whether they want to send the crash log to HockeyApp. On app launch the crash manager registers a new exception handler to recognize app crashes.
 
+<!--
 <a id="user-metrics"></a>
 ### 2.4 Add user metrics
-*TBD*
+HockeyApp automatically provides you with nice, intelligible, and informative metrics about how your app is used and by whom.
+- **Sessions**: A new session is tracked by the SDK whenever the containing app is restarted (this refers to a 'cold start', i.e. when the app has not already been in memory prior to being launched) or whenever it becomes active again after having been in the background for 20 seconds or more.
+- **Users**: The SDK anonymously tracks the users of your app by creating a random UUID that is then securely stored in the iOS keychain. Because this anonymous ID is stored in the keychain it persists across reinstallations.
+
+Just in case you want to opt-out of this feature, there is a way to turn this functionality off:
+
+
+#### For iOS
+```C#
+using HockeyApp;
+
+var manager = BITHockeyManager.SharedHockeyManager;
+manager.Configure("Your_App_Id");
+manager.DisableMetricsManager = true;
+manager.StartManager();
+```
+
+Android does not automatically start the MetricsManager:
+
+#### For Android
+```C#
+using HockeyApp.Metrics;
+
+MetricsManager.Register(this, Application, "Your-App-Id");
+```
+-->
 
 <a id="updated-distribution"></a>
 ### 2.5 Add Update Distribution
-*TBD*
+This will add the in-app update mechanism to your app. Detailed configuration options are in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
+
+#### For iOS
+```C#
+using HockeyApp;
+
+var manager = BITHockeyManagerSharedHockeyManager;
+manager.Configure("Your_App_Id");
+manager.SetEnableStoreUpdateManager = true;
+manager.StartManager();
+```
+
+#### For Android
+1. Open the activity where you want to inform the user about eventual updates. We'll assume you want to do this on startup of your main activity.
+2. Add the following lines and make sure to always balance `register(...)` calls to SDK managers with `unregister()` calls in the corresponding lifecycle callbacks:
+
+```C#
+using HockeyApp;
+
+namespace YourNameSpace {
+ [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
+ public class YourActivity : Activity {
+  protected override void OnCreate(Bundle savedInstanceState) {
+   base.OnCreate(savedInstanceState);
+   // Your own code to create the view
+   // ...
+    
+   CheckForUpdates();
+  }
+
+  private void CheckForUpdates() {
+   // Remove this for store builds!
+   UpdateManager.Register(this, "Your_App_Id");
+  }
+  
+  private void UnregisterManagers() {
+   UpdateManager.Unregister();
+  }
+
+  protected override void OnPause() {
+   base.OnPause();
+   UnregisterManagers();
+  }
+  
+  protected override void OnDestroy() {
+   base.OnDestroy();
+   UnregisterManagers();
+  }
+ }
+}
+```
+
+When the activity is created, the update manager checks for new updates in the background. If it finds a new update, an alert dialog is shown and if the user presses Show, they will be taken to the update activity. The reason to only do this once upon creation is that the update check causes network traffic and therefore potential costs for your users.
 
 <a id="feedback"></a>
 ### 2.6 Add in-app feedback
-*TBD*
+This will add the ability for your users to provide feedback from right inside your app. Detailed configuration options are in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
+
+1. You'll typically only want to show the feedback interface upon user interaction, for this example we assume you have a button `feedback_button` in your view for this.
+2. Add the following lines to your respective activity, handling the touch events and showing the feedback interface:
+
+```C#
+import net.hockeyapp.android.FeedbackManager;
+
+public class YourActivity extends Activitiy {
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    // Your own code to create the view
+    // ...
+
+    FeedbackManager.register(this);
+
+    Button feedbackButton = (Button) findViewById(R.id.feedback_button);
+    feedbackButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            FeedbackManager.showFeedbackActivity(MainActivity.this);
+        }
+    });
+  }
+  
+}
+```
+
+When the user taps on the feedback button it will launch the feedback interface of the HockeySDK, where the user can create a new feedback discussion, add screenshots or other files for reference, and act on their previous feedback conversations.
 
 <a id="authentication"></a>
 ### 2.7 Add authentication
-*TBD*
+#### For iOS
+Instructions for iOS Authentication can be forund [here](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
+
+#### For Android
+You can force authentication of your users through the `LoginManager` class. This will show a login screen to users if they are not fully authenticated to protect your app.
+
+1. Retrieve your app secret from the HockeyApp backend. You can find this on the app details page in the backend right next to the "App ID" value. Click "Show" to access it. 
+2. Open the activity you want to protect, if you want to protect all of your app this will be your main activity.
+3. Add the following lines to this activity:
+
+```C#
+using HockeyApp;
+
+namespace YourNameSpace {
+ [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
+ public class YourActivity : Activity {
+  protected override void OnCreate(Bundle savedInstanceState) {
+   base.OnCreate(savedInstanceState);
+   // Your own code to create the view
+   // ...
+
+   LoginManager.Register(this, APP_SECRET, LoginManager.LOGIN_MODE_EMAIL_PASSWORD);
+   LoginManager.VerifyLogin(this, Intent);
+  }
+ }
+}
+```
+
+Make sure to replace `APP_SECRET` with the value retrieved in step 1. This will launch the login activity every time a user launches your app.
 
 <a id="advanced-setup"></a>
 ## 3. Advanced setup
-*TBD*
 
 <a id="permissions"></a>
 ### 3.1 Permissions (Android-Only)
-*TBD*
+Permissions get automatically merged into your manifest. If your app does not use update distribution you might consider removing the permission `WRITE_EXTERNAL_STORAGE` - see the [advanced permissions section](https://github.com/bitstadium/HockeySDK-Android#permissions-advanced) for details.
 
 <a id="logcat-output"></a>
 ### 3.2 Control output to LogCat
-*TBD*
+You can control the amount of log messages from HockeySDK that show up in LogCat. By default, we keep the noise as low as possible, only errors will show up. To enable additional logging, i.e. while debugging, add the following line of code:
+
+#### For iOS
+```C#
+var manager = BITHockeyManager.SharedHockeyManager;
+manager.Configure("Your_App_Id");
+manager.SetDebugLogEnabled = true;
+manager.StartManager();
+```
+
+#### For Android
+```C#
+using HockeyApp.Util;
+using Android.Util;
+
+HockeyLog.LogLevel(Log.Debug);
+```
+
+The different log levels match Android's own log levels.
+
+```C#
+HockeyLog.LogLevel(Log.Verbose); // show all log statements
+HockeyLog.LogLevel(Log.Debug); // show most log statements – useful for debugging
+HockeyLog.LogLevel(Log.Info); // show informative or higher log messages
+HockeyLog.LogLevel(Log.Warn); // show warnings and errors
+HockeyLog.LogLevel(Log.Error); // show only errors – the default log level
+```
 
 <a id="documentation"></a>
 ## 4. Documentation
-*TBD*
+Our documentation can be found on HockeyApp [iOS](http://hockeyapp.net/help/sdk/ios/4.0.0-beta.1/index.html) | [Android](http://hockeyapp.net/help/sdk/android/4.0.0-beta.1/index.html)
 
 <a id="troubleshooting"></a>
 ## 5. Troubleshooting
-*TBD*
+1. Check if the Your_App_Id matches the App ID in HockeyApp.
+2. Check if the `Package name` in `Project Options->Android Application` file matches the Bundle Identifier of the app in HockeyApp. HockeyApp accepts crashes only if both the App ID and the bundle identifier match their corresponding values in your app. Please note that the package value in your `AndroidManifest.xml` file might differ from the bundle identifier.
+3. If your app crashes and you start it again, does the dialog show up which asks the user to send the crash report? If not, please [enable logging](#logcat-output)
+4. If it still does not work, please [contact us](http://support.hockeyapp.net/discussion/new).
 
 <a id="contributing"></a>
 ## 6. Contributing
-*TBD*
+We're looking forward to your contributions via pull requests.
 
 <a id="contributor-license"></a>
 ## 7. Contributor license
-*TBD*
+You must sign a [Contributor License Agreement](https://cla.microsoft.com/) before submitting your pull request. To complete the Contributor License Agreement (CLA), you will need to submit a request via the [form](https://cla.microsoft.com/) and then electronically sign the CLA when you receive the email containing the link to the document. You need to sign the CLA only once to cover submission to any Microsoft OSS project. 
 
 <a id="contact"></a>
 ## 8. Contact
-*TBD*
+
+If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to open a GitHub issue here or contact us at [support@hockeyapp.net](mailto:support@hockeyapp.net) or in our [public Slack channel](https://slack.hockeyapp.net).
 
 ## Building from Source
 
