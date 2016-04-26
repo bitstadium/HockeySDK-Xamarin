@@ -156,14 +156,22 @@ MetricsManager.Register(this, Application, "Your-App-Id");
 This will add the in-app update mechanism to your app. Detailed configuration options are in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
 
 #### For iOS
+The feature handles version updates, presents update and version information in a App Store like user interface, collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.
+
+This module automatically disables itself when running in an App Store build by default!
+
+This feature can be disabled manually as follows:
+
 ```C#
 using HockeyApp;
 
 var manager = BITHockeyManagerSharedHockeyManager;
 manager.Configure("Your_App_Id");
-manager.SetEnableStoreUpdateManager = true;
+manager.SetDisableUpdateManager = true;
 manager.StartManager();
 ```
+
+If you want to see beta analytics, use the beta distribution feature with in-app updates, restrict versions to specific users, or want to know who is actually testing your app, you need to follow the instructions on our guide [Authenticating Users on iOS](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
 
 #### For Android
 1. Open the activity where you want to inform the user about eventual updates. We'll assume you want to do this on startup of your main activity.
