@@ -1,6 +1,6 @@
 # HockeySDK for Xamarin
 
-## Version 4.1.0-alpha3
+## Version 4.1.0-beta1
 - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
 
 ## Introduction
@@ -11,7 +11,7 @@ The following features are currently supported:
 
 1. **Collect crash reports:** If your app crashes, a crash log is written to the device's storage. If the user starts the app again, they will be asked asked to submit the crash report to HockeyApp. This works for both beta and live apps, i.e. those submitted to the App Store. Crash logs contain viable information for you to help resolve the issue. Furthermore, you as a developer can add additional information to the report as well.
 
-[//]: # (2. **User Metrics:** Understand user behavior to improve your app. Track usage through daily and monthly active users. Monitor crash impacted users. Measure customer engagement through session count. This feature requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).)
+2. **User Metrics:** Understand user behavior to improve your app. Track usage through daily and monthly active users. Monitor crash impacted users. Measure customer engagement through session count. This feature requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).
 
 3. **Update Ad-Hoc / Enterprise apps:** The app will check with HockeyApp if a new version for your Ad-Hoc or Enterprise build is available. If yes, it will show an alert view to the user and let him see the release notes, the version history and start the installation process right away.
 
@@ -23,13 +23,12 @@ The following features are currently supported:
 
 This document contains the following sections:
 
-[//]: # (4. [Add user metrics](#user-metrics))
-
 1. [Requirements](#requirements)
 2. [Setup](#setup)
  1. [Obtain an app identifier](#app-identifier)
  2. [Integrate HockeySDK](#integrate-sdk)
  3. [Add crash reporting](#crash-reporting)
+ 4. [Add user metrics](#user-metrics)
  5. [Add Update Distribution](#updated-distribution)
  6. [Add in-app feedback](#feedback)
  7. [Add authentication](#authentication)
@@ -121,7 +120,6 @@ namespace YourNameSpace {
 
 When the app is resumed, the crash manager is triggered and checks if a new crash was created before. If yes, it presents a dialog to ask the user whether they want to send the crash log to HockeyApp. On app launch the crash manager registers a new exception handler to recognize app crashes.
 
-<!--
 <a id="user-metrics"></a>
 ### 2.4 Add user metrics
 HockeyApp automatically provides you with nice, intelligible, and informative metrics about how your app is used and by whom.
@@ -149,7 +147,6 @@ using HockeyApp.Metrics;
 
 MetricsManager.Register(this, Application, "Your-App-Id");
 ```
--->
 
 <a id="updated-distribution"></a>
 ### 2.5 Add Update Distribution
