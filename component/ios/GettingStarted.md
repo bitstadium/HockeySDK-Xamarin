@@ -1,6 +1,6 @@
 ## Obtain an App Identifier
 
-Please see the [How to create a new app](http://support.hockeyapp.net/kb/about-general-faq/how-to-create-a-new-app) tutorial. This will provide you with an HockeyApp specific App Identifier to be used to initialize the SDK.
+Please see the [How to create a new app](http://support.hockeyapp.net/kb/about-general-faq/how-to-create-a-new-app) tutorial. This will provide you with a HockeyApp specific App Identifier to be used to initialize the SDK.
 
 ## Add crash reporting
 
