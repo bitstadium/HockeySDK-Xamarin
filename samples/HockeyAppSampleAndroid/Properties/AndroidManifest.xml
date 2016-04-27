@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.hockeyapp.sample">
 	<uses-sdk android:minSdkVersion="10" />
-	<application android:label="HockeyApp Sample" android:theme="@style/Theme.AppCompat.Light">
+	<application android:label="HockeyApp Sample" android:theme="@style/Theme.AppCompat.Light" android:icon="@mipmap/ic_launcher">
 		<activity android:name="net.hockeyapp.android.FeedbackActivity" />
 		<activity android:name="net.hockeyapp.android.UpdateActivity" />
 	</application>
