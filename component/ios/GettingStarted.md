@@ -1,61 +1,87 @@
-## Adding HockeyApp to your iOS app
+## Obtain an App Identifier
 
-In your `AppDelegate.cs`'s your `FinishedLaunching` override should look something like this: (be sure to replace "YOUR-HOCKEYAPP-APPID" with your own):
+Please see the [How to create a new app](http://support.hockeyapp.net/kb/about-general-faq/how-to-create-a-new-app) tutorial. This will provide you with an HockeyApp specific App Identifier to be used to initialize the SDK.
 
-```
-public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+## Add crash reporting
+
+This will add crash reporting capabilities to your app. 
+
+Open your AppDelegate.cs file, and add the following lines:
+
+```csharp
+using HockeySDK;
+
+namespace YourNameSpace
 {
-	//We MUST wrap our setup in this block to wire up
-	// Mono's SIGSEGV and SIGBUS signals
-	HockeyApp.Setup.EnableCustomCrashReporting (() => {
-
-		//Get the shared instance
-		var manager = BITHockeyManager.SharedHockeyManager;
-
-		//Configure it to use our APP_ID
-		manager.Configure ("YOUR-HOCKEYAPP-APPID");
-
-		//Start the manager
-		manager.StartManager ();
-
-		//Authenticate (there are other authentication options)
-		manager.Authenticator.AuthenticateInstallation ();
-		
-		//Rethrow any unhandled .NET exceptions as native iOS 
-		// exceptions so the stack traces appear nicely in HockeyApp
-		AppDomain.CurrentDomain.UnhandledException += (sender, e) => 
-			Setup.ThrowExceptionAsNative(e.ExceptionObject);
-
-		TaskScheduler.UnobservedTaskException += (sender, e) => 
-			Setup.ThrowExceptionAsNative(e.Exception);
-	});
-
-	//The rest of your code here
-	// ...
+	[Register("AppDelegate")]
+	public partial class AppDelegate : UIApplicationDelegate
+	{
+		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+		{
+			var manager = BITHockeyManager.SharedHockeyManager;
+			manager.Configure("Your_App_Id");
+			manager.StartManager();
+		}
+	}
 }
 ```
 
-Note that you must wrap the code in your FinishedLaunching method in the `HockeyApp.Setup.EnableCustomCrashReporting` block so that we can temporarily redirect mono's SIGSEGV and SIGBUS handlers.  This is important for Crash Reporting.
 
-Also note that you can wire up unhandled exception and unobserved task exception events and use the `Setup.ThrowExceptionAsNative(...)` to re-throw the exception as a native iOS exception.  This will ensure that you see a stack trace in your HockeyApp dashboard.
+## Add Update Distribution
 
-After your initial setup is complete, you can access the `BITHockeyManager.SharedHockeyManager` share instance everywhere else in your app.  For example, you can show existing feedback or show a form for submitting new feedback to the user:
+This will add the in-app update mechanism to your app.
+
+The feature handles version updates, presents update and version information in a App Store like user interface, collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.
+
+This module automatically disables itself when running in an App Store build by default!
+
+This feature can be disabled manually as follows:
+
+```csharp
+var manager = BITHockeyManagerSharedHockeyManager;
+manager.Configure("Your_App_Id");
+manager.SetDisableUpdateManager = true;
+manager.StartManager();
+```
+
+If you want to see beta analytics, use the beta distribution feature with in-app updates, restrict versions to specific users, or want to know who is actually testing your app, you need to follow the instructions on our guide [Authenticating Users on iOS](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
+
+
+
+
+## Add in-app feedback
+
+This will add the ability for your users to provide feedback from right inside your app.
 
 ```
-BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackListView();
+var feedbackManager = BITHockeyManager.SharedHockeyManager.FeedbackManager;
 
-BITHockeyManager.SharedHockeyManager.FeedbackManager.ShowFeedbackComposeView();
+// Show current feedback
+feedbackManager.ShowFeedbackListView();
+
+// Send new feedback                                              feedbackManager.ShowFeedbackComposeView();
 ```
 
 
-## Targeting iOS 6.0
-If you would like your app to target iOS 6.0 you will need to add the following arguments to your application project settings.
 
-1. Open project Options
-2. Under Build -> iOS Build
-3. Go to the Additional Options -> Additional mtouch arguments and add:
-   `-cxx -gcc_flags "-lc++"`
+## Add authentication
 
-## Troubleshooting
+Instructions for iOS Authentication can be found [here](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
 
-HockeyApp may not be compatible with other crash reporting libraries.  If you find that HockeyApp causes crashes or other issues in your app, please try removing all other libraries with crash reporting functionality and try again.
+
+
+## Control logging output
+
+You can control the amount of log messages from HockeySDK.  By default, we keep the noise as low as possible, only errors will show up. To enable additional logging, i.e. while debugging, add the following line of code:
+
+```csharp
+var manager = BITHockeyManager.SharedHockeyManager;
+manager.Configure("Your_App_Id");
+manager.SetDebugLogEnabled = true;
+manager.StartManager();
+```
+
+
+## More Information
+
+For more information, see the [HockeySDK for Xamarin Source Repository](https://github.com/bitstadium/HockeySDK-Xamarin)
