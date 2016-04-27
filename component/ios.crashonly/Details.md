@@ -1,4 +1,4 @@
-HockeyApp a platform to collect live crash reports, get feedback from your users, distribute your betas, recruit new testers, and analyze your test coverage.
+HockeyApp is a platform to collect live crash reports, get feedback from your users, distribute your betas, recruit new testers, and analyze your test coverage.
 
 The following features are currently supported:
 
