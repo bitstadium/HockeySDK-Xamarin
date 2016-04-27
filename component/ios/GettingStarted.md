@@ -31,7 +31,7 @@ namespace YourNameSpace
 
 This will add the in-app update mechanism to your app.
 
-The feature handles version updates, presents update and version information in a App Store like user interface, collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.
+The feature handles version updates, presents update and version information in an App Store like user interface, collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.
 
 This module automatically disables itself when running in an App Store build by default!
 
@@ -53,13 +53,14 @@ If you want to see beta analytics, use the beta distribution feature with in-app
 
 This will add the ability for your users to provide feedback from right inside your app.
 
-```
+```csharp
 var feedbackManager = BITHockeyManager.SharedHockeyManager.FeedbackManager;
 
 // Show current feedback
 feedbackManager.ShowFeedbackListView();
 
-// Send new feedback                                              feedbackManager.ShowFeedbackComposeView();
+// Send new feedback
+feedbackManager.ShowFeedbackComposeView();
 ```
 
 
