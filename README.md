@@ -214,13 +214,48 @@ When the activity is created, the update manager checks for new updates in the b
 
 <a id="feedback"></a>
 ### 2.6 Add in-app feedback
-This will add the ability for your users to provide feedback from right inside your app. Detailed configuration options are in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
+The feedback manager lets your users communicate directly with you via the app and an integrated user interface. It provides a single threaded discussion with a user running your app. Detailed configuration options are in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
+
+1. You'll typically only want to show the feedback interface upon user interaction, for this example we assume you have a button `feedbackButton` in your view for this.
+2. Add the following lines to your respective view controller/activity, handling the touch events and showing the feedback interface:
 
 #### For iOS
+
+You should never create your own instance of BITFeedbackManager but use the one provided by the `BITHockeyManager.sharedHockeyManager()`.
+
 ```C#
 using HockeyApp;
 
-var feedbackManager = BITHockeyManager.SharedHockeyManager.FeedbackManager;
+namespace YourNameSpace {
+{
+
+	[Register ("AppDelegate")]
+	public partial class AppDelegate : UIApplicationDelegate
+	{
+
+		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions) {
+		{
+			// Initialise the Hockey SDK here
+   			var manager = BITHockeyManagerSharedHockeyManager;
+			manager.Configure("Your_App_Id");
+			manager.StartManager();
+   			
+			// Create button and add action for click event
+			var app = new App ();
+   			var ShowFeedbackListViewButton = new Xamarin.Forms.Button {
+				Text = "Show Feedback List View"
+			};
+			ShowFeedbackListViewButton.Clicked += ShowFeedbackList;
+			app.AddChild (ShowFeedbackListViewButton);
+   		}
+   		
+   		private static void ShowFeedbackList(object sender, EventArgs e) {
+   			// This is where the feedback form gets displayed
+			var feedbackManager = BITHockeyManager.SharedHockeyManager.FeedbackManager;
+			feedbackManager.ShowFeedbackListView ();
+		}
+	}
+}	
 ```
 
 Please check the [documentation](#documentation) of the `BITFeedbackManager` class on more information on how to leverage this feature.
