@@ -25,12 +25,14 @@ namespace HockeyApp
 		public static void Register(global::Android.Content.Context context, string appIdentifier, global::HockeyApp.CrashManagerListener listener)
 		{
 			DoRegister(context, appIdentifier, listener);
+			TraceWriter.Initialize(listener);
 			ConnectUnhandledExceptionEvents();
 		}
 			
 		public static void Register(global::Android.Content.Context context, string urlString, string appIdentifier, global::HockeyApp.CrashManagerListener listener)
 		{
 			DoRegister(context, urlString, appIdentifier, listener);
+			TraceWriter.Initialize(listener);
 			ConnectUnhandledExceptionEvents();
 		}
 

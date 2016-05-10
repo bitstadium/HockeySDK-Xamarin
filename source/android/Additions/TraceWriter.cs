@@ -89,10 +89,10 @@ namespace HockeyApp
         /// longer able to invoke JNI methods, for example in the case of a crash in the pure c# managed space.</remarks>
         public static void WriteTrace(object exception, bool terminate)
         {
-            if (exception is Java.Lang.Exception)
-                ExceptionHandler.SaveNativeException(exception as Java.Lang.Exception, exception.ToString(), Java.Lang.Thread.CurrentThread(), _Listener);
+            if(exception is Java.Lang.Exception)
+                ExceptionHandler.SaveException(exception as Java.Lang.Exception, Java.Lang.Thread.CurrentThread(), _Listener);
             else
-                ExceptionHandler.SaveManagedException(Java.Lang.Throwable.FromException(exception as Exception), Java.Lang.Thread.CurrentThread(), _Listener);
+                ExceptionHandler.SaveException(Java.Lang.Throwable.FromException(exception as Exception), Java.Lang.Thread.CurrentThread(), _Listener);
 
             if (terminate)
             {
