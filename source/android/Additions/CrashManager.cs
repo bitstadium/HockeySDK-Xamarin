@@ -25,16 +25,16 @@ namespace HockeyApp
 		public static void Register(global::Android.Content.Context context, string appIdentifier, global::HockeyApp.CrashManagerListener listener)
 		{
 			DoRegister(context, appIdentifier, listener);
-			ConnectUnhandledExceptionEvents();
+			ConnectUnhandledExceptionEvents(listener);
 		}
 			
 		public static void Register(global::Android.Content.Context context, string urlString, string appIdentifier, global::HockeyApp.CrashManagerListener listener)
 		{
 			DoRegister(context, urlString, appIdentifier, listener);
-			ConnectUnhandledExceptionEvents();
+			ConnectUnhandledExceptionEvents(listener);
 		}
 
-		private static void ConnectUnhandledExceptionEvents()
+		private static void ConnectUnhandledExceptionEvents(global::HockeyApp.CrashManagerListener listener = null)
 		{
 			if (connectedToUnhandledExceptionEvents)
 			{
@@ -50,7 +50,7 @@ namespace HockeyApp
 					return;
 				};
 
-				TraceWriter.Initialize();
+				TraceWriter.Initialize(listener);
 
 				AndroidEnvironment.UnhandledExceptionRaiser += (sender, e) => TraceWriter.WriteTrace(e.Exception);
 				AppDomain.CurrentDomain.UnhandledException += (sender, e) => TraceWriter.WriteTrace(e.ExceptionObject);
