@@ -155,6 +155,17 @@ This will add the in-app update mechanism to your app. Detailed configuration op
 #### For iOS
 The feature handles version updates, presents update and version information in a App Store like user interface, collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.
 
+To enable automatic in-app updates you need to make sure to add `manager.Authenticator.AuthenticateInstallation();` after starting the SDK:
+
+```C#
+using HockeyApp;
+
+var manager = BITHockeyManagerSharedHockeyManager;
+manager.Configure("Your_App_Id");
+manager.StartManager();
+manager.Authenticator.AuthenticateInstallation();
+```
+
 This module automatically disables itself when running in an App Store build by default!
 
 This feature can be disabled manually as follows:
