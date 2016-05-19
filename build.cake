@@ -3,7 +3,7 @@
 #addin nuget:?package=Cake.FileHelpers
 
 var COMPONENT_VERSION = "4.1.0";
-var NUGET_VERSION = "4.1.0-beta1";
+var NUGET_VERSION = "4.1.0-beta2";
 
 var ANDROID_URL = "https://s3.amazonaws.com/hockey-app-download/sdk/xamarin/android/HockeySDK-Android-4.1.0-beta.2.zip";
 var IOS_URL = "https://s3.amazonaws.com/hockey-app-download/sdk/xamarin/ios/HockeySDK-iOS-4.1.0-beta.2.zip";
