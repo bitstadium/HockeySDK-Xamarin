@@ -33,8 +33,9 @@ This document contains the following sections:
  6. [Add in-app feedback](#feedback)
  7. [Add authentication](#authentication)
 3. [Advanced setup](#advanced-setup)
- 1. [Permissions (Android-Only)](#permissions)
- 2. [Control output to LogCat](#logcat-output)
+ 1. [Adding AppId to manifest (Android-Only)](#appid-manifest)
+ 2. [Permissions (Android-Only)](#permissions)
+ 3. [Control output to LogCat](#logcat-output)
 4. [Documentation](#documentation)
 5. [Troubleshooting](#troubleshooting)
 6. [Contributing](#contributing)
@@ -333,12 +334,42 @@ Make sure to replace `APP_SECRET` with the value retrieved in step 1. This will 
 <a id="advanced-setup"></a>
 ## 3. Advanced setup
 
+<a id="appid-manifest"></a>
+### 3.1 Adding AppId to Manifest (Android-Only)
+
+Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
+
+```csharp
+[assembly: MetaData ("net.hockeyapp.android.appIdentifier", Value="Your-Api-Key")]
+```
+
+This will allow you to set your AppId once and simplify register calls
+
+```csharp
+using HockeyApp;
+
+namespace YourNameSpace
+{
+	[Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
+	public class MainActivity : Activity 
+	{
+		protected override void OnCreate(Bundle savedInstanceState) 
+		{
+			base.OnCreate(savedInstanceState);
+
+			// ... your own OnCreate implementation
+			CrashManager.Register(this);
+		}
+	}
+}
+```
+
 <a id="permissions"></a>
-### 3.1 Permissions (Android-Only)
+### 3.2 Permissions (Android-Only)
 Permissions get automatically merged into your manifest. If your app does not use update distribution you might consider removing the permission `WRITE_EXTERNAL_STORAGE` - see the [advanced permissions section](https://github.com/bitstadium/HockeySDK-Android#permissions-advanced) for details.
 
 <a id="logcat-output"></a>
-### 3.2 Control output to LogCat
+### 3.3 Control output to LogCat
 You can control the amount of log messages from HockeySDK that show up in LogCat. By default, we keep the noise as low as possible, only errors will show up. To enable additional logging, i.e. while debugging, add the following line of code:
 
 #### For iOS

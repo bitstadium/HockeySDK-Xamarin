@@ -29,6 +29,34 @@ namespace YourNameSpace
 
 When the app is resumed, the crash manager is triggered and checks if a new crash was created before. If a previous crash is detected, it presents a dialog to ask the user whether they want to send the crash log to HockeyApp. On app launch the crash manager registers a new exception handler to recognize app crashes.
 
+## Add AppId to manifest
+
+Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
+
+```csharp
+[assembly: MetaData ("net.hockeyapp.android.appIdentifier", Value="Your-Api-Key")]
+```
+
+This will allow you to set your AppId once and simplify register calls
+
+```csharp
+using HockeyApp;
+
+namespace YourNameSpace
+{
+	[Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
+	public class MainActivity : Activity 
+	{
+		protected override void OnCreate(Bundle savedInstanceState) 
+		{
+			base.OnCreate(savedInstanceState);
+
+			// ... your own OnCreate implementation
+			CrashManager.Register(this);
+		}
+	}
+}
+```
 
 ## Add Update Distribution
 
