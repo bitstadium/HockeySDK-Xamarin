@@ -25,7 +25,7 @@ This document contains the following sections:
 
 1. [Requirements](#requirements)
 2. [Setup](#setup)
- 1. [Obtain an app identifier](#app-identifier)
+ 1. [Obtain an App Identifier](#app-identifier)
  2. [Integrate HockeySDK](#integrate-sdk)
  3. [Add crash reporting](#crash-reporting)
  4. [Add user metrics](#user-metrics)
@@ -33,7 +33,7 @@ This document contains the following sections:
  6. [Add in-app feedback](#feedback)
  7. [Add authentication](#authentication)
 3. [Advanced setup](#advanced-setup)
- 1. [Adding AppId to manifest (Android-Only)](#appid-manifest)
+ 1. [Adding App ID to manifest (Android-Only)](#appid-manifest)
  2. [Permissions (Android-Only)](#permissions)
  3. [Control output to LogCat](#logcat-output)
 4. [Documentation](#documentation)
@@ -335,7 +335,7 @@ Make sure to replace `APP_SECRET` with the value retrieved in step 1. This will 
 ## 3. Advanced setup
 
 <a id="appid-manifest"></a>
-### 3.1 Adding AppId to Manifest (Android-Only)
+### 3.1 Adding App ID to Manifest (Android-Only)
 
 Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
 
@@ -343,7 +343,7 @@ Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
 [assembly: MetaData ("net.hockeyapp.android.appIdentifier", Value="Your-Api-Key")]
 ```
 
-This will allow you to set your AppId once and simplify register calls
+This will allow you to set your App ID once and simplify register calls
 
 ```csharp
 using HockeyApp;
