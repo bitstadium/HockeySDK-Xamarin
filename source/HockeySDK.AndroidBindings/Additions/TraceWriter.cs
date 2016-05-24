@@ -1,11 +1,10 @@
 ﻿// public domain ... derived from https://github.com/bitstadium/HockeySDK-Android/blob/db7fff12beecea715f2894cb69ba358ea324ad17/src/main/java/net/hockeyapp/android/internal/ExceptionHandler.java
 using System;
-using System.Text.RegularExpressions;
 using Android.OS;
 using Environment = System.Environment;
 using Process = System.Diagnostics.Process;
 
-namespace HockeyApp
+namespace HockeyApp.AndroidBindings
 {
     internal static class TraceWriter
     {

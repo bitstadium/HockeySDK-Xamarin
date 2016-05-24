@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.Android", "source\android\HockeySDK.Android.csproj", "{F523B62B-9E53-48BB-88D4-CE067456A337}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.AndroidBindings", "source\HockeySDK.AndroidBindings\HockeySDK.AndroidBindings.csproj", "{F523B62B-9E53-48BB-88D4-CE067456A337}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.iOS", "source\ios\HockeySDK.iOS.csproj", "{64574EFC-9C95-4764-ABAC-6A9A721CB366}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.iOSBindings", "source\HockeySDK.iOSBindings\HockeySDK.iOSBindings.csproj", "{64574EFC-9C95-4764-ABAC-6A9A721CB366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.CrashOnly.iOS", "source\ios\HockeySDK.CrashOnly.iOS.csproj", "{8CA3505E-1AD2-40C9-9224-EFCD859790F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.CrashOnly.iOSBindings", "source\HockeySDK.iOSBindings\HockeySDK.CrashOnly.iOSBindings.csproj", "{8CA3505E-1AD2-40C9-9224-EFCD859790F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

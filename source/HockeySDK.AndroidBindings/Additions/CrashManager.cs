@@ -1,9 +1,9 @@
 ﻿using System;
 using Android.Runtime;
+using HockeyApp.AndroidBindings.Utils;
 using System.Threading.Tasks;
-using HockeyApp.Utils;
 
-namespace HockeyApp
+namespace HockeyApp.AndroidBindings
 {
 	public partial class CrashManager
 	{
@@ -22,19 +22,19 @@ namespace HockeyApp
 			ConnectUnhandledExceptionEvents();
 		}
 
-		public static void Register(global::Android.Content.Context context, string appIdentifier, global::HockeyApp.CrashManagerListener listener)
+		public static void Register(global::Android.Content.Context context, string appIdentifier, global::HockeyApp.AndroidBindings.CrashManagerListener listener)
 		{
 			DoRegister(context, appIdentifier, listener);
 			ConnectUnhandledExceptionEvents(listener);
 		}
 			
-		public static void Register(global::Android.Content.Context context, string urlString, string appIdentifier, global::HockeyApp.CrashManagerListener listener)
+		public static void Register(global::Android.Content.Context context, string urlString, string appIdentifier, global::HockeyApp.AndroidBindings.CrashManagerListener listener)
 		{
 			DoRegister(context, urlString, appIdentifier, listener);
 			ConnectUnhandledExceptionEvents(listener);
 		}
 
-		private static void ConnectUnhandledExceptionEvents(global::HockeyApp.CrashManagerListener listener = null)
+		private static void ConnectUnhandledExceptionEvents(global::HockeyApp.AndroidBindings.CrashManagerListener listener = null)
 		{
 			if (connectedToUnhandledExceptionEvents)
 			{

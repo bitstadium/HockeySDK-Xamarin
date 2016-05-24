@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
-using HockeyApp;
+using HockeyApp.iOSBindings;
 using UIKit;
 
 namespace HockeyAppSampleiOS

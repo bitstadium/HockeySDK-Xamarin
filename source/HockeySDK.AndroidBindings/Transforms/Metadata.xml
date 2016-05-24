@@ -8,7 +8,7 @@
   -->
 
     <!-- Rename com.nokia.* -->
-  <attr path="/api/package[@name='net.hockeyapp.android']" name="managedName">HockeyApp</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']" name="managedName">HockeyApp.AndroidBindings</attr>
 
   <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='LoginTask']" />
   <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='CheckUpdateTask']" />
@@ -16,14 +16,14 @@
   <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='ParseFeedbackTask']" />
   <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='SendFeedbackTask']" />
 
-  <attr path="/api/package[@name='net.hockeyapp.android.adapters']" name="managedName">HockeyApp.Adapters</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.listeners']" name="managedName">HockeyApp.Listeners</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.metrics']" name="managedName">HockeyApp.Metrics</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.metrics.model']" name="managedName">HockeyApp.Metrics.Model</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.objects']" name="managedName">HockeyApp.Objects</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.tasks']" name="managedName">HockeyApp.Tasks</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.utils']" name="managedName">HockeyApp.Utils</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.views']" name="managedName">HockeyApp.Views</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.adapters']" name="managedName">HockeyApp.AndroidBindings.Adapters</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.listeners']" name="managedName">HockeyApp.AndroidBindings.Listeners</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.metrics']" name="managedName">HockeyApp.AndroidBindings.Metrics</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.metrics.model']" name="managedName">HockeyApp.AndroidBindings.Metrics.Model</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.objects']" name="managedName">HockeyApp.AndroidBindings.Objects</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.tasks']" name="managedName">HockeyApp.AndroidBindings.Tasks</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.utils']" name="managedName">HockeyApp.AndroidBindings.Utils</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.views']" name="managedName">HockeyApp.AndroidBindings.Views</attr>
 
   <!-- Remapping CrashManager Register Methods in order to Add C# Extension Methods -->
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='CrashManager' and count(parameter)=0]" name="visibility">private</attr>

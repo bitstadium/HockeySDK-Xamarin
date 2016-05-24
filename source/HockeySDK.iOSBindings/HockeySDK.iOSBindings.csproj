@@ -3,31 +3,32 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8CA3505E-1AD2-40C9-9224-EFCD859790F6}</ProjectGuid>
+    <ProjectGuid>{64574EFC-9C95-4764-ABAC-6A9A721CB366}</ProjectGuid>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>HockeyApp</RootNamespace>
+    <RootNamespace>HockeyApp.iOSBindings</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>HockeySDK.CrashOnly</AssemblyName>
+    <AssemblyName>HockeySDK.iOSBindings</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <IntermediateOutputPath>obj\crashonly\Debug</IntermediateOutputPath>
-    <OutputPath>bin\crashonly\Debug</OutputPath>
-    <DefineConstants>DEBUG;__UNIFIED__;CRASHONLY</DefineConstants>
+    <IntermediateOutputPath>obj\full\Debug</IntermediateOutputPath>
+    <OutputPath>bin\full\Debug</OutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <IntermediateOutputPath>obj\crashonly\Release</IntermediateOutputPath>
-    <OutputPath>bin\crashonly\Release</OutputPath>
-    <DefineConstants>__UNIFIED__;CRASHONLY</DefineConstants>
+    <IntermediateOutputPath>obj\full\Release</IntermediateOutputPath>
+    <OutputPath>bin\full\Release</OutputPath>
+    <DefineConstants>__UNIFIED__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -47,14 +48,14 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\ios\libHockeySDKCrashOnly.a">
-      <Link>libHockeySDKCrashOnly.a</Link>
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\libHockeySDK.a">
+      <Link>libHockeySDK.a</Link>
     </ObjcBindingNativeLibrary>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Additions.cs" />
-    <Compile Include="libHockeySDKCrashOnly.linkwith.cs">
-      <DependentUpon>libHockeySDKCrashOnly.a</DependentUpon>
+    <Compile Include="libHockeySDK.linkwith.cs">
+      <DependentUpon>libHockeySDK.a</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />

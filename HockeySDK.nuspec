@@ -18,10 +18,10 @@
   <files>
 
     <!-- Android -->
-    <file src="./source/android/bin/Release/HockeySDK.dll" target="lib\MonoAndroid403" />
+    <file src="./source/HockeySDK.AndroidBindings/bin/Release/HockeySDK.AndroidBindings.dll" target="lib\MonoAndroid403" />
     
     <!-- iOS -->
-    <file src="./source/ios/bin/full/Release/HockeySDK.dll" target="lib\Xamarin.iOS10" />
+    <file src="./source/HockeySDK.iOSBindings/bin/full/Release/HockeySDK.iOSBindings.dll" target="lib\Xamarin.iOS10" />
     
   </files>
 </package>

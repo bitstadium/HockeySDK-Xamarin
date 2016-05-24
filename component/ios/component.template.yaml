@@ -9,7 +9,7 @@ icons:
 no_build: true
 summary: "HockeyApp is a platform to collect live crash reports, get feedback from your users, distribute your betas, recruit new testers, and analyze your test coverage."
 libraries:
-  ios-unified: ../../source/ios/bin/full/Release/HockeySDK.dll
+  ios-unified: ../../source/HockeySDK.iOSBindings/bin/full/Release/HockeySDK.iOSBindings.dll
 samples:
   - name: "iOS Sample"
     path: ../../samples/HockeyAppSampleiOS.sln
