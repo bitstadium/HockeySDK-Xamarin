@@ -2,7 +2,7 @@
 using ObjCRuntime;
 
 
-namespace HockeyApp.iOSBindings
+namespace HockeyApp.iOS
 {    
     [Native]
     public enum BITLogLevel : ulong /* nuint */ {

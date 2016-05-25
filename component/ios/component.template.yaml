@@ -12,7 +12,6 @@ libraries:
   ios-unified:
     - ../../source/HockeySDK.iOS/bin/Release/HockeySDK.dll
     - ../../source/HockeySDK.iOSBindings/bin/full/Release/HockeySDK.iOSBindings.dll
-    - ../../source/HockeySDK.Abstractions/bin/Release/HockeySDK.Abstractions.dll
 samples:
   - name: "iOS Sample"
     path: ../../samples/HockeyAppSampleiOS.sln

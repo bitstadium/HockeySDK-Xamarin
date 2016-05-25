@@ -1,6 +1,5 @@
 ﻿using System;
-using HockeyApp.Abstractions;
-using HockeyApp.iOSBindings;
+using HockeyApp.iOS;
 
 namespace HockeyApp
 {
@@ -14,9 +13,9 @@ namespace HockeyApp
 	/// 
 	/// It is your reponsibility to not collect personal information as part of the events tracking or get prior consent from your users as necessary.
 	/// </description>
-	public class MetricsManager : IMetricsManager
+	internal class PlatformMetricsManager : IPlatformMetricsManager
 	{
-		public MetricsManager() {}
+		public PlatformMetricsManager() {}
 
 		/// <summary>
 		/// This method allows to track an event that happened in your app. Remember to choose meaningful event names to have the best experience when diagnosing your app in the HockeyApp web portal.

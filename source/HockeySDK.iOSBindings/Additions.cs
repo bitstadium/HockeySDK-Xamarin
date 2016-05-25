@@ -4,7 +4,7 @@ using Foundation;
 using ObjCRuntime;
 using System.Threading.Tasks;
 
-namespace HockeyApp.iOSBindings
+namespace HockeyApp.iOS
 {
 	public partial class BITHockeyManager
 	{

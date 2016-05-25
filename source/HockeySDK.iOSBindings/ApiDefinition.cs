@@ -4,7 +4,7 @@ using ObjCRuntime;
 using UIKit;
 using QuickLook;
 
-namespace HockeyApp.iOSBindings
+namespace HockeyApp.iOS
 {
     // typedef NSString * (^BITLogMessageProvider)();
     public delegate NSString BITLogMessageProvider ();

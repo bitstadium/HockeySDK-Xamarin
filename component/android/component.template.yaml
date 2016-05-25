@@ -12,7 +12,6 @@ libraries:
   android:
     - ../../source/HockeySDK.Android/bin/Release/HockeySDK.dll
     - ../../source/HockeySDK.AndroidBindings/bin/Release/HockeySDK.AndroidBindings.dll
-    - ../../source/HockeySDK.Abstractions/bin/Release/HockeySDK.Abstractions.dll
 samples:
   - name: "Android Sample"
     path: ../../samples/HockeyAppSampleAndroid.sln

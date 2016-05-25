@@ -6,7 +6,7 @@
     <ProjectGuid>{64574EFC-9C95-4764-ABAC-6A9A721CB366}</ProjectGuid>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>HockeyApp.iOSBindings</RootNamespace>
+    <RootNamespace>HockeyApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HockeySDK.iOSBindings</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>

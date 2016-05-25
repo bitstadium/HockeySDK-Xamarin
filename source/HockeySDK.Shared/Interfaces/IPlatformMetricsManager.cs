@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HockeyApp.Abstractions
+namespace HockeyApp
 {
 	/// <summary>
 	/// This is the HockeySDK module that handles users, sessions and events tracking.
@@ -12,7 +12,7 @@ namespace HockeyApp.Abstractions
 	/// 
 	/// It is your reponsibility to not collect personal information as part of the events tracking or get prior consent from your users as necessary.
 	/// </description>
-	public interface IMetricsManager
+	internal interface IPlatformMetricsManager
 	{
 		/// <summary>
 		/// This method allows to track an event that happened in your app. Remember to choose meaningful event names to have the best experience when diagnosing your app in the HockeyApp web portal.

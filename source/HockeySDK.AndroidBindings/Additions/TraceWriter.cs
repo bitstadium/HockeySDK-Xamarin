@@ -4,7 +4,7 @@ using Android.OS;
 using Environment = System.Environment;
 using Process = System.Diagnostics.Process;
 
-namespace HockeyApp.AndroidBindings
+namespace HockeyApp.Android
 {
     internal static class TraceWriter
     {
