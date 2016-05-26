@@ -7,6 +7,12 @@ namespace HockeyApp
 	{
 		public PlatformMetricsManager() {}
 
+		public bool Disabled
+		{
+			get { return BITHockeyManager.SharedHockeyManager.MetricsManager.Disabled; }
+			set { BITHockeyManager.SharedHockeyManager.MetricsManager.Disabled = value; }
+		}
+
 		public void TrackEvent(string eventName)
 		{
 			BITHockeyManager.SharedHockeyManager.MetricsManager.TrackEvent(eventName);
