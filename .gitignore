@@ -11,3 +11,6 @@ obj/
 packages/
 externals/
 tools/
+
+# OS X
+.DS_Store
