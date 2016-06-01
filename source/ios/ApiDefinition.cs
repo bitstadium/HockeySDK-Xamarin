@@ -63,7 +63,7 @@ namespace HockeyApp
         [Export("sharedHockeyManager")]
         BITHockeyManager SharedHockeyManager { get;set; }
 
-        [Wrap ("WeakDelegate")]
+        [Wrap ("WeakDelegate")][NullAllowed]
         BITHockeyManagerDelegate Delegate { get; set; }
 
         [Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
@@ -73,10 +73,10 @@ namespace HockeyApp
         void Configure(string appIdentifier);
 
         [Export("configureWithIdentifier:delegate:")]
-        void Configure(string appIdentifier, NSObject managerDelegate);
+        void Configure(string appIdentifier, [NullAllowed] NSObject managerDelegate);
 
         [Export("configureWithBetaIdentifier:liveIdentifier:delegate:")]
-        void ConfigureWithIdentifier(string betaIdentifier, string liveIdentifier, NSObject managerDelegate);
+        void ConfigureWithIdentifier(string betaIdentifier, string liveIdentifier, [NullAllowed] NSObject managerDelegate);
 
         [Internal]
         [Export("startManager")]
@@ -161,13 +161,13 @@ namespace HockeyApp
         [Export ("setLogHandler:")]
         void SetLogHandler (BITLogHandler logHandler);
 
-        [Export("userID", ArgumentSemantic.Retain)]
+        [Export("userID", ArgumentSemantic.Retain)][NullAllowed]
         string UserId { get;set; }
 
-        [Export("userName", ArgumentSemantic.Retain)]
+        [Export("userName", ArgumentSemantic.Retain)][NullAllowed]
         string UserName { get;set; }
 
-        [Export("userEmail", ArgumentSemantic.Retain)]
+        [Export("userEmail", ArgumentSemantic.Retain)][NullAllowed]
         string UserEmail { get;set; }
 
         [Export("testIdentifier")]
