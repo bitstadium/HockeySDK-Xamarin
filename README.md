@@ -1,6 +1,6 @@
 # HockeySDK for Xamarin
 
-## Version 4.1.0-beta1
+## Version 4.1.0-beta2
 - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
 
 ## Introduction
@@ -399,7 +399,7 @@ HockeyLog.LogLevel(6); // Error, show only errors – the default log level
 
 <a id="documentation"></a>
 ## 4. Documentation
-Our documentation can be found on HockeyApp [iOS](http://hockeyapp.net/help/sdk/ios/4.0.0-beta.1/index.html) | [Android](http://hockeyapp.net/help/sdk/android/4.0.0-beta.1/index.html)
+Our documentation can be found on HockeyApp [iOS](http://hockeyapp.net/help/sdk/ios/4.1.0-beta.2/index.html) | [Android](http://hockeyapp.net/help/sdk/android/4.1.0-beta.2/index.html)
 
 <a id="troubleshooting"></a>
 ## 5. Troubleshooting
