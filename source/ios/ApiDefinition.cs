@@ -6,6 +6,12 @@ using QuickLook;
 
 namespace HockeyApp
 {
+    // typedef NSString * (^BITLogMessageProvider)();
+    public delegate NSString BITLogMessageProvider ();
+
+    // typedef void (^BITLogHandler)(BITLogMessageProvider, BITLogLevel, const char *, const char *, uint);
+    public unsafe delegate void BITLogHandler (BITLogMessageProvider messageProvider, BITLogLevel logLevel, IntPtr file, IntPtr function, uint line);
+
     [Static]
     partial interface Constants
     {
@@ -137,17 +143,23 @@ namespace HockeyApp
         [Export ("appEnvironment")]
         BITEnvironment AppEnvironment { get; }
 
-        [Obsolete ("Use AppEnvironment instead")]
-        [Export ("appStoreEnvironment")]
-        bool AppStoreEnvironment { [Bind ("isAppStoreEnvironment")] get; }
-
         [Export ("installString")]
         string InstallString { get; }
 
+        [Export ("disableInstallTracking")]
+        bool DisableInstallTracking { [Bind ("isInstallTrackingDisabled")] get; set; }
+
+        // @property (assign, nonatomic) BITLogLevel logLevel;
+        [Export ("logLevel", ArgumentSemantic.Retain)]
+        BITLogLevel LogLevel { get; set; }
+
+        // @property (getter = isDebugLogEnabled, assign, nonatomic) BOOL debugLogEnabled __attribute__((deprecated("Use logLevel instead!")));
         [Export ("debugLogEnabled")]
         bool DebugLogEnabled { [Bind ("isDebugLogEnabled")] get; set; }
 
-
+        // -(void)setLogHandler:(BITLogHandler _Nonnull)logHandler;
+        [Export ("setLogHandler:")]
+        void SetLogHandler (BITLogHandler logHandler);
 
         [Export("userID", ArgumentSemantic.Retain)]
         string UserId { get;set; }
@@ -303,7 +315,8 @@ namespace HockeyApp
         [Export("feedbackComposeViewController")]
         BITFeedbackComposeViewController FeedbackComposeViewController();
 
-        // Fixed - moved to appropriate class (fixed in 3.7.1)
+        // @property (copy, nonatomic) NSArray * _Nullable feedbackComposerPreparedItems __attribute__((deprecated("Use -preparedItemsForFeedbackManager: delegate method instead.")));
+        [Obsolete ("Use -preparedItemsForFeedbackManager: delegate method instead.")]
         [Export("feedbackComposerPreparedItems")]
         NSArray FeedbackComposerPreparedItems { get;set; }
 
@@ -489,9 +502,6 @@ namespace HockeyApp
         [Export ("lastSessionCrashDetails")]
         BITCrashDetails LastSessionCrashDetails { get; }
 
-        [Export("timeIntervalCrashInLastSessionOccured")] //3.6.4 changed timeinterval... to timeInterval...
-        double TimeIntervalCrashInLastSessionOccured { get; }
-
         [Export("isDebuggerAttached")]
         bool IsDebuggerAttached();
 
@@ -608,14 +618,6 @@ namespace HockeyApp
         [Export ("attachmentForCrashManager:")]
         BITHockeyAttachment AttachmentForCrashManager (BITCrashManager crashManager);
 
-        [Export ("userNameForCrashManager:")]
-        //[Deprecated]
-        string UserNameForCrashManager (BITCrashManager crashManager);
-
-        [Export ("userEmailForCrashManager:")]
-        //[Deprecated]
-        string UserEmailForCrashManager (BITCrashManager crashManager);
-
         [Export ("crashManagerWillShowSubmitCrashReportAlert:")]
         void WillShowSubmitCrashReportAlert (BITCrashManager crashManager);
 
@@ -657,9 +659,6 @@ namespace HockeyApp
         [Export ("updateManagerWillExitApp:")]
         void UpdateManagerWillExitApp (BITUpdateManager updateManager);
 
-        [Export ("viewControllerForUpdateManager:")]
-        UIViewController ViewControllerForUpdateManager (BITUpdateManager updateManager);
-
         //(BOOL)willStartDownloadAndUpdate:(BITUpdateManager *)updateManager;
         [Export ("willStartDownloadAndUpdate:")]
         bool WillStartDownloadAndUpdated (BITUpdateManager updateManager);
@@ -678,6 +677,10 @@ namespace HockeyApp
         //- (BOOL) allowAutomaticFetchingForNewFeedbackForManager:(BITFeedbackManager *)feedbackManager;
         [Export ("allowAutomaticFetchingForNewFeedbackForManager:")]
         bool AllowAutomaticFetching (BITFeedbackManager feedbackManager);
+
+        // @optional -(NSArray * _Nullable)preparedItemsForFeedbackManager:(BITFeedbackManager * _Nonnull)feedbackManager;
+        [Export ("preparedItemsForFeedbackManager:")]
+        NSArray PreparedItemsForFeedbackManager (BITFeedbackManager feedbackManager);
     }
     #endif
 
