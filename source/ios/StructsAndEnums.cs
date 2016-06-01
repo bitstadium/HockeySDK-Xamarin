@@ -2,10 +2,18 @@
 using ObjCRuntime;
 
 namespace HockeyApp
-{    
+{
     [Native]
-    public enum BITEnvironment : long
-    {
+    public enum BITLogLevel : ulong /* nuint */ {
+        None = 0,
+        Error = 1,
+        Warning = 2,
+        Debug = 3,
+        Verbose = 4
+    }
+
+    [Native]
+    public enum BITEnvironment : long {
         AppStore = 0,
         TestFlight = 1,
         Other = 99
