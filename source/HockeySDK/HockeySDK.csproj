@@ -33,6 +33,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PCL.cs" />
     <Compile Include="PlatformMetricsManager.cs" />
+    <Compile Include="PlatformCrashManager.cs" />
   </ItemGroup>
   <Import Project="..\HockeySDK.Shared\HockeySDK.Shared.projitems" Label="Shared" Condition="Exists('..\HockeySDK.Shared\HockeySDK.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

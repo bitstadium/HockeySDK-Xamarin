@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlatformMetricsManager.cs" />
+    <Compile Include="PlatformCrashManager.cs" />
   </ItemGroup>
   <Import Project="..\HockeySDK.Shared\HockeySDK.Shared.projitems" Label="Shared" Condition="Exists('..\HockeySDK.Shared\HockeySDK.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

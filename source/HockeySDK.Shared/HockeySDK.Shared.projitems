@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlatformMetricsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MetricsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlatformCrashManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CrashManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
