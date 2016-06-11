@@ -384,17 +384,17 @@ manager.StartManager();
 ```C#
 using HockeyApp.Util;
 
-HockeyLog.LogLevel(3);
+HockeyLog.LogLevel = 3;
 ```
 
 The different log levels match Android's own log levels.
 
 ```C#
-HockeyLog.LogLevel(2); // Verbose, show all log statements
-HockeyLog.LogLevel(3); // Debug, show most log statements – useful for debugging
-HockeyLog.LogLevel(4); // Info, show informative or higher log messages
-HockeyLog.LogLevel(5); // Warn, show warnings and errors
-HockeyLog.LogLevel(6); // Error, show only errors – the default log level
+HockeyLog.LogLevel = 2; // Verbose, show all log statements
+HockeyLog.LogLevel = 3; // Debug, show most log statements – useful for debugging
+HockeyLog.LogLevel = 4; // Info, show informative or higher log messages
+HockeyLog.LogLevel = 5; // Warn, show warnings and errors
+HockeyLog.LogLevel = 6; // Error, show only errors – the default log level
 ```
 
 <a id="documentation"></a>
