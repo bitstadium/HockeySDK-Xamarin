@@ -16,17 +16,10 @@ namespace HockeyApp
 	{
 		private static readonly IPlatformMetricsManager PlatformMetricsManager = new PlatformMetricsManager();
 
-#if __ANDROID__
-		/// <summary>
-		/// A property indicating whether User Metrics and Session Tracking is disabled.
-		/// </summary>
-		/// <value><c>true</c> if User Metrics and Session Tracking are both disabled; otherwise, <c>false</c>.</value>
-#else
 		/// <summary>
 		/// A property indicating whether the MetricsManager instance is disabled.
 		/// </summary>
 		/// <value><c>true</c> if disabled; otherwise, <c>false</c>.</value>
-#endif
 		public static bool Disabled
 		{
 			get { return PlatformMetricsManager.Disabled; }
