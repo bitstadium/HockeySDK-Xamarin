@@ -1,6 +1,15 @@
 # HockeySDK for Xamarin
 
-## Version 4.1.0-beta2
+## Upcoming Version 4.1.0-beta3
+- HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
+- New PCL supported APIs
+  - MetricsManager
+    - .Disabled
+    - .TrackEvent(string eventName)
+  - CrashManager
+    - .DidCrashInLastSession
+
+## Current Version 4.1.0-beta2
 - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
 
 ## Introduction
@@ -36,6 +45,7 @@ This document contains the following sections:
  1. [Adding App ID to manifest (Android-Only)](#appid-manifest)
  2. [Permissions (Android-Only)](#permissions)
  3. [Control output to LogCat](#logcat-output)
+ 4. [Xamarin.Forms Project Integrate HockeySDK](#forms-integrate-sdk)
 4. [Documentation](#documentation)
 5. [Troubleshooting](#troubleshooting)
 6. [Contributing](#contributing)
@@ -83,7 +93,7 @@ This will add crash reporting capabilities to your app. Advanced ways to configu
 2. Add the following lines:
 
 ```C#
-using HockeySDK;
+using HockeyApp.iOS;
 
 namespace YourNameSpace {
 
@@ -104,7 +114,7 @@ namespace YourNameSpace {
 2. Add the following lines:
 
 ```C#
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace {
 
@@ -132,7 +142,7 @@ Just in case you want to opt-out of this feature, there is a way to turn this fu
 
 #### For iOS
 ```C#
-using HockeyApp;
+using HockeyApp.iOS;
 
 var manager = BITHockeyManager.SharedHockeyManager;
 manager.Configure("Your_App_Id");
@@ -144,7 +154,7 @@ Android does not automatically start the MetricsManager:
 
 #### For Android
 ```C#
-using HockeyApp.Metrics;
+using HockeyApp.Android.Metrics;
 
 MetricsManager.Register(this, Application, "Your-App-Id");
 ```
@@ -159,7 +169,7 @@ The feature handles version updates, presents update and version information in 
 To enable automatic in-app updates you need to make sure to add `manager.Authenticator.AuthenticateInstallation();` after starting the SDK:
 
 ```C#
-using HockeyApp;
+using HockeyApp.iOS;
 
 var manager = BITHockeyManagerSharedHockeyManager;
 manager.Configure("Your_App_Id");
@@ -172,7 +182,7 @@ This module automatically disables itself when running in an App Store build by 
 This feature can be disabled manually as follows:
 
 ```C#
-using HockeyApp;
+using HockeyApp.iOS;
 
 var manager = BITHockeyManagerSharedHockeyManager;
 manager.Configure("Your_App_Id");
@@ -187,7 +197,7 @@ If you want to see beta analytics, use the beta distribution feature with in-app
 2. Add the following lines and make sure to always balance `register(...)` calls to SDK managers with `unregister()` calls in the corresponding lifecycle callbacks:
 
 ```C#
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace {
  [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
@@ -236,7 +246,7 @@ The feedback manager lets your users communicate directly with you via the app a
 You should never create your own instance of BITFeedbackManager but use the one provided by the `BITHockeyManager.sharedHockeyManager()`.
 
 ```C#
-using HockeyApp;
+using HockeyApp.iOS;
 
 namespace YourNameSpace {
 {
@@ -278,7 +288,7 @@ Please check the [documentation](#documentation) of the `BITFeedbackManager` cla
 2. Add the following lines to your respective activity, handling the touch events and showing the feedback interface:
 
 ```C#
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace {
  public class YourActivity : Activitiy {
@@ -312,7 +322,7 @@ You can force authentication of your users through the `LoginManager` class. Thi
 3. Add the following lines to this activity:
 
 ```C#
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace {
  [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
@@ -346,7 +356,7 @@ Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
 This will allow you to set your App ID once and simplify register calls
 
 ```csharp
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace
 {
@@ -374,6 +384,8 @@ You can control the amount of log messages from HockeySDK that show up in LogCat
 
 #### For iOS
 ```C#
+using HockeyApp.iOS;
+
 var manager = BITHockeyManager.SharedHockeyManager;
 manager.Configure("Your_App_Id");
 manager.SetDebugLogEnabled = true;
@@ -382,7 +394,7 @@ manager.StartManager();
 
 #### For Android
 ```C#
-using HockeyApp.Util;
+using HockeyApp.Android.Util;
 
 HockeyLog.LogLevel = 3;
 ```
@@ -396,6 +408,14 @@ HockeyLog.LogLevel = 4; // Info, show informative or higher log messages
 HockeyLog.LogLevel = 5; // Warn, show warnings and errors
 HockeyLog.LogLevel = 6; // Error, show only errors – the default log level
 ```
+
+<a id="forms-integrate-sdk"></a>
+### 3.4 Xamarin.Forms Project Integrate HockeySDK
+When adding HockeySDK-Xamarin to a Xamarin.Forms PCL Solution, add the nuget to the PCL, iOS, and Android project (Windows phone is not currently supported).
+
+Initialization must be done in the individual iOS and Android projects as shown in [Integrate HockeySDK](#integrate-sdk).  The PCL project will have access to a subset of shared non-configuration/initialization features.
+
+Please refer to the Xamarin.Forms sample in /samples/HockeyAppSampleForms.sln
 
 <a id="documentation"></a>
 ## 4. Documentation
