@@ -10,8 +10,8 @@ var IOS_URL = "https://download.hockeyapp.net/sdk/xamarin/ios/HockeySDK-iOS-4.1.
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
-	"./samples/HockeyAppSampleiOS.sln",
-	"./samples/HockeyAppSampleiOSCrashOnly.sln",
+//	"./samples/HockeyAppSampleiOS.sln",
+//	"./samples/HockeyAppSampleiOSCrashOnly.sln",
 };
 
 var TARGET = Argument ("target", Argument ("t", "all"));
