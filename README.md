@@ -83,7 +83,7 @@ This will add crash reporting capabilities to your app. Advanced ways to configu
 2. Add the following lines:
 
 ```C#
-using HockeySDK;
+using HockeyApp;
 
 namespace YourNameSpace {
 
