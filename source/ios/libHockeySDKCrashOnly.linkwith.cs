@@ -7,4 +7,4 @@ using ObjCRuntime;
     IsCxx = true,
     SmartLink = true,
     Frameworks = "CoreGraphics CoreText Foundation QuartzCore Security SystemConfiguration UIKit AssetsLibrary MobileCoreServices QuickLook Foundation",
-    LinkerFlags = "-ObjC")]
+    LinkerFlags = "-ObjC -lc++")]
