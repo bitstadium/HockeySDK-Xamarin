@@ -53,6 +53,7 @@ Currently, the following platforms are supported:
 
 1. We assume that you have a project in Xamarin Studio, or Xamarin for Visual Studio.
 2. We assume you are not using other crash-analytic services on the same mobile application simultaneously.
+3. *Important:* We assume, that your project builds using a shared library. PCLs are not supported yet. We are working on this.
 
 <a id="setup"></a>
 ## 2. Setup
