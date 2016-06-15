@@ -413,9 +413,9 @@ HockeyLog.LogLevel = 6; // Error, show only errors – the default log level
 ### 3.4 Xamarin.Forms Project Integrate HockeySDK
 When adding HockeySDK-Xamarin to a Xamarin.Forms PCL Solution, add the nuget to the PCL, iOS, and Android project (Windows phone is not currently supported).
 
-Initialization must be done in the individual iOS and Android projects as shown in [Integrate HockeySDK](#integrate-sdk).  The PCL project will have access to a subset of shared non-configuration/initialization features.
+Initialization must be done in the individual iOS and Android projects as shown in [Integrate HockeySDK](#integrate-sdk). The PCL project will have access to a subset of shared non-configuration/initialization features.
 
-Please refer to the Xamarin.Forms sample in /samples/HockeyAppSampleForms.sln
+Please refer to the Xamarin.Forms sample in `/samples/HockeyAppSampleForms.sln`.
 
 <a id="documentation"></a>
 ## 4. Documentation
