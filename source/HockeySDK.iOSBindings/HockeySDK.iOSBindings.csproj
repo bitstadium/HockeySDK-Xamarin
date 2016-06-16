@@ -17,11 +17,16 @@
     <Optimize>false</Optimize>
     <IntermediateOutputPath>obj\full\Debug</IntermediateOutputPath>
     <OutputPath>bin\full\Debug</OutputPath>
-    <DefineConstants>DEBUG;__UNIFIED__</DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;DEBUG;__UNIFIED__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals" workingdir="${SolutionDir}/.." />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -33,6 +38,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals" workingdir="${SolutionDir}/.." />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
