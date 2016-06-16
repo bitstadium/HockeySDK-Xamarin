@@ -106,7 +106,7 @@ Task ("components")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/*.xam", "./output");
+	CopyFiles ("./component/**/*.xam", "./output");
 });
 
 Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
