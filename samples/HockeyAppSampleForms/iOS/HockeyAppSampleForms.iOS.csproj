@@ -106,10 +106,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HockeyAppSampleForms.csproj">
-      <Project>{7CFBB033-EAFF-4F37-BE59-FA75CFAF5641}</Project>
-      <Name>HockeyAppSampleForms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\source\HockeySDK.iOS\HockeySDK.iOS.csproj">
       <Project>{EF713164-3A82-460B-A66A-1CE2ECD16D95}</Project>
       <Name>HockeySDK.iOS</Name>
@@ -117,6 +113,10 @@
     <ProjectReference Include="..\..\..\source\HockeySDK.iOSBindings\HockeySDK.iOSBindings.csproj">
       <Project>{64574EFC-9C95-4764-ABAC-6A9A721CB366}</Project>
       <Name>HockeySDK.iOSBindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HockeyAppSampleForms.csproj">
+      <Project>{7CFBB033-EAFF-4F37-BE59-FA75CFAF5641}</Project>
+      <Name>HockeyAppSampleForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

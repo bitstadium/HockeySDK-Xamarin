@@ -82,10 +82,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HockeyAppSampleForms.csproj">
-      <Project>{7CFBB033-EAFF-4F37-BE59-FA75CFAF5641}</Project>
-      <Name>HockeyAppSampleForms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\source\HockeySDK.Android\HockeySDK.Android.csproj">
       <Project>{BA14689F-C933-482E-9C08-4DE46151E21B}</Project>
       <Name>HockeySDK.Android</Name>
@@ -93,6 +89,10 @@
     <ProjectReference Include="..\..\..\source\HockeySDK.AndroidBindings\HockeySDK.AndroidBindings.csproj">
       <Project>{F523B62B-9E53-48BB-88D4-CE067456A337}</Project>
       <Name>HockeySDK.AndroidBindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HockeyAppSampleForms.csproj">
+      <Project>{7CFBB033-EAFF-4F37-BE59-FA75CFAF5641}</Project>
+      <Name>HockeyAppSampleForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
