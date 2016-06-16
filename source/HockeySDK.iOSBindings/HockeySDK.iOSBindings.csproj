@@ -24,7 +24,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals" workingdir="${ProjectDir}/../.." />
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-ios" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -40,7 +40,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals" workingdir="${ProjectDir}/../.." />
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-ios" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>

@@ -28,7 +28,7 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals" workingdir="${ProjectDir}/../.." />
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-android" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -43,7 +43,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals" workingdir="${ProjectDir}/../.." />
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-android" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
