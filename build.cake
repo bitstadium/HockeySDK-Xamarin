@@ -85,7 +85,7 @@ Task ("nuget")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/HockeySDK*.nupkg", "./output");
+	CopyFiles ("./HockeySDK*.nupkg", "./output");
 });
 
 Task ("components")
@@ -116,6 +116,10 @@ Task ("clean").Does (() =>
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 
+	if (DirectoryExists ("./output"))
+		DeleteDirectory ("./output", true);
+
+	DeleteFiles("./*.nupkg");
 	CleanDirectories ("./**/bin");
 	CleanDirectories ("./**/obj");
 });
