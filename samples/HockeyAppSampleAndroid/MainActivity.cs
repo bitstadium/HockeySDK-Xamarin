@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Threading.Tasks;
+using HockeyApp.Android;
 
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
@@ -22,10 +23,10 @@ namespace HockeyAppSampleAndroid
 			base.OnCreate (bundle);
 
 			// Register the crash manager before Initializing the trace writer
-			HockeyApp.CrashManager.Register (this, HOCKEYAPP_APPID); 
+			CrashManager.Register (this, HOCKEYAPP_APPID); 
 
 			//Register to with the Update Manager
-			HockeyApp.UpdateManager.Register (this, HOCKEYAPP_APPID);
+			UpdateManager.Register (this, HOCKEYAPP_APPID);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
@@ -33,10 +34,10 @@ namespace HockeyAppSampleAndroid
 			FindViewById<Button> (Resource.Id.buttonShowFeedback).Click += delegate {
 
 				//Register with the feedback manager
-				HockeyApp.FeedbackManager.Register(this, HOCKEYAPP_APPID, null);
+				FeedbackManager.Register(this, HOCKEYAPP_APPID, null);
 
 				//Show the feedback screen
-				HockeyApp.FeedbackManager.ShowFeedbackActivity(this);
+				FeedbackManager.ShowFeedbackActivity(this);
 			};
 
 			FindViewById<Button>(Resource.Id.buttonCauseCrash).Click += delegate {
@@ -50,13 +51,13 @@ namespace HockeyAppSampleAndroid
 			base.OnResume ();
 
 			//Start Tracking usage in this activity
-			HockeyApp.Tracking.StartUsage (this);
+			Tracking.StartUsage (this);
 		}
 
 		protected override void OnPause ()
 		{
 			//Stop Tracking usage in this activity
-			HockeyApp.Tracking.StopUsage (this);
+			Tracking.StopUsage (this);
 
 			base.OnPause ();
 		}
