@@ -25,6 +25,7 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-ios" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/ios" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -40,6 +41,7 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-ios" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/ios" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>

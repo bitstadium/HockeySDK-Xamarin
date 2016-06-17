@@ -29,6 +29,7 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-android" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/android" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -44,6 +45,7 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t externals-android" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/android" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
