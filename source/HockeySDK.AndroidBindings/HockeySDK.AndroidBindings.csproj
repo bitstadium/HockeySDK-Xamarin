@@ -26,6 +26,12 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-android" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/android" workingdir="${ProjectDir}/../.." />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -36,6 +42,12 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-android" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/android" workingdir="${ProjectDir}/../.." />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

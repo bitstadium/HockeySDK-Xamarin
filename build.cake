@@ -34,6 +34,9 @@ Task ("samples")
 	}
 });
 
+Task("bindings-android").IsDependentOn("externals-android");
+Task("bindings-ios").IsDependentOn("externals-ios");
+
 Task ("externals-android")
 	.WithCriteria (!FileExists ("./externals/android/hockeyapp.android.zip"))
 	.Does (() => 
@@ -49,6 +52,12 @@ Task ("externals-android")
 });
 
 Task ("externals-ios")
+	.ReportError(exception =>
+{  
+    Console.WriteLine(exception.ToString());
+
+    if(!(exception is Cake.Core.CakeException)) throw exception;
+})
 	.WithCriteria (!FileExists ("./externals/ios/hockeyapp.ios.zip"))
 	.Does (() => 
 {
@@ -57,7 +66,6 @@ Task ("externals-ios")
 
 	DownloadFile (IOS_URL, "./externals/ios/hockeyapp.ios.zip");
 	Unzip ("./externals/ios/hockeyapp.ios.zip", "./externals/ios/");
-
 
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDK.a");
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKCrashOnly/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDKCrashOnly.a");
@@ -85,7 +93,7 @@ Task ("nuget")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/HockeySDK*.nupkg", "./output");
+	CopyFiles ("./HockeySDK*.nupkg", "./output");
 });
 
 Task ("components")
@@ -106,7 +114,7 @@ Task ("components")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/*.xam", "./output");
+	CopyFiles ("./component/**/*.xam", "./output");
 });
 
 Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
@@ -116,6 +124,10 @@ Task ("clean").Does (() =>
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 
+	if (DirectoryExists ("./output"))
+		DeleteDirectory ("./output", true);
+
+	DeleteFiles("./*.nupkg");
 	CleanDirectories ("./**/bin");
 	CleanDirectories ("./**/obj");
 });
