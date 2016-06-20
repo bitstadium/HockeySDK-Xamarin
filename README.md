@@ -1,7 +1,7 @@
 # HockeySDK for Xamarin
 
 ## Upcoming Version 4.1.0-beta3
-- HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
+- **Namespace Change** HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
 - New PCL supported APIs
   - MetricsManager
     - .Disabled
