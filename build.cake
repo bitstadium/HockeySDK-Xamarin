@@ -12,6 +12,7 @@ var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
 //	"./samples/HockeyAppSampleiOS.sln",
 //	"./samples/HockeyAppSampleiOSCrashOnly.sln",
+//	"./samples/HockeyAppSampleForms.sln",
 };
 
 var TARGET = Argument ("target", Argument ("t", "all"));
