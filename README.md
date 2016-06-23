@@ -1,16 +1,14 @@
 # HockeySDK for Xamarin
 
-## Upcoming Version 4.1.0-beta3
-- HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
+## Version 4.1.0-beta3
+- **Namespace Change** HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
 - New PCL supported APIs
   - MetricsManager
     - .Disabled
     - .TrackEvent(string eventName)
   - CrashManager
     - .DidCrashInLastSession
-
-## Current Version 4.1.0-beta2
-- [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
+  - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
 
 ## Introduction
 HockeySDK-Xamarin implements support for using HockeyApp in your iOS and Android applications.

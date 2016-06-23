@@ -1,0 +1,23 @@
+version: $version$
+name: HockeyApp for Xamarin Forms
+id: hockeyappforms
+publisher: Microsoft
+publisher-url: "http://hockeyapp.net"
+icons: 
+  - ./icons/hockeyapp_128x128.png
+  - ./icons/hockeyapp_512x512.png
+no_build: true
+summary: "HockeyApp is a platform to collect live crash reports, get feedback from your users, distribute your betas, recruit new testers, and analyze your test coverage."
+libraries:
+  ios-unified:
+    - ../../source/HockeySDK.iOS/bin/Release/HockeySDK.dll
+    - ../../source/HockeySDK.iOSBindings/bin/full/Release/HockeySDK.iOSBindings.dll
+  android:
+    - ../../source/HockeySDK.Android/bin/Release/HockeySDK.dll
+    - ../../source/HockeySDK.AndroidBindings/bin/Release/HockeySDK.AndroidBindings.dll
+  pcl:
+    - ../../source/HockeySDK/bin/Release/HockeySDK.dll
+samples:
+  - name: "Forms Sample"
+    path: ../../samples/HockeyAppSampleForms.sln
+    nobuild: true
