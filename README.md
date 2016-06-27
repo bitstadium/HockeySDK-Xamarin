@@ -386,9 +386,19 @@ You can control the amount of log messages from HockeySDK that show up in LogCat
 using HockeyApp.iOS;
 
 var manager = BITHockeyManager.SharedHockeyManager;
+manager.LogLevel = BITLogLevel.Debug;
 manager.Configure("Your_App_Id");
-manager.SetDebugLogEnabled = true;
 manager.StartManager();
+```
+
+There are five different log levels in total which give you a more granular control over how much information the SDK outputs to the console.
+
+```C#
+manager.LogLevel = BITLogLevel.Verbose;
+manager.LogLevel = BITLogLevel.Debug;
+manager.LogLevel = BITLogLevel.Warning;
+manager.LogLevel = BITLogLevel.Error;
+manager.LogLevel = BITLogLevel.None;
 ```
 
 #### For Android
