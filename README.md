@@ -103,6 +103,7 @@ namespace YourNameSpace {
    var manager = BITHockeyManager.SharedHockeyManager;
    manager.Configure("Your_App_Id");
    manager.StartManager();
+   manager.Authenticator.AuthenticateInstallation(); // This line is obsolete in crash only builds
   }
  }
 }
