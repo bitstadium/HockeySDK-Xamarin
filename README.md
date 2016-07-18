@@ -312,7 +312,7 @@ When the user taps on the feedback button it will launch the feedback interface 
 <a id="authentication"></a>
 ### 2.7 Add authentication
 #### For iOS
-Instructions for iOS Authentication can be forund [here](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
+Instructions for iOS Authentication can be found [here](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
 
 #### For Android
 You can force authentication of your users through the `LoginManager` class. This will show a login screen to users if they are not fully authenticated to protect your app.
