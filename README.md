@@ -171,7 +171,7 @@ To enable automatic in-app updates you need to make sure to add `manager.Authent
 ```C#
 using HockeyApp.iOS;
 
-var manager = BITHockeyManagerSharedHockeyManager;
+var manager = BITHockeyManager.SharedHockeyManager;
 manager.Configure("Your_App_Id");
 manager.StartManager();
 manager.Authenticator.AuthenticateInstallation();
@@ -184,7 +184,7 @@ This feature can be disabled manually as follows:
 ```C#
 using HockeyApp.iOS;
 
-var manager = BITHockeyManagerSharedHockeyManager;
+var manager = BITHockeyManager.SharedHockeyManager;
 manager.Configure("Your_App_Id");
 manager.SetDisableUpdateManager = true;
 manager.StartManager();
@@ -258,7 +258,7 @@ namespace YourNameSpace {
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions) {
 		{
 			// Initialise the Hockey SDK here
-   			var manager = BITHockeyManagerSharedHockeyManager;
+   			var manager = BITHockeyManager.SharedHockeyManager;
 			manager.Configure("Your_App_Id");
 			manager.StartManager();
    			
