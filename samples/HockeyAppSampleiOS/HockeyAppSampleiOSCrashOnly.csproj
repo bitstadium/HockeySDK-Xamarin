@@ -27,7 +27,7 @@
     </MtouchI18n>
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchProfiling>true</MtouchProfiling>
-    <MtouchExtraArgs>-cxx -gcc_flags "-lc++"</MtouchExtraArgs>
+    <MtouchExtraArgs></MtouchExtraArgs>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -136,9 +136,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\source\ios\HockeySDK.CrashOnly.iOS.csproj">
+    <ProjectReference Include="..\..\source\HockeySDK.iOSBindings\HockeySDK.CrashOnly.iOSBindings.csproj">
       <Project>{8CA3505E-1AD2-40C9-9224-EFCD859790F6}</Project>
-      <Name>HockeySDK.CrashOnly.iOS</Name>
+      <Name>HockeySDK.CrashOnly.iOSBindings</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

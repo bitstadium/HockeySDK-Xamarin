@@ -27,7 +27,7 @@
     </MtouchI18n>
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchProfiling>true</MtouchProfiling>
-    <MtouchExtraArgs>-cxx -gcc_flags "-lc++"</MtouchExtraArgs>
+    <MtouchExtraArgs></MtouchExtraArgs>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -138,9 +138,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\source\ios\HockeySDK.iOS.csproj">
+    <ProjectReference Include="..\..\source\HockeySDK.iOSBindings\HockeySDK.iOSBindings.csproj">
       <Project>{64574EFC-9C95-4764-ABAC-6A9A721CB366}</Project>
-      <Name>HockeySDK.iOS</Name>
+      <Name>HockeySDK.iOSBindings</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

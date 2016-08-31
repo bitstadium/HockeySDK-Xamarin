@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8CA3505E-1AD2-40C9-9224-EFCD859790F6}</ProjectGuid>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HockeyApp.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>HockeySDK.CrashOnly.iOSBindings</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <IntermediateOutputPath>obj\crashonly\Debug</IntermediateOutputPath>
+    <OutputPath>bin\crashonly\Debug</OutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__;CRASHONLY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-ios" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/ios" workingdir="${ProjectDir}/../.." />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <IntermediateOutputPath>obj\crashonly\Release</IntermediateOutputPath>
+    <OutputPath>bin\crashonly\Release</OutputPath>
+    <DefineConstants>__UNIFIED__;CRASHONLY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-ios" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/ios" workingdir="${ProjectDir}/../.." />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\libHockeySDKCrashOnly.a">
+      <Link>libHockeySDKCrashOnly.a</Link>
+    </ObjcBindingNativeLibrary>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Additions.cs" />
+    <Compile Include="libHockeySDKCrashOnly.linkwith.cs">
+      <DependentUpon>libHockeySDKCrashOnly.a</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Arrow.png">
+      <Link>Resources\HockeySDKResources.bundle\Arrow.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Arrow%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Arrow%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Arrow%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Arrow%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Blur.png">
+      <Link>Resources\HockeySDKResources.bundle\Blur.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Blur%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Blur%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Blur%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Blur%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Cancel.png">
+      <Link>Resources\HockeySDKResources.bundle\Cancel.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Cancel%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Cancel%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Cancel%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Cancel%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\IconGradient.png">
+      <Link>Resources\HockeySDKResources.bundle\IconGradient.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\IconGradient%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\IconGradient%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Info.plist">
+      <Link>Resources\HockeySDKResources.bundle\Info.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Ok.png">
+      <Link>Resources\HockeySDKResources.bundle\Ok.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Ok%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Ok%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Ok%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Ok%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Rectangle.png">
+      <Link>Resources\HockeySDKResources.bundle\Rectangle.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Rectangle%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\Rectangle%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\Rectangle%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\Rectangle%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\authorize_denied.png">
+      <Link>Resources\HockeySDKResources.bundle\authorize_denied.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\authorize_denied%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\authorize_denied%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\authorize_denied%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\authorize_denied%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\bg.png">
+      <Link>Resources\HockeySDKResources.bundle\bg.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedDelete.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedDelete.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedDelete%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedDelete%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedDeleteHighlighted.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedDeleteHighlighted.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedDeleteHighlighted%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedDeleteHighlighted%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedRegular.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedRegular.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedRegular%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedRegular%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedRegularHighlighted.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedRegularHighlighted.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\buttonRoundedRegularHighlighted%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\buttonRoundedRegularHighlighted%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\feedbackActivity.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\feedbackActivity%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\feedbackActivity%402x~ipad.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity%402x~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\feedbackActivity%403x.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\feedbackActivity~ipad.png">
+      <Link>Resources\HockeySDKResources.bundle\feedbackActivity~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\iconCamera.png">
+      <Link>Resources\HockeySDKResources.bundle\iconCamera.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\iconCamera%402x.png">
+      <Link>Resources\HockeySDKResources.bundle\iconCamera%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\de.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\de.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\en.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\en.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\es.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\es.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\fr.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\fr.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\hr.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\hr.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\hu.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\hu.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\it.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\it.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\ja.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\ja.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\nl.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\nl.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\pt-PT.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\pt-PT.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\pt.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\pt.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\ru.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\ru.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+  </ItemGroup>
+</Project>

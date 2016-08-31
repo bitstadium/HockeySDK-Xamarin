@@ -1,7 +1,7 @@
 ﻿using System;
 using MonoTouch.Dialog;
 using UIKit;
-using HockeyApp;
+using HockeyApp.iOS;
 
 namespace HockeyAppSampleiOS
 {

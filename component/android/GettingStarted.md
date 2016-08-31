@@ -9,7 +9,7 @@ This will add crash reporting capabilities to your app.
 In your `MainActivity.cs` file, add the following lines:
 
 ```csharp
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace
 {
@@ -40,7 +40,7 @@ Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
 This will allow you to set your AppId once and simplify register calls
 
 ```csharp
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace
 {
@@ -67,7 +67,7 @@ Open the activity where you want to inform the user about eventual updates. We'l
 Add the following lines and make sure to always balance `Register(...)` calls to SDK managers with `Unregister()` calls in the corresponding lifecycle callbacks:
 
 ```csharp
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace 
 {
@@ -125,7 +125,7 @@ You'll typically only want to show the feedback interface upon user interaction,
 Add the following lines to your respective activity, handling the touch events and showing the feedback interface:
 
 ```csharp
-using HockeyApp;
+using HockeyApp.Android;
 
 namespace YourNameSpace
 {
@@ -161,7 +161,7 @@ Retrieve your app secret from the HockeyApp backend. You can find this on the ap
 Open the activity you want to protect, if you want to protect all of your app this will be your main activity.
 
 Add the following lines to this activity:
-using HockeyApp;
+using HockeyApp.Android;
 
 ```csharp
 namespace YourNameSpace

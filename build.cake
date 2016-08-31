@@ -2,16 +2,17 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var COMPONENT_VERSION = "4.1.0.1";
-var NUGET_VERSION = "4.1.0-beta2";
+var COMPONENT_VERSION = "4.1.0.2";
+var NUGET_VERSION = "4.1.0-beta3";
 
 var ANDROID_URL = "https://download.hockeyapp.net/sdk/xamarin/android/HockeySDK-Android-4.1.0-beta.2.zip";
 var IOS_URL = "https://download.hockeyapp.net/sdk/xamarin/ios/HockeySDK-iOS-4.1.0-beta.2.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
-	// "./samples/HockeyAppSampleiOS.sln",
-	// "./samples/HockeyAppSampleiOSCrashOnly.sln",
+//	"./samples/HockeyAppSampleiOS.sln",
+//	"./samples/HockeyAppSampleiOSCrashOnly.sln",
+//	"./samples/HockeyAppSampleForms.sln",
 };
 
 var TARGET = Argument ("target", Argument ("t", "all"));
@@ -34,6 +35,9 @@ Task ("samples")
 	}
 });
 
+Task("bindings-android").IsDependentOn("externals-android");
+Task("bindings-ios").IsDependentOn("externals-ios");
+
 Task ("externals-android")
 	.WithCriteria (!FileExists ("./externals/android/hockeyapp.android.zip"))
 	.Does (() => 
@@ -49,6 +53,12 @@ Task ("externals-android")
 });
 
 Task ("externals-ios")
+	.ReportError(exception =>
+{  
+    Console.WriteLine(exception.ToString());
+
+    if(!(exception is Cake.Core.CakeException)) throw exception;
+})
 	.WithCriteria (!FileExists ("./externals/ios/hockeyapp.ios.zip"))
 	.Does (() => 
 {
@@ -57,7 +67,6 @@ Task ("externals-ios")
 
 	DownloadFile (IOS_URL, "./externals/ios/hockeyapp.ios.zip");
 	Unzip ("./externals/ios/hockeyapp.ios.zip", "./externals/ios/");
-
 
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDK.a");
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKCrashOnly/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDKCrashOnly.a");
@@ -85,7 +94,7 @@ Task ("nuget")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/HockeySDK*.nupkg", "./output");
+	CopyFiles ("./HockeySDK*.nupkg", "./output");
 });
 
 Task ("components")
@@ -106,7 +115,7 @@ Task ("components")
 	if (!DirectoryExists ("./output"))
 		CreateDirectory ("./output");
 
-	CopyFiles ("./**/*.xam", "./output");
+	CopyFiles ("./component/**/*.xam", "./output");
 });
 
 Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
@@ -116,6 +125,10 @@ Task ("clean").Does (() =>
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 
+	if (DirectoryExists ("./output"))
+		DeleteDirectory ("./output", true);
+
+	DeleteFiles("./*.nupkg");
 	CleanDirectories ("./**/bin");
 	CleanDirectories ("./**/obj");
 });

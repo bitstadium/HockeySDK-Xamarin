@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyAppSampleAndroid", "HockeyAppSampleAndroid\HockeyAppSampleAndroid.csproj", "{C4753F02-ED4A-406F-B476-7D88704EC327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.Android", "..\source\android\HockeySDK.Android.csproj", "{F523B62B-9E53-48BB-88D4-CE067456A337}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.AndroidBindings", "..\source\HockeySDK.AndroidBindings\HockeySDK.AndroidBindings.csproj", "{F523B62B-9E53-48BB-88D4-CE067456A337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

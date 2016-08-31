@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyAppSampleiOS", "HockeyAppSampleiOS\HockeyAppSampleiOS.csproj", "{B4CF8C10-58E4-4D4B-B61F-485F5F010554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.iOS", "..\source\ios\HockeySDK.iOS.csproj", "{64574EFC-9C95-4764-ABAC-6A9A721CB366}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.iOSBindings", "..\source\HockeySDK.iOSBindings\HockeySDK.iOSBindings.csproj", "{64574EFC-9C95-4764-ABAC-6A9A721CB366}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

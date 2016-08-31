@@ -9,7 +9,7 @@ This will add crash reporting capabilities to your app.
 Open your AppDelegate.cs file, and add the following lines:
 
 ```csharp
-using HockeySDK;
+using HockeySDK.iOS;
 
 namespace YourNameSpace
 {

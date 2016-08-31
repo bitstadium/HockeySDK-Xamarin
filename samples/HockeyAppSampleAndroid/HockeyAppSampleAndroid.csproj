@@ -73,9 +73,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\source\android\HockeySDK.Android.csproj">
+    <ProjectReference Include="..\..\source\HockeySDK.AndroidBindings\HockeySDK.AndroidBindings.csproj">
       <Project>{F523B62B-9E53-48BB-88D4-CE067456A337}</Project>
-      <Name>HockeySDK.Android</Name>
+      <Name>HockeySDK.AndroidBindings</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
