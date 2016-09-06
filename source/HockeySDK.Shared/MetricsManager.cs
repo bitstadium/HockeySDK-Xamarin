@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HockeyApp
 {
@@ -33,6 +34,17 @@ namespace HockeyApp
 		public static void TrackEvent(string eventName)
 		{
 			PlatformMetricsManager.TrackEvent(eventName);
+		}
+
+		/// <summary>
+		/// This method allows to track an event that happened in your app. Remember to choose meaningful event names to have the best experience when diagnosing your app in the HockeyApp web portal.
+		/// </summary>
+		/// <param name="eventName">The event’s name as a string.</param>
+		/// <param name="properties">A dictionary of properties to attach to the event.</param>
+		/// <param name="measurements">A dictionary of measurements to attach to the event.</param>
+		public static void TrackEvent(string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
+		{
+			PlatformMetricsManager.TrackEvent(eventName, properties, measurements);
 		}
 	}
 }
