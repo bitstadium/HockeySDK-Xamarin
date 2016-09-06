@@ -5,8 +5,8 @@
 var COMPONENT_VERSION = "4.1.0.2";
 var NUGET_VERSION = "4.1.0-beta3";
 
-var ANDROID_URL = "https://download.hockeyapp.net/sdk/xamarin/android/HockeySDK-Android-4.1.0-beta.2.zip";
-var IOS_URL = "https://download.hockeyapp.net/sdk/xamarin/ios/HockeySDK-iOS-4.1.0-beta.2.zip";
+var ANDROID_URL = "https://download.hockeyapp.net/sdk/xamarin/android/HockeySDK-Android-4.1.1.zip";
+var IOS_URL = "https://download.hockeyapp.net/sdk/xamarin/ios/HockeySDK-iOS-4.1.0.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
