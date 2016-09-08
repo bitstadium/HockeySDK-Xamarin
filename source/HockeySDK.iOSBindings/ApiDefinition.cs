@@ -261,7 +261,7 @@ namespace HockeyApp.iOS
 
 		// - (void)trackEventWithName:(nonnull NSString *)eventName properties:(nullable NSDictionary<NSString *, NSString *> *)properties measurements:(nullable NSDictionary<NSString *, NSNumber *> *)measurements;
 		[Export("trackEventWithName:properties:measurements:")]
-		void TrackEvent(string eventName, NSDictionary properties, NSDictionary measurements);
+		void TrackEvent(string eventName, [NullAllowed] NSDictionary properties, [NullAllowed] NSDictionary measurements);
 
 		[Export ("serverURL", ArgumentSemantic.Retain)]
 		string ServerURL { get; set; }
