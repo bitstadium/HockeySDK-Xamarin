@@ -56,11 +56,16 @@ namespace HockeyApp
 
 		public void TrackEvent(string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
 		{
-			var measurementsHelper = new Dictionary<string, Java.Lang.Double>();
-			foreach (KeyValuePair<string, double> pair in measurements)
+			Dictionary<string, Java.Lang.Double> measurementsHelper = null;
+			if (measurements != null)
 			{
-				measurementsHelper.Add(pair.Key, new Java.Lang.Double(pair.Value));
+				measurementsHelper = new Dictionary<string, Java.Lang.Double>();
+				foreach (KeyValuePair<string, double> pair in measurements)
+				{
+					measurementsHelper.Add(pair.Key, new Java.Lang.Double(pair.Value));
+				}
 			}
+			
 			HockeyMetrics.MetricsManager.TrackEvent(eventName, properties, measurementsHelper);
 		}
 

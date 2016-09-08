@@ -22,19 +22,26 @@ namespace HockeyApp
 
 		public void TrackEvent(string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
 		{
-			var propertiesHelper = new NSMutableDictionary();
-			foreach (KeyValuePair<string, string> pair in properties)
+			NSMutableDictionary propertiesHelper = null;
+			if (properties != null)
 			{
-				propertiesHelper.Add(NSString.FromObject(pair.Key), NSString.FromObject(pair.Value));
+				propertiesHelper = new NSMutableDictionary();
+				foreach (KeyValuePair<string, string> pair in properties)
+				{
+					propertiesHelper.Add(NSString.FromObject(pair.Key), NSString.FromObject(pair.Value));
+				}
 			}
 
-			var measurementsHelper = new NSMutableDictionary();
-			foreach (KeyValuePair<string, double> pair in measurements)
+			NSMutableDictionary measurementsHelper = null;
+			if (measurements != null)
 			{
-				measurementsHelper.Add(NSString.FromObject(pair.Key), NSNumber.FromDouble(pair.Value));
+				measurementsHelper = new NSMutableDictionary();
+				foreach (KeyValuePair<string, double> pair in measurements)
+				{
+					measurementsHelper.Add(NSString.FromObject(pair.Key), NSNumber.FromDouble(pair.Value));
+				}
 			}
-
-
+			
 			BITHockeyManager.SharedHockeyManager.MetricsManager.TrackEvent(eventName, 
 			                                                               propertiesHelper,
 			                                                               measurementsHelper);
