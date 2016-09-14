@@ -36,9 +36,10 @@ This document contains the following sections:
  2. [Integrate HockeySDK](#integrate-sdk)
  3. [Add crash reporting](#crash-reporting)
  4. [Add user metrics](#user-metrics)
- 5. [Add Update Distribution](#updated-distribution)
- 6. [Add in-app feedback](#feedback)
- 7. [Add authentication](#authentication)
+ 5. [Add custom events](#custom-events)
+ 6. [Add Update Distribution](#updated-distribution)
+ 7. [Add in-app feedback](#feedback)
+ 8. [Add authentication](#authentication)
 3. [Advanced setup](#advanced-setup)
  1. [Adding App ID to manifest (Android-Only)](#appid-manifest)
  2. [Permissions (Android-Only)](#permissions)
@@ -85,7 +86,7 @@ For each iOS and Android project desired, add the HockeySDK-Xamarin nuget packag
 2. Search `HockeySDK.Xamarin` (enable include prerelease)
 
 <a id="crash-reporting"></a>
-### 2.4 Add crash reporting
+### 2.3 Add crash reporting
 This will add crash reporting capabilities to your app. Advanced ways to configure crash reporting are covered in advanced setup: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
 
 #### For iOS
@@ -172,8 +173,36 @@ using HockeyApp.Android.Metrics;
 MetricsManager.Register(this, Application, "$Your_App_Id");
 ```
 
+<a id="custom-events"></a>
+### 2.5 Add custom events
+HockeyApp allows you to track custom events to understand user actions inside your app.
+
+**Please note:** To use custom events, please first make sure that User Metrics is [set up correctly](#user-metrics) for your platform (e.g. you registered the MetricsManager on Android).
+
+Tracking custom events on iOS and Android uses the same code:
+
+1. Make sure to add the correct namespace:
+  ```csharp
+  using HockeyApp;
+  using System.Collections.Generic;
+  ```
+
+2. Track custom events like this:
+  ```csharp
+  HockeyApp.MetricsManager.TrackEvent("Custom Event");
+  ```
+  if you want to add custom properties or measurements, use this:
+
+  ```csharp
+  HockeyApp.MetricsManager.TrackEvent(
+    "Custom Event",
+    new Dictionary<string, string> { { "property", "value" } },
+    new Dictionary<string, double> { { "time", 1.0 } }
+  )
+  ```
+
 <a id="updated-distribution"></a>
-### 2.5 Add Update Distribution
+### 2.6 Add Update Distribution
 This will add the in-app update mechanism to your app. Detailed configuration options are in the advanced setup sections for each platform: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
 
 #### For iOS
@@ -249,7 +278,7 @@ namespace YourNameSpace {
 When the activity is created, the update manager checks for new updates in the background. If it finds a new update, an alert dialog will be shown. If the user presses `Show` in said dialog, they will be taken to the update activity. The reason to only do this once upon creation is that the update check causes network traffic and therefore potential costs for your users.
 
 <a id="feedback"></a>
-### 2.6 Add in-app feedback
+### 2.7 Add in-app feedback
 The feedback manager lets your users communicate directly with you via the app and an integrated user interface. It provides a single threaded discussion with a user running your app. Detailed configuration options are in the advanced setup sections for each platform: [iOS](https://github.com/bitstadium/HockeySDK-iOS#advancedsetup) | [Android](https://github.com/bitstadium/HockeySDK-Android#advancedsetup)
 
 1. You'll typically only want to show the feedback interface upon user interaction, for this example, we assume you have a button `feedbackButton` in your view for this.
@@ -324,7 +353,7 @@ namespace YourNameSpace {
 When the user taps on the feedback button, it will launch the feedback interface of the HockeySDK, where the user can create a new feedback discussion, add screenshots or other files for reference, and act on their previous feedback conversations.
 
 <a id="authentication"></a>
-### 2.7 Add authentication
+### 2.8 Add authentication
 #### For iOS
 Instructions for iOS Authentication can be found [here](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios).
 
