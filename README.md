@@ -1,11 +1,14 @@
 # HockeySDK for Xamarin
 
-## Version 4.1.0-beta3
+## Version 4.1.0
+- **Please note:** The HockeyApp Xamarin SDK by default includes the full version of the native HockeySDKs with all features.
+For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescription` in your app's `Info.plist` file - otherwise you risk an App Store rejection. Please read up on our blog on the [reasoning behind this change](https://www.hockeyapp.net/blog/2016/09/13/hockeysdk-ios-4-1-1-macos-tvos-4-1-0.html).
 - **Namespace Change** HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
 - New PCL supported APIs
   - MetricsManager
     - .Disabled
     - .TrackEvent(string eventName)
+    - .TrackEvent(string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
   - CrashManager
     - .DidCrashInLastSession
   - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
