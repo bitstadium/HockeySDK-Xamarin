@@ -186,7 +186,7 @@ using HockeyApp.iOS;
 
 var manager = BITHockeyManager.SharedHockeyManager;
 manager.Configure("Your_App_Id");
-manager.SetDisableUpdateManager = true;
+manager.DisableUpdateManager = true;
 manager.StartManager();
 ```
 
