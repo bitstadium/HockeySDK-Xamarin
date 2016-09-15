@@ -2,8 +2,8 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var COMPONENT_VERSION = "4.1.0.4";
-var NUGET_VERSION = "4.1.0-beta5";
+var COMPONENT_VERSION = "4.1.0.3";
+var NUGET_VERSION = "4.1.0";
 
 var ANDROID_URL = "https://download.hockeyapp.net/sdk/xamarin/android/HockeySDK-Android-4.1.1.zip";
 var IOS_URL = "https://download.hockeyapp.net/sdk/xamarin/ios/HockeySDK-iOS-4.1.1.zip";
