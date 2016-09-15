@@ -82,11 +82,11 @@ For each iOS and Android project desired, add the HockeySDK-Xamarin nuget packag
 
 #### For Xamarin Studio
 1. Navigate to `Project -> Add NuGet Packages...`
-2. Search for `HockeySDK.Xamarin` (enable pre-release packages)
+2. Search for `HockeySDK.Xamarin`
 
 #### For Xamarin for Visual Studio
 1. Navigate `Project -> Manage NuGet Packages...`
-2. Search `HockeySDK.Xamarin` (enable include prerelease)
+2. Search `HockeySDK.Xamarin`
 
 <a id="crash-reporting"></a>
 ### 2.3 Add crash reporting
