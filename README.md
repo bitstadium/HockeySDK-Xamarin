@@ -2,7 +2,7 @@
 
 ## Version 4.1.0
 - **Please note:** The HockeyApp Xamarin SDK by default includes the full version of the native HockeySDKs with all features.
-For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescription` in your app's `Info.plist` file - otherwise you risk an App Store rejection. Please read up on our blog on the [reasoning behind this change](https://www.hockeyapp.net/blog/2016/09/13/hockeysdk-ios-4-1-1-macos-tvos-4-1-0.html).
+For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescription` in your app's `Info.plist` file - otherwise you risk an App Store rejection. Please read up on our blog on the [reasoning behind this change](https://www.hockeyapp.net/blog/2016/09/13/hockeysdk-ios-4-1-1-macos-tvos-4-1-0.html). This does not apply to the iOS CrashOnly variant of course, as this is not including the feedback feature.
 - **Namespace Change** HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
 - New PCL supported APIs
   - MetricsManager
