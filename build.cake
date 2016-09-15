@@ -2,8 +2,8 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var COMPONENT_VERSION = "4.1.0.3";
-var NUGET_VERSION = "4.1.0-beta4";
+var COMPONENT_VERSION = "4.1.0.4";
+var NUGET_VERSION = "4.1.0-beta5";
 
 var ANDROID_URL = "https://download.hockeyapp.net/sdk/xamarin/android/HockeySDK-Android-4.1.1.zip";
 var IOS_URL = "https://download.hockeyapp.net/sdk/xamarin/ios/HockeySDK-iOS-4.1.1.zip";
@@ -68,10 +68,10 @@ Task ("externals-ios")
 	DownloadFile (IOS_URL, "./externals/ios/hockeyapp.ios.zip");
 	Unzip ("./externals/ios/hockeyapp.ios.zip", "./externals/ios/");
 
-	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDK.a");
+	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDK.a");
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKCrashOnly/HockeySDK.framework/Versions/A/HockeySDK", "./externals/ios/libHockeySDKCrashOnly.a");
 	
-	CopyDirectory ("./externals/ios/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle", "./externals/ios/HockeySDKResources.bundle");
+	CopyDirectory ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/Versions/A/Resources/HockeySDKResources.bundle", "./externals/ios/HockeySDKResources.bundle");
 });
 
 // Create a common externals task depending on platform specific ones
