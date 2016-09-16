@@ -17,7 +17,7 @@
       <CustomCommands>
         <Command type="Build" command="sh ./bootstrapper.sh -t nuget" workingdir="${ProjectDir}/../.." />
         <Command type="Clean" command="sh ./bootstrapper.sh -t clean" workingdir="${ProjectDir}/../.." />
-        <Command type="Execute" />
+        <Command type="Execute" command="" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -29,7 +29,7 @@
       <CustomCommands>
         <Command type="Build" command="sh ./bootstrapper.sh -t components" workingdir="${ProjectDir}/../.." />
         <Command type="Clean" command="sh ./bootstrapper.sh -t clean" workingdir="${ProjectDir}/../.." />
-        <Command type="Execute" />
+        <Command type="Execute" command="" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
