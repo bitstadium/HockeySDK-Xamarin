@@ -8,7 +8,7 @@ Configuration and Initialization must be done in platform specific projects usin
 You can check if a crash occured in the last session by adding the following lines:
 
 ```csharp
-using HockeySDK;
+using HockeyApp;
 ```
 
 ```csharp
@@ -20,7 +20,7 @@ CrashManager.DidCrashCrashInLastSession;
 You can enable/disable the  MetricsManager and track custom events using the following lines:
 
 ```csharp
-using HockeySDK;
+using HockeyApp;
 ```
 
 ```csharp
@@ -41,7 +41,7 @@ This will add crash reporting capabilities to your app.
 Open your AppDelegate.cs file, and add the following lines:
 
 ```csharp
-using HockeySDK.iOS;
+using HockeyApp.iOS;
 
 namespace YourNameSpace
 {
