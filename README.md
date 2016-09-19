@@ -173,7 +173,7 @@ On Android, User Metrics is not automatically gathered, you have to start this m
 using HockeyApp.Android.Metrics;
 
 // in your main activity OnCreate-method add:
-MetricsManager.Register(this, Application, "$Your_App_Id");
+MetricsManager.Register(Application, "$Your_App_Id");
 ```
 
 <a id="custom-events"></a>
