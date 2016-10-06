@@ -147,7 +147,7 @@ HockeyApp automatically provides you with nice, intelligible, and informative me
 
 - **Sessions**: A new session is tracked by the SDK whenever the containing app is restarted (this refers to a 'cold start', i.e. when the app has not already been in memory prior to being launched) or whenever it becomes active again after having been in the background for 20 seconds or more.
 - **Users**: The SDK anonymously tracks the users of your app by creating a random UUID.
-- **Batching & offline behavior**: The SDK batches up to 50 events or waits for 15s and then persist and send the events, whichever comes first. So for sessions, this might actually mean we send 1 single event per batch. If you are sending Custom Events, it can be 1 session event plus X of your Custom Events (up to 50 events per batch total). In case the device is offline, up to 300 events are stored until the SDK starts to drop new events.
+- **Batching & offline behavior**: The SDK batches up to 50 events or waits for 15 seconds and then persists and send the events, whichever comes first. If you're only using sessions, those will typically consist of one event per batch. If you are sending Custom Events, it can be 1 session event plus X of your Custom Events (up to 50 events per batch total). In case the device is offline, up to 50 batches are stored, until the SDK refuses to persist new events.
 
 
 #### For iOS
