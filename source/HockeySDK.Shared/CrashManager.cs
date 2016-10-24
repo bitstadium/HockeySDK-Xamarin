@@ -27,6 +27,11 @@ namespace HockeyApp
 		/// </summary>
 		/// <value><c>true</c> if did crash in last session; otherwise, <c>false</c>.</value>
 		public static bool DidCrashInLastSession { get { return PlatformCrashManager.DidCrashInLastSession; } }
+		public static bool TerminateOnUnobservedTaskException 
+		{ 
+			get { return PlatformCrashManager.TerminateOnUnobservedTaskException; } 
+			set { PlatformCrashManager.TerminateOnUnobservedTaskException = value; }
+		}
 	}
 }
 
