@@ -12,6 +12,7 @@ For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescripti
   - CrashManager
     - .DidCrashInLastSession
   - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
+- Wraps [HockeySDK-iOS 4.1.1](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.1) and [HockeySDK-Android 4.1.1](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.1).
 
 ## Introduction
 HockeySDK-Xamarin implements support for using HockeyApp in your iOS and Android applications.
@@ -146,6 +147,8 @@ HockeyApp automatically provides you with nice, intelligible, and informative me
 
 - **Sessions**: A new session is tracked by the SDK whenever the containing app is restarted (this refers to a 'cold start', i.e. when the app has not already been in memory prior to being launched) or whenever it becomes active again after having been in the background for 20 seconds or more.
 - **Users**: The SDK anonymously tracks the users of your app by creating a random UUID.
+- **Batching & offline behavior**: The SDK batches up to 50 events or waits for 15 seconds and then persists and sends the events, whichever comes first. So for sessions, this might actually mean, we send one single event per batch. If you are sending Custom Events, it can be 1 session event plus X of your Custom Events (up to 50 events per batch total). In case the device is offline, up to 50 batches (of up to 50 events) are stored until the SDK starts to reject and drop new events, logging an error.
+
 
 #### For iOS
 
@@ -179,6 +182,9 @@ MetricsManager.Register(Application, "$Your_App_Id");
 <a id="custom-events"></a>
 ### 2.5 Add custom events
 HockeyApp allows you to track custom events to understand user actions inside your app.
+
+Properties and measurements added to Custom Events are available in Application Insights Analytics as a preview. Please have a look at the [public announcement](https://www.hockeyapp.net/blog/2016/08/30/custom-events-public-preview.html) to find out more. 
+
 
 **Please note:** To use custom events, please first make sure that User Metrics is [set up correctly](#user-metrics) for your platform (e.g. you registered the MetricsManager on Android).
 

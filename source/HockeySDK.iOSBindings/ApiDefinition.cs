@@ -451,8 +451,8 @@ namespace HockeyApp.iOS
     public partial interface BITCrashMetaData {
 
         // @property (copy, nonatomic) NSString * userDescription;
-        [Export ("userDescription")]
-        string UserDescription { get; set; }
+        [Export ("userProvidedDescription")]
+        string UserProvidedDescription { get; set; }
 
         // @property (copy, nonatomic) NSString * userName;
         [Export ("userName")]
