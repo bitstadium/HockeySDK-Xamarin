@@ -50,7 +50,9 @@ namespace HockeyApp.iOS
 				TaskScheduler.UnobservedTaskException += (sender, e) => 
 				{
 					if (terminateOnUnobservedTaskException)
+					{
 						ThrowExceptionAsNative(e.Exception);
+					}
 				};
 
 				// Restore Mono SIGSEGV and SIGBUS handlers            

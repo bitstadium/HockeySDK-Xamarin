@@ -11,7 +11,7 @@ namespace HockeyApp
 
 		public bool TerminateOnUnobservedTaskException {
 		
-			get { return HockeyAndroid.CrashManager.TerminateOnUnobservedTaskException;	}
+			get { return HockeyAndroid.CrashManager.TerminateOnUnobservedTaskException; }
 			set { HockeyAndroid.CrashManager.TerminateOnUnobservedTaskException = value; }
 		}
 	}

@@ -12,7 +12,7 @@ namespace HockeyApp
 		public bool TerminateOnUnobservedTaskException 
 		{
 			get { return BITHockeyManager.TerminateOnUnobservedTaskException; }
-			set { BITHockeyManager.TerminateOnUnobservedTaskException = value; 	}
+			set { BITHockeyManager.TerminateOnUnobservedTaskException = value; }
 		}
 	}
 }
