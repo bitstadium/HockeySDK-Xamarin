@@ -29,25 +29,25 @@ namespace HockeyApp.iOS
 			{
 				if (startedManager) return;
 
-				IntPtr sigbus = Marshal.AllocHGlobal(512);
-				IntPtr sigsegv = Marshal.AllocHGlobal(512);
+				try
+				{
+				}
+				finally
+				{
+					Mono.Runtime.RemoveSignalHandlers();
+					try
+					{
+						// Enable crash reporting libraries
+						DoStartManager();
 
-				// Store Mono SIGSEGV and SIGBUS handlers
-				sigaction(Signal.SIGBUS, IntPtr.Zero, sigbus);
-				sigaction(Signal.SIGSEGV, IntPtr.Zero, sigsegv);
-
-				// Enable crash reporting libraries
-				DoStartManager();
-
-				AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
-				TaskScheduler.UnobservedTaskException += (sender, e) => ThrowExceptionAsNative(e.Exception);
-
-				// Restore Mono SIGSEGV and SIGBUS handlers            
-				sigaction(Signal.SIGBUS, sigbus, IntPtr.Zero);
-				sigaction(Signal.SIGSEGV, sigsegv, IntPtr.Zero);
-
-				Marshal.FreeHGlobal(sigbus);
-				Marshal.FreeHGlobal(sigsegv);
+						AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
+						TaskScheduler.UnobservedTaskException += (sender, e) => ThrowExceptionAsNative(e.Exception);
+					}
+					finally
+					{
+						Mono.Runtime.InstallSignalHandlers();
+					}
+				}
 
 				startedManager = true;
 			}
