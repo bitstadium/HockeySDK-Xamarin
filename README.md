@@ -481,7 +481,7 @@ Please refer to the Xamarin.Forms sample in `/samples/HockeyAppSampleForms.sln`.
 
 <a id="documentation"></a>
 ## 4. Documentation
-Our documentation can be found on HockeyApp [iOS](http://hockeyapp.net/help/sdk/ios/4.1.0-beta.3/index.html) | [Android](http://hockeyapp.net/help/sdk/android/4.1.0-beta.3/index.html)
+Our documentation can be found on [HockeyApp](https://hockeyapp.net/releases/) and the respective GitHub repositories of the platform SDKs: [iOS](https://github.com/bitstadium/HockeySDK-iOS) | [Android](https://github.com/bitstadium/HockeySDK-Android)
 
 <a id="troubleshooting"></a>
 ## 5. Troubleshooting
