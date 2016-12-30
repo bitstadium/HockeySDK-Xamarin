@@ -221,7 +221,7 @@ namespace HockeyApp.iOS
         string UrlScheme { get;set; }
 
         [Export("handleOpenURL:sourceApplication:annotation:")]
-        bool HandleOpenUrl(NSUrl url, string sourceApplication, IntPtr annotation);
+        bool HandleOpenUrl(NSUrl url, string sourceApplication, [NullAllowed] NSObject annotation);
 
         [Export("authenticateInstallation")]
         void AuthenticateInstallation();

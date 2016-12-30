@@ -4,7 +4,7 @@ The following features are currently supported:
 
  1. **Collect crash reports:** If your app crashes, a crash log is written to the device's storage. If the user starts the app again, they will be asked asked to submit the crash report to HockeyApp. This works for both beta and live apps, i.e. those submitted to the App Store. Crash logs contain viable information for you to help resolve the issue. Furthermore, you as a developer can add additional information to the report as well.
 
- 2. **User Metrics**: Understand user behavior to improve your app. Track usage through daily and monthly active users, monitor crash impacted users, as well as customer engagement through session count. If you are part of [Preseason][https://hockeyapp.net/preseason], you can now track Custom Events in your app, understand user actions and see the aggregates on the HockeyApp portal. User Metrics requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).
+ 2. **User Metrics**: Understand user behavior to improve your app. Track usage through daily and monthly active users, monitor crash impacted users, as well as customer engagement through session count. You can now track Custom Events in your app, understand user actions and see the aggregates on the HockeyApp portal. User Metrics requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).
  
  3. **Update Ad-Hoc / Enterprise apps:** The app will check with HockeyApp if a new version for your Ad-Hoc or Enterprise build is available. If yes, it will show an alert view to the user and let him see the release notes, the version history and start the installation process right away.
 
