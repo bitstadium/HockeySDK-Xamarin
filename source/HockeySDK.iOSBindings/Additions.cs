@@ -10,6 +10,13 @@ namespace HockeyApp.iOS
 	{
 		private static bool startedManager = false;
 		private static readonly object setupLock= new object();
+		private static bool terminateOnUnobservedTaskException;
+
+		public static bool TerminateOnUnobservedTaskException
+		{
+			get { return terminateOnUnobservedTaskException; }
+			set { terminateOnUnobservedTaskException = value; }
+		}
 
 		[DllImport ("libc")]
 		private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
@@ -40,7 +47,13 @@ namespace HockeyApp.iOS
 				DoStartManager();
 
 				AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
-				TaskScheduler.UnobservedTaskException += (sender, e) => ThrowExceptionAsNative(e.Exception);
+				TaskScheduler.UnobservedTaskException += (sender, e) => 
+				{
+					if (terminateOnUnobservedTaskException)
+					{
+						ThrowExceptionAsNative(e.Exception);
+					}
+				};
 
 				// Restore Mono SIGSEGV and SIGBUS handlers            
 				sigaction(Signal.SIGBUS, sigbus, IntPtr.Zero);
