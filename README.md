@@ -12,7 +12,7 @@ For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescripti
   - CrashManager
     - .DidCrashInLastSession
   - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
-- Wraps [HockeySDK-iOS 4.1.1](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.1) and [HockeySDK-Android 4.1.1](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.1).
+- Wraps [HockeySDK-iOS 4.1.3](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.3) and [HockeySDK-Android 4.1.2](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.2).
 
 ## Introduction
 HockeySDK-Xamarin implements support for using HockeyApp in your iOS and Android applications.
