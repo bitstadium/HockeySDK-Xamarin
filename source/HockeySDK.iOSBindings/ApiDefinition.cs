@@ -717,7 +717,7 @@ namespace HockeyApp.iOS
         string UserEmailForHockeyManager(BITHockeyManager hockeyManager, BITHockeyBaseManager componentManager);
 
 		/*
-		 * We need to bind all the different *ManagerDelegate-methods again here as Xamarin doesn't pick uo
+		 * We need to bind all the different *ManagerDelegate-methods again here as Xamarin doesn't pick up
 		 * that BITHockeyManagerDelegate includes the other protocols, too.
 		 */
 
