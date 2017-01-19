@@ -685,6 +685,10 @@ namespace HockeyApp.iOS
         // @optional -(NSArray * _Nullable)preparedItemsForFeedbackManager:(BITFeedbackManager * _Nonnull)feedbackManager;
         [Export ("preparedItemsForFeedbackManager:")]
         NSArray PreparedItemsForFeedbackManager (BITFeedbackManager feedbackManager);
+
+		// Added in 4.1.3
+		[Export("forceNewFeedbackThreadForFeedbackManager:")]
+		bool ForceNewFeedbackThreadForFeedbackManager (BITFeedbackManager feedbackManager);
     }
     #endif
 
