@@ -650,7 +650,10 @@ namespace HockeyApp.iOS
     [Model][Protocol]
     public partial interface BITUpdateManagerDelegate 
     {
-        [Export ("shouldDisplayExpiryAlertForUpdateManager:")]
+		[Export("shouldDisplayUpdateAlertForUpdateManager:forShortVersion:forVersion:")]
+		bool ShouldDisplayUpdateAlertForUpdateManager(BITUpdateManager updateManager, NSString shortVersion, NSString version);
+
+		[Export ("shouldDisplayExpiryAlertForUpdateManager:")]
         bool ShouldDisplayExpiryAlertForUpdateManager (BITUpdateManager updateManager);
 
         [Export ("didDisplayExpiryAlertForUpdateManager:")]
@@ -695,7 +698,9 @@ namespace HockeyApp.iOS
     [BaseType(typeof(NSObject))]
     [Model][Protocol]
     public partial interface BITHockeyManagerDelegate
-    {
+    {	
+		// BITHockeyManagerDelegate
+
         [Export("shouldUseLiveIdentifierForHockeyManager:")]
         bool ShouldUseLiveIdentifierForHockeyManager(BITHockeyManager manager);
 
@@ -711,6 +716,90 @@ namespace HockeyApp.iOS
         [Export("userEmailForHockeyManager:componentManager:")]
         string UserEmailForHockeyManager(BITHockeyManager hockeyManager, BITHockeyBaseManager componentManager);
 
+		/*
+		 * We need to bind all the different *ManagerDelegate-methods again here as Xamarin doesn't pick uo
+		 * that BITHockeyManagerDelegate includes the other protocols, too.
+		 */
+
+		// BITCrashManagerDelegate
+
+		[Export("applicationLogForCrashManager:")]
+		string ApplicationLogForCrashManager(BITCrashManager crashManager);
+
+		[Export("attachmentForCrashManager:")]
+		BITHockeyAttachment AttachmentForCrashManager(BITCrashManager crashManager);
+
+		[Export("crashManagerWillShowSubmitCrashReportAlert:")]
+		void WillShowSubmitCrashReportAlert(BITCrashManager crashManager);
+
+		[Export("crashManagerWillCancelSendingCrashReport:")]
+		void WillCancelSendingCrashReport(BITCrashManager crashManager);
+
+		[Export("crashManagerWillSendCrashReportsAlways:")]
+		void WillSendCrashReportsAlways(BITCrashManager crashManager);
+
+		[Export("crashManagerWillSendCrashReport:")]
+		void WillSendCrashReport(BITCrashManager crashManager);
+
+		[Export("crashManager:didFailWithError:")]
+		void DidFailWithError(BITCrashManager crashManager, NSError error);
+
+		[Export("crashManagerDidFinishSendingCrashReport:")]
+		void DidFinishSendingCrashReport(BITCrashManager crashManager);
+
+		// @optional -(BOOL)considerAppNotTerminatedCleanlyReportForCrashManager:(BITCrashManager *)crashManager;
+		[Export("considerAppNotTerminatedCleanlyReportForCrashManager:")]
+		bool ConsiderAppNotTerminatedCleanlyReportForCrashManager(BITCrashManager crashManager);
+
+		// Wrap all other bindings in a macro to make sure they don't get included in crash only build.
+		#if !CRASHONLY
+			
+			// BITUpdateManagerDelegate
+
+			[Export("shouldDisplayUpdateAlertForUpdateManager:forShortVersion:forVersion:")]
+			bool ShouldDisplayUpdateAlertForUpdateManager(BITUpdateManager updateManager, NSString shortVersion, NSString version);
+
+			[Export("shouldDisplayExpiryAlertForUpdateManager:")]
+			bool ShouldDisplayExpiryAlertForUpdateManager(BITUpdateManager updateManager);
+
+			[Export("didDisplayExpiryAlertForUpdateManager:")]
+			void DidDisplayExpiryAlertForUpdateManager(BITUpdateManager updateManager);
+
+			[Export("updateManagerShouldSendUsageData:")]
+			bool UpdateManagerShouldSendUsageData(BITUpdateManager updateManager);
+
+			// @optional -(void)updateManagerWillExitApp:(BITUpdateManager *)updateManager;
+			[Export("updateManagerWillExitApp:")]
+			void UpdateManagerWillExitApp(BITUpdateManager updateManager);
+
+			//(BOOL)willStartDownloadAndUpdate:(BITUpdateManager *)updateManager;
+			[Export("willStartDownloadAndUpdate:")]
+			bool WillStartDownloadAndUpdate(BITUpdateManager updateManager);
+			
+			// BITFeedbackManagerDelegate	
+
+			[Export("feedbackManagerDidReceiveNewFeedback:")]
+			void DidReceiveNewFeedback(BITFeedbackManager feedbackManager);
+
+			// Added in 3.7.1
+			//- (BOOL) allowAutomaticFetchingForNewFeedbackForManager:(BITFeedbackManager *)feedbackManager;
+			[Export("allowAutomaticFetchingForNewFeedbackForManager:")]
+			bool AllowAutomaticFetching(BITFeedbackManager feedbackManager);
+
+			// @optional -(NSArray * _Nullable)preparedItemsForFeedbackManager:(BITFeedbackManager * _Nonnull)feedbackManager;
+			[Export("preparedItemsForFeedbackManager:")]
+			NSArray PreparedItemsForFeedbackManager(BITFeedbackManager feedbackManager);
+
+			// Added in 4.1.3
+			[Export("forceNewFeedbackThreadForFeedbackManager:")]
+			bool ForceNewFeedbackThreadForFeedbackManager(BITFeedbackManager feedbackManager);
+			
+			// BITAuthenticatorDelegate
+			[Export("authenticator:willShowAuthenticationController:")]
+			[EventArgs("WillShowAuthenticationController")]
+			void WillShowAuthenticationController(BITAuthenticator authenticator, UIViewController viewController);
+			
+		#endif
     }
 
     // @interface BITHockeyAttachment : NSObject <NSCoding>
