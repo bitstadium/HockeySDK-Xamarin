@@ -58,6 +58,52 @@ namespace YourNameSpace
 }
 ```
 
+## User Metrics
+
+HockeyApp automatically provides you with nice, intelligible, and informative metrics about how your app is used and by whom.
+
+- **Sessions**: A new session is tracked by the SDK whenever the containing app is restarted (this refers to a 'cold start', i.e. when the app has not already been in memory prior to being launched) or whenever it becomes active again after having been in the background for 20 seconds or more.
+- **Users**: The SDK anonymously tracks the users of your app by creating a random UUID.
+
+On iOS the random UUID securely stored in the keychain, so that it persist across reinstallations. On iOS, User Metrics is enabled by default. If you want to turn off User Metrics, follow this code:
+
+```csharp
+// add the HockeyApp namespace
+using HockeyApp.iOS;
+
+// in your FinishedLaunching-method add:
+var manager = BITHockeyManager.SharedHockeyManager;
+manager.Configure("$Your_App_Id");
+manager.DisableMetricsManager = true;
+manager.StartManager();
+```
+
+It is important that you set `DisableMetricsManager` before you start the manager.
+
+## Custom Events
+
+HockeyApp allows you to track custom events to understand user actions inside your app.
+
+1. Make sure to add the correct namespace:
+  ```csharp
+  using HockeyApp;
+  using System.Collections.Generic;
+  ```
+
+2. Track custom events like this:
+  ```csharp
+  HockeyApp.MetricsManager.TrackEvent("Custom Event");
+  ```
+  if you want to add custom properties or measurements, use this:
+
+  ```csharp
+  HockeyApp.MetricsManager.TrackEvent(
+    "Custom Event",
+    new Dictionary<string, string> { { "property", "value" } },
+    new Dictionary<string, double> { { "time", 1.0 } }
+  )
+  ```
+
 
 ## Add Update Distribution
 
@@ -77,9 +123,6 @@ manager.StartManager();
 ```
 
 If you want to see beta analytics, use the beta distribution feature with in-app updates, restrict versions to specific users, or want to know who is actually testing your app, you need to follow the instructions on our guide [Authenticating Users on iOS](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios)
-
-
-
 
 ## Add in-app feedback
 
@@ -180,6 +223,49 @@ namespace YourNameSpace
 	}
 }
 ```
+
+## Add User Metrics
+
+HockeyApp automatically provides you with nice, intelligible, and informative metrics about how your app is used and by whom.
+
+- **Sessions**: A new session is tracked by the SDK whenever the containing app is restarted (this refers to a 'cold start', i.e. when the app has not already been in memory prior to being launched) or whenever it becomes active again after having been in the background for 20 seconds or more.
+- **Users**: The SDK anonymously tracks the users of your app by creating a random UUID.
+
+On Android, User Metrics is not automatically gathered, you have to start this manually:
+
+```csharp
+// add the HockeyApp namespace
+using HockeyApp.Android.Metrics;
+
+// in your main activity OnCreate-method add:
+MetricsManager.Register(this, Application, "$Your_App_Id");
+```
+
+## Add Custom Events
+
+HockeyApp allows you to track custom events to understand user actions inside your app.
+
+**Please note:** To use custom events, please first make sure that User Metrics is set up correctly, e.g. you registered the MetricsManager.
+
+1. Make sure to add the correct namespace:
+  ```csharp
+  using HockeyApp;
+  using System.Collections.Generic;
+  ```
+
+2. Track custom events like this:
+  ```csharp
+  HockeyApp.MetricsManager.TrackEvent("Custom Event");
+  ```
+  if you want to add custom properties or measurements, use this:
+
+  ```csharp
+  HockeyApp.MetricsManager.TrackEvent(
+    "Custom Event",
+    new Dictionary<string, string> { { "property", "value" } },
+    new Dictionary<string, double> { { "time", 1.0 } }
+  )
+  ```
 
 ## Add Update Distribution
 

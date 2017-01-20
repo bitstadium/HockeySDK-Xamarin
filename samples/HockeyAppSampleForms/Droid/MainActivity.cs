@@ -30,7 +30,7 @@ namespace HockeyAppSampleForms.Droid
 			//Register to with the Update Manager
 			UpdateManager.Register (this, HOCKEYAPP_APPID);
 
-			MetricsManager.Register (this, Application, HOCKEYAPP_APPID);
+			MetricsManager.Register (Application, HOCKEYAPP_APPID);
 
 			var showFeedbackButton = new Xamarin.Forms.Button {
 				Text = "Show Feedback"
