@@ -11,7 +11,7 @@ For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescripti
     - .TrackEvent(string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
   - CrashManager
     - .DidCrashInLastSession
-  - [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
+  - [Changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
 - Wraps [HockeySDK-iOS 4.1.3](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.3) and [HockeySDK-Android 4.1.2](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.2).
 
 ## Introduction
