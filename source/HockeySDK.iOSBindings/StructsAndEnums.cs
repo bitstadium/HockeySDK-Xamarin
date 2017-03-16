@@ -97,7 +97,7 @@ namespace HockeyApp.iOS
         None = 0,
         OnScreenshot = 1,
         ThreeFingerTap = 2,
-		All = 3
+        All = 3
     }
     #endif
 
