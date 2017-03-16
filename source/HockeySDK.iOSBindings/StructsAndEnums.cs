@@ -96,7 +96,8 @@ namespace HockeyApp.iOS
     public enum BITFeedbackObservationMode : long /* nint */ {
         None = 0,
         OnScreenshot = 1,
-        ThreeFingerTap = 2
+        ThreeFingerTap = 2,
+        All = 3
     }
     #endif
 
