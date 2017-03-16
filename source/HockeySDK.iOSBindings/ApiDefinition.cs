@@ -319,10 +319,11 @@ namespace HockeyApp.iOS
         [Export("feedbackComposeViewController")]
         BITFeedbackComposeViewController FeedbackComposeViewController();
 
-        // @property (copy, nonatomic) NSArray * _Nullable feedbackComposerPreparedItems __attribute__((deprecated("Use -preparedItemsForFeedbackManager: delegate method instead.")));
-        [Obsolete ("Use -preparedItemsForFeedbackManager: delegate method instead.")]
-        [Export("feedbackComposerPreparedItems")]
-        NSArray FeedbackComposerPreparedItems { get;set; }
+        // Removed in 4.1.2
+//        // @property (copy, nonatomic) NSArray * _Nullable feedbackComposerPreparedItems __attribute__((deprecated("Use -preparedItemsForFeedbackManager: delegate method instead.")));
+//        [Obsolete ("Use -preparedItemsForFeedbackManager: delegate method instead.")]
+//        [Export("feedbackComposerPreparedItems")]
+//        NSArray FeedbackComposerPreparedItems { get;set; }
 
         // Added in 3.7.1
         [Export ("feedbackComposeHideImageAttachmentButton")]
