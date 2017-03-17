@@ -4,15 +4,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F523B62B-9E53-48BB-88D4-CE067456A337}</ProjectGuid>
-    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>HockeyApp.Android</RootNamespace>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AssemblyName>HockeySDK.AndroidBindings</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
-    <AndroidTlsProvider></AndroidTlsProvider>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <JavaDocPaths>Jars\HockeySDK-Android\docs</JavaDocPaths>
@@ -29,16 +28,8 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>sh ./bootstrapper.sh -t bindings-android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
-        </Command>
-        <Command>
-          <type>AfterClean</type>
-          <command>rm -rf externals/android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
-        </Command>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-android" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/android" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -53,16 +44,8 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <CustomCommands>
       <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>sh ./bootstrapper.sh -t bindings-android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
-        </Command>
-        <Command>
-          <type>AfterClean</type>
-          <command>rm -rf externals/android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
-        </Command>
+        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-android" workingdir="${ProjectDir}/../.." />
+        <Command type="AfterClean" command="rm -rf externals/android" workingdir="${ProjectDir}/../.." />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
