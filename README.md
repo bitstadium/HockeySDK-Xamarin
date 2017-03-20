@@ -239,6 +239,7 @@ var manager = BITHockeyManager.SharedHockeyManager;
 manager.Configure("$Your_App_Id");
 manager.DisableUpdateManager = true;
 manager.StartManager();
+manager.Authenticator.AuthenticateInstallation();
 ```
 
 If you want to see beta analytics, use the beta distribution feature with in-app updates, restrict versions to specific users. Or if you want to know who is actually testing your app, follow the instructions on our guide [Authenticating Users on iOS](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios).
