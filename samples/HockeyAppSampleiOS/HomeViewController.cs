@@ -29,6 +29,10 @@ namespace HockeyAppSampleiOS
                     new StringElement("Submit New Feedback", () => {
                         hockey.FeedbackManager.ShowFeedbackComposeView();
                     }),
+					new StringElement("Track Event", () => {
+						hockey.MetricsManager.TrackEvent("My Sample Event");
+					}),
+
                     new StringElement("Crashed Last Run:", hockey.CrashManager.DidCrashInLastSession.ToString())
                 },
                 #endif

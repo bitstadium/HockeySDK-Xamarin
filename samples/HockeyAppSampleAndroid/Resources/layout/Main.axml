@@ -14,4 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonCauseCrash" />
+    <Button
+        android:text="Call TrackEvent()"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonTrackEvent" />
 </LinearLayout>
