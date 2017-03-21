@@ -192,12 +192,6 @@ namespace HockeyApp.iOS
     [BaseType (typeof (BITHockeyBaseManager))]
     public partial interface BITAuthenticator 
     {
-        // Removed in 3.6.2
-//        [Wrap ("WeakDelegate")]
-//        BITAuthenticatorDelegate Delegate { get; set; }
-//
-//        [Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
-//        NSObject WeakDelegate { get; set; }
 
         [Export("identificationType")]
         BITAuthenticatorIdentificationType IdentificationType { get;set; }
@@ -272,12 +266,6 @@ namespace HockeyApp.iOS
     [BaseType(typeof(BITHockeyBaseManager))]
     public partial interface BITFeedbackManager
     {
-        // Removed in 3.6.2
-//        [Wrap ("WeakDelegate")]
-//        BITFeedbackManagerDelegate Delegate { get; set; }
-//
-//        [Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
-//        NSObject WeakDelegate { get; set; }
 
         [Export("requireUserName")]
         BITFeedbackUserDataElement RequireUserName { get;set; }
@@ -318,12 +306,6 @@ namespace HockeyApp.iOS
 
         [Export("feedbackComposeViewController")]
         BITFeedbackComposeViewController FeedbackComposeViewController();
-
-        // Removed in 4.1.2
-//        // @property (copy, nonatomic) NSArray * _Nullable feedbackComposerPreparedItems __attribute__((deprecated("Use -preparedItemsForFeedbackManager: delegate method instead.")));
-//        [Obsolete ("Use -preparedItemsForFeedbackManager: delegate method instead.")]
-//        [Export("feedbackComposerPreparedItems")]
-//        NSArray FeedbackComposerPreparedItems { get;set; }
 
         // Added in 3.7.1
         [Export ("feedbackComposeHideImageAttachmentButton")]
@@ -392,12 +374,6 @@ namespace HockeyApp.iOS
     [BaseType(typeof(NSObject))]
     public partial interface BITUpdateManager
     {
-        // Removed in 3.6.2
-//        [Wrap ("WeakDelegate")]
-//        BITUpdateManagerDelegate Delegate { get; set; }
-//
-//        [Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
-//        NSObject WeakDelegate { get; set; }
 
         [Export("updateSetting", ArgumentSemantic.Assign)]
         BITUpdateSetting UpdateSetting { get;set; }
@@ -471,12 +447,6 @@ namespace HockeyApp.iOS
     [BaseType(typeof(BITHockeyBaseManager))]
     public partial interface BITCrashManager 
     {
-        // Removed in 3.6.2
-//        [Wrap ("WeakDelegate")]
-//        BITCrashManagerDelegate Delegate { get; set; }
-//
-//        [Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
-//        NSObject WeakDelegate { get; set; }
 
         [Export("crashManagerStatus")]
         BITCrashManagerStatus CrashManagerStatus { get;set; }
@@ -491,11 +461,6 @@ namespace HockeyApp.iOS
         // @property (assign, nonatomic, getter = isAppNotTerminatingCleanlyDetectionEnabled) BOOL enableAppNotTerminatingCleanlyDetection;
         [Export ("enableAppNotTerminatingCleanlyDetection", ArgumentSemantic.UnsafeUnretained)]
         bool EnableAppNotTerminatingCleanlyDetection { [Bind ("isAppNotTerminatingCleanlyDetectionEnabled")] get; set; }
-
-        // -(void)setCrashCallbacks:(BITCrashManagerCallbacks *)callbacks;
-        //[Export ("setCrashCallbacks:")]
-        //unsafe void SetCrashCallbacks (BITCrashManagerCallbacks* callbacks);
-
 
         [Export("showAlwaysButton")]
         bool ShowAlwaysButton { [Bind("shouldShowAlwaysButton")]get; set; }
@@ -534,12 +499,6 @@ namespace HockeyApp.iOS
     [BaseType(typeof(BITHockeyBaseManager))]
     public partial interface BITStoreUpdateManager
     {
-        // Removed in 3.6.2
-//        [Wrap ("WeakDelegate")]
-//        BITStoreUpdateManagerDelegate Delegate { get; set; }
-//
-//        [Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
-//        NSObject WeakDelegate { get; set; }
 
         [Export("updateSetting", ArgumentSemantic.Assign)]
         BITUpdateSetting UpdateSetting { get;set; }
@@ -587,16 +546,6 @@ namespace HockeyApp.iOS
 
     [BaseType (typeof (BITHockeyAttachment))]
     public partial interface BITCrashAttachment {
-
-        // Removed in 3.6.2
-//        [Export ("filename", ArgumentSemantic.Retain)]
-//        string Filename { get; }
-//
-//        [Export ("crashAttachmentData", ArgumentSemantic.Retain)]
-//        NSData AttachmentData { get; }
-//
-//        [Export ("contentType", ArgumentSemantic.Retain)]
-//        string ContentType { get; }
 
         [Export ("initWithFilename:crashAttachmentData:contentType:")]
         IntPtr Constructor (string filename, NSData crashAttachmentData, string contentType);
