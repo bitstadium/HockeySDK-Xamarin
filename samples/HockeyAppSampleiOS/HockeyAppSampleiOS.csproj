@@ -26,9 +26,10 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>i386, x86_64</MtouchArch>
-    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchProfiling>false</MtouchProfiling>
     <MtouchExtraArgs></MtouchExtraArgs>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -46,6 +47,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchExtraArgs>-cxx -gcc_flags "-lc++"</MtouchExtraArgs>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
