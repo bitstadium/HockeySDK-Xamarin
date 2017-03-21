@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Foundation;
 using ObjCRuntime;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace HockeyApp.iOS
 {
@@ -36,31 +37,68 @@ namespace HockeyApp.iOS
 			{
 				if (startedManager) return;
 
-				IntPtr sigbus = Marshal.AllocHGlobal(512);
-				IntPtr sigsegv = Marshal.AllocHGlobal(512);
+				var type = Type.GetType("Mono.Runtime");
+				var installSignalHandlers = type?.GetMethod("InstallSignalHandlers", BindingFlags.Public | BindingFlags.Static);
+				var removeSignalHandlers = type?.GetMethod("RemoveSignalHandlers", BindingFlags.Public | BindingFlags.Static);
 
-				// Store Mono SIGSEGV and SIGBUS handlers
-				sigaction(Signal.SIGBUS, IntPtr.Zero, sigbus);
-				sigaction(Signal.SIGSEGV, IntPtr.Zero, sigsegv);
-
-				// Enable crash reporting libraries
-				DoStartManager();
-
-				AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
-				TaskScheduler.UnobservedTaskException += (sender, e) => 
+				if (installSignalHandlers != null && removeSignalHandlers != null)
 				{
-					if (terminateOnUnobservedTaskException)
+
+					// The code is executed in a finally block, so that the Mono runtime will never abort it under any circumstance.
+					try
 					{
-						ThrowExceptionAsNative(e.Exception);
 					}
-				};
+					finally
+					{
+						removeSignalHandlers.Invoke(null, null);
+						try
+						{
+							// Enable crash reporting libraries
+							DoStartManager();
 
-				// Restore Mono SIGSEGV and SIGBUS handlers            
-				sigaction(Signal.SIGBUS, sigbus, IntPtr.Zero);
-				sigaction(Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+							AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
+							TaskScheduler.UnobservedTaskException += (sender, e) =>
+							{
+								if (terminateOnUnobservedTaskException)
+								{
+									ThrowExceptionAsNative(e.Exception);
+								}
+							};
+						}
+						finally
+						{
+							installSignalHandlers.Invoke(null, null);
+						}
+					}
+				}
+				else
+				{
+					IntPtr sigbus = Marshal.AllocHGlobal(512);
+					IntPtr sigsegv = Marshal.AllocHGlobal(512);
 
-				Marshal.FreeHGlobal(sigbus);
-				Marshal.FreeHGlobal(sigsegv);
+					// Store Mono SIGSEGV and SIGBUS handlers
+					sigaction(Signal.SIGBUS, IntPtr.Zero, sigbus);
+					sigaction(Signal.SIGSEGV, IntPtr.Zero, sigsegv);
+
+					// Enable crash reporting libraries
+					DoStartManager();
+
+					AppDomain.CurrentDomain.UnhandledException += (sender, e) => ThrowExceptionAsNative(e.ExceptionObject);
+					TaskScheduler.UnobservedTaskException += (sender, e) =>
+					{
+						if (terminateOnUnobservedTaskException)
+						{
+							ThrowExceptionAsNative(e.Exception);
+						}
+					};
+
+					// Restore Mono SIGSEGV and SIGBUS handlers            
+					sigaction(Signal.SIGBUS, sigbus, IntPtr.Zero);
+					sigaction(Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+
+					Marshal.FreeHGlobal(sigbus);
+					Marshal.FreeHGlobal(sigsegv);
+				}
 
 				startedManager = true;
 			}

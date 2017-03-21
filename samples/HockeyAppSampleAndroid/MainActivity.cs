@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using System.Threading.Tasks;
 using HockeyApp.Android;
+using HockeyApp.Android.Metrics;
 
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
@@ -25,8 +26,11 @@ namespace HockeyAppSampleAndroid
 			// Register the crash manager before Initializing the trace writer
 			CrashManager.Register (this, HOCKEYAPP_APPID); 
 
-			//Register to with the Update Manager
+			// Register to with the Update Manager
 			UpdateManager.Register (this, HOCKEYAPP_APPID);
+
+			// Register MetricsManager to be able to use the Metrics Feature.
+			MetricsManager.Register(Application, HOCKEYAPP_APPID);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
@@ -43,6 +47,11 @@ namespace HockeyAppSampleAndroid
 			FindViewById<Button>(Resource.Id.buttonCauseCrash).Click += delegate {
                 // Throw a deliberate sample crash
 				throw new HockeyAppSampleException("You intentionally caused a crash!");
+			};
+
+			FindViewById<Button>(Resource.Id.buttonTrackEvent).Click += delegate
+			{
+				MetricsManager.TrackEvent("My custom event.");
 			};
 		}
 
