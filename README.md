@@ -403,7 +403,7 @@ Make sure to replace `$APP_SECRET` with the value retrieved in step 1. This will
 Add the following assembly level attribute in `Properties/AssemblyInfo.cs`
 
 ```csharp
-[assembly: MetaData ("net.hockeyapp.android.appIdentifier", Value="Your-Api-Key")]
+[assembly: MetaData ("net.hockeyapp.android.appIdentifier", Value="$Your_App_Id")]
 ```
 
 This will allow you to set your App ID once and simplify register calls
