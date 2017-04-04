@@ -126,14 +126,14 @@ using HockeyApp.Android;
 
 namespace YourNameSpace {
 
- [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
- public class MainActivity : Activity {
-  protected override void OnCreate(Bundle savedInstanceState) {
-   base.OnCreate(savedInstanceState);
-   // ... your own OnCreate implementation
-   CrashManager.Register(this, "$Your_App_Id");
+  [Activity(Label = "Your.App", MainLauncher = true, Icon = "@mipmap/icon")]
+  public class MainActivity : Activity {  
+   protected override void OnResume ()
+ 	{
+ 	  base.OnResume ();
+	  CrashManager.Register(this, HOCKEYAPP_APPID);
+	}
   }
- }
 }
 ```
 
