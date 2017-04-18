@@ -39,5 +39,7 @@
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string> com.hockeyapp.sample</string>
+	<key>CFBundleName</key>
+	<string>HockeyAppSampleiOS</string>
 </dict>
 </plist>
