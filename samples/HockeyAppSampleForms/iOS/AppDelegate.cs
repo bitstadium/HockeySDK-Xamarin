@@ -57,9 +57,18 @@ namespace HockeyAppSampleForms.iOS
 				throw new HockeyAppSampleException ("You intentionally caused a crash!");
 			};
 
+			var throwNSExceptionButton = new Xamarin.Forms.Button
+			{
+				Text = "Throw a NSException"
+			};
+			throwNSExceptionButton.Clicked += (sender, e) => {
+				var storyboard = UIStoryboard.FromName("Main", null);
+				var vc = storyboard.InstantiateViewController("SomeViewControllerWithNoStoryboardID");
+			};
+
 			global::Xamarin.Forms.Forms.Init ();
 
-			LoadApplication (new App (checkForUpdatesButton, showFeedbackButton, submitNewFeedbackButton, throwExceptionButton));
+			LoadApplication (new App (checkForUpdatesButton, showFeedbackButton, submitNewFeedbackButton, throwExceptionButton, throwNSExceptionButton));
 
 			return base.FinishedLaunching (app, options);
 		}
