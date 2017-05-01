@@ -79,7 +79,7 @@ namespace HockeyApp.iOS
         void ConfigureWithIdentifier(string betaIdentifier, string liveIdentifier, [NullAllowed] NSObject managerDelegate);
 
         [Internal]
-        [Export("startManager")]
+		[Export("startManagerInXamarinEnvironment")]
         void DoStartManager();
 
         [Export ("serverURL", ArgumentSemantic.Retain)]

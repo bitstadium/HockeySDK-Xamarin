@@ -41,7 +41,14 @@ namespace HockeyAppSampleiOS
 
                         throw new HockeyAppSampleException ("You intentionally caused a crash!");
 
-                    })
+                    }),
+
+					new StringElement ("Throw NSException", () => {
+
+						var storyboard = UIStoryboard.FromName("Main", null);
+						var vc = storyboard.InstantiateViewController("SomeViewControllerWithNoStoryboardID");
+
+					})
                 }
             };
         }
