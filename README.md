@@ -1,22 +1,14 @@
 # HockeySDK for Xamarin
 
-## Version 4.1.2
-- **Please note:** The HockeyApp Xamarin SDK by default includes the full version of the native HockeySDKs with all features.
-For iOS, this means you'll have to include the key `NSPhotoLibraryUsageDescription` in your app's `Info.plist` file - otherwise you risk an App Store rejection. Please read up on our blog on the [reasoning behind this change](https://www.hockeyapp.net/blog/2016/09/13/hockeysdk-ios-4-1-1-macos-tvos-4-1-0.html). This does not apply to the iOS CrashOnly variant of course, as this is not including the feedback feature.
-- **Namespace Change** HockeySDK-Android and HockeySDK-iOS bindings moved to HockeyApp.Android and HockeyApp.iOS namespaces, respectively
-- New PCL supported APIs
-  - MetricsManager
-    - .Disabled
-    - .TrackEvent(string eventName)
-    - .TrackEvent(string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
-  - CrashManager
-    - .DidCrashInLastSession
-  - [Changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases)
-- Wraps [HockeySDK-iOS 4.1.4](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.4) and [HockeySDK-Android 4.1.3](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.3).
+## Version 4.1.3
+- Please have a look at the [Changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases).
+- The Xamarin SDK wrapps our native SDKs, [HockeySDK-iOS 4.1.5](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.5) and [HockeySDK-Android 4.1.4](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.4).
+
+- **If you are targeting iOS:** The HockeyApp Xamarin SDK includes the full version of the native HockeySDKs with all features. For iOS, this means that you must include the key `NSPhotoLibraryUsageDescription` in your app's `Info.plist` file - otherwise you risk an App Store rejection. Please read up on our blog on the [reason behind this change](https://www.hockeyapp.net/blog/2016/09/13/hockeysdk-ios-4-1-1-macos-tvos-4-1-0.html). This does not apply to the iOS CrashOnly variant of SDK, as this is not including the feedback feature.
 
 ## Introduction
-HockeySDK-Xamarin implements support for using HockeyApp in your iOS and Android applications.
-Please refer to the respective platform SDKs [HockeySDK-iOS](https://github.com/bitstadium/HockeySDK-iOS) and [HockeySDK-Android](https://github.com/bitstadium/HockeySDK-Android) for advanced platform-specific behaviors
+HockeySDK-Xamarin implements support for HockeyApp in your iOS and Android applications.
+Please have a look at the native platform SDKs [HockeySDK-iOS](https://github.com/bitstadium/HockeySDK-iOS) and [HockeySDK-Android](https://github.com/bitstadium/HockeySDK-Android) for advanced platform-specific behaviors.
 
 The following features are currently supported:
 
@@ -60,7 +52,7 @@ This document contains the following sections:
 <a id="requirements"></a>
 ## 1. Requirements
 
-1. We assume that you have a project in Xamarin Studio, or Xamarin for Visual Studio.
+1. We assume that you have a project in Xamarin Studio or Xamarin for Visual Studio.
 2. We assume you are not using other crash-analytic services on the same mobile application simultaneously.
 
 Currently, the following platforms are supported:
@@ -152,7 +144,7 @@ HockeyApp automatically provides you with nice, intelligible, and informative me
 
 #### For iOS
 
-On iOS the random UUID securely stored in the keychain, so that it persist across reinstallations. On iOS, User Metrics is enabled by default. If you want to turn off User Metrics, follow this code:
+On iOS, the random UUID ist securely stored in the keychain. On iOS, User Metrics is enabled by default. If you want to turn off User Metrics, please use the following code:
 
 ```csharp
 // add the HockeyApp namespace
@@ -169,7 +161,7 @@ It is important that you set `DisableMetricsManager` before you start the manage
 
 #### For Android
 
-On Android, User Metrics is not automatically gathered, you have to start this manually:
+On Android, User Metrics is not automatically enabled, you have to start this explicitly yourself:
 
 ```csharp
 // add the HockeyApp namespace
@@ -432,7 +424,7 @@ namespace YourNameSpace
 Permissions get automatically merged into your apps manifest. If your app does not use update distribution, you might consider removing the permission `WRITE_EXTERNAL_STORAGE` - see the [advanced permissions section](https://github.com/bitstadium/HockeySDK-Android#permissions-advanced) for details.
 
 <a id="logcat-output"></a>
-### 3.3 Control output to LogCat
+### 3.3 Control output to the Console or LogCat
 You can control the amount of log messages from HockeySDK that show up in LogCat. By default, we keep the noise as low as possible, only errors will show up. To enable additional logging, i.e. while debugging, add the following line of code:
 
 #### For iOS
@@ -457,7 +449,7 @@ manager.LogLevel = BITLogLevel.None;
 
 #### For Android
 ```csharp
-using HockeyApp.Android.Util;
+using HockeyApp.Android.Utils;
 
 HockeyLog.LogLevel = 3;
 ```
@@ -512,10 +504,10 @@ If you have further questions or are running into trouble that cannot be resolve
 
 Build Prerequisites:
 
- - Mac OSX 10.11
+ - Mac OSX 10.12
  - Xamarin.Android
  - Xamarin.iOS
- - XCode 7.2+
+ - XCode 8
  
 The file `build.cake` is the main build script used to compile the SDK source.  This script is running on the [Cake](http://cakebuild.net) build system. A `bootstrapper.sh` file is provided to execute the build without installing cake explicitly.
 
