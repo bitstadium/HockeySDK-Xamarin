@@ -1,6 +1,6 @@
 # HockeySDK for Xamarin
 
-## Version 4.1.3
+## Version 4.1.4
 - Please have a look at the [Changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases).
 - The Xamarin SDK wrapps our native SDKs, [HockeySDK-iOS 4.1.5](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/4.1.5) and [HockeySDK-Android 4.1.4](https://github.com/bitstadium/HockeySDK-Android/releases/tag/4.1.4).
 
