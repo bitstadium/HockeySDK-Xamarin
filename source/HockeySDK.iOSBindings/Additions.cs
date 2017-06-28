@@ -132,7 +132,9 @@ namespace HockeyApp.iOS
 //		}
 
 		private void ConvertToNsExceptionAndAbort(object e)
-		{	
+		{
+            Console.WriteLine("ConvertToNSExceptionAndAbort");
+
 			var name = "Managed Xamarin.iOS .NET Exception";
 			var msg = e.ToString();
 
@@ -141,8 +143,18 @@ namespace HockeyApp.iOS
 				name = ex.GetType ().FullName;
 				if (ex.StackTrace != null) {
 					msg = msg.Insert (msg.IndexOf('\n'), "Xamarin Exception Stack:");
+					Console.WriteLine("Inserted Xamarin Exception Stack Line!");
+				}
+                else {
+					Console.WriteLine("Could not find stacktrace!");
 				}
 			}
+            else {
+                Console.WriteLine("Could not convert to exception!");
+			}
+			Console.WriteLine("Name: " + name);
+            Console.WriteLine("Message" + msg);
+
 			name = name.Replace("%", "%%"); 
 			msg = msg.Replace("%", "%%");
 			var nse = new NSException(name, msg, null);
