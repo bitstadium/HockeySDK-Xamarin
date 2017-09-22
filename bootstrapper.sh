@@ -77,11 +77,11 @@ fi
 echo "EXTRA ARGS: $EXTRA_ARGS"
 # Start Cake
 if $SHOW_VERSION; then
-    mono $CAKE_EXE -version
+    mono $CAKE_EXE -version -settings_skipverification=true
 elif $DRYRUN; then
-    mono $CAKE_EXE $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET -dryrun $EXTRA_ARGS
+    mono $CAKE_EXE $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET -dryrun -settings_skipverification=true $EXTRA_ARGS
 else
-    mono $CAKE_EXE $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET $EXTRA_ARGS
+    mono $CAKE_EXE $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET -settings_skipverification=true $EXTRA_ARGS
 fi
 
 exit $?
