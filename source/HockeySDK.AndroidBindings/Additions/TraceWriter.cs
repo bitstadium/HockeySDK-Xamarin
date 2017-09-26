@@ -39,7 +39,6 @@ namespace HockeyApp.Android
             _AndroidVersion = Constants.AndroidVersion;
             _PhoneManufacturer = Constants.PhoneManufacturer;
             _PhoneModel = Constants.PhoneModel;
-            _FilesPath = Constants.FilesPath;
         }
 
         /// <summary>
