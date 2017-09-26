@@ -371,7 +371,7 @@ namespace HockeyApp.iOS
     }
 
     #if !CRASHONLY
-    [BaseType(typeof(NSObject))]
+    [BaseType(typeof(BITHockeyBaseManager))]
     public partial interface BITUpdateManager
     {
 
