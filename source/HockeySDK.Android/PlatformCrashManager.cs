@@ -7,7 +7,7 @@ namespace HockeyApp
 	{
 		public PlatformCrashManager() {}
 
-		public bool DidCrashInLastSession { get { return HockeyAndroid.CrashManager.DidCrashInLastSession(); } }
+		public bool DidCrashInLastSession { get { return (Boolean) HockeyAndroid.CrashManager.DidCrashInLastSession().Get(); } }
 
 		public bool TerminateOnUnobservedTaskException {
 		
