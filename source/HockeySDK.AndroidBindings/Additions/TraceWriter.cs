@@ -16,7 +16,6 @@ namespace HockeyApp.Android
         private static string _AndroidVersion = UNKNOWN_STATIC;
         private static string _PhoneManufacturer = UNKNOWN_STATIC;
         private static string _PhoneModel = UNKNOWN_STATIC;
-        private static string _FilesPath = ".";
         private static readonly int _Version = (int)Build.VERSION.SdkInt;
         private static bool _IncludeDeviceData = true;
         private const string UNKNOWN_DYNAMIC = "Unknown: call TraceWriter.Initialize(listener) after CrashManager.Initialize";
@@ -39,7 +38,6 @@ namespace HockeyApp.Android
             _AndroidVersion = Constants.AndroidVersion;
             _PhoneManufacturer = Constants.PhoneManufacturer;
             _PhoneModel = Constants.PhoneModel;
-            _FilesPath = Constants.FilesPath;
         }
 
         /// <summary>
