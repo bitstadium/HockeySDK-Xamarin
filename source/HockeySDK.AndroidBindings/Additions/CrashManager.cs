@@ -41,6 +41,18 @@ namespace HockeyApp.Android
 			ConnectUnhandledExceptionEvents(listener);
 		}
 
+        public static void Initialize(global::Android.Content.Context context, string appIdentifier, global::HockeyApp.Android.CrashManagerListener listener)
+        {
+            DoInitialize(context, appIdentifier, listener);
+            ConnectUnhandledExceptionEvents(listener);
+        }
+
+        public static void Initialize(global::Android.Content.Context context, string urlString, string appIdentifier, global::HockeyApp.Android.CrashManagerListener listener)
+        {
+            DoInitialize(context, urlString, appIdentifier, listener);
+            ConnectUnhandledExceptionEvents(listener);
+        }
+
 		private static void ConnectUnhandledExceptionEvents(global::HockeyApp.Android.CrashManagerListener listener = null)
 		{
 			if (connectedToUnhandledExceptionEvents)
