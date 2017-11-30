@@ -153,7 +153,7 @@ namespace HockeyApp.iOS
                 Console.WriteLine("Could not convert to exception!");
 			}
 			Console.WriteLine("Name: " + name);
-            Console.WriteLine("Message" + msg);
+            Console.WriteLine("Message: " + msg);
 
 			name = name.Replace("%", "%%"); 
 			msg = msg.Replace("%", "%%");
@@ -166,9 +166,7 @@ namespace HockeyApp.iOS
 
 namespace Xamarin.ObjCRuntime {
     internal static class Messaging {
-        const string LIBOBJC_DYLIB = "/usr/lib/libobjc.dylib";
-
-        [DllImport (LIBOBJC_DYLIB, EntryPoint="objc_msgSend")]
+        [DllImport (Constants.ObjectiveCLibrary, EntryPoint="objc_msgSend")]
         internal extern static void void_objc_msgSend (IntPtr receiver, IntPtr selector);
     }
 }
