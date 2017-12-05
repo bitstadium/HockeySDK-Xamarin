@@ -6,7 +6,8 @@ var COMPONENT_VERSION = "5.0.0.0";
 var NUGET_VERSION = "5.0.0";
 
 var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.0.2.zip";
-var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.0.0.zip";
+// var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.0.0.zip";
+var IOS_URL = "https://mobilecentersdkdev.blob.core.windows.net/hockeyapp/HockeySDK-iOS-5.0.1.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
@@ -70,14 +71,15 @@ Task ("externals-ios")
 
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDK.a");
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKCrashOnly/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDKCrashOnly.a");
-	
+	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKFeedbackOnly/HockeySDK.embeddedframework/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDKFeedbackOnly.a");
+
 	CopyDirectory ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle", "./externals/ios/HockeySDKResources.bundle");
 });
 
 // Create a common externals task depending on platform specific ones
 Task ("externals").IsDependentOn ("externals-ios").IsDependentOn ("externals-android");
 
-
+// Create default nuget with all features.
 Task ("nuget")
 	.IsDependentOn ("libs")
 	.Does (() => 
@@ -95,7 +97,38 @@ Task ("nuget")
 		CreateDirectory ("./output");
 
 	CopyFiles ("./HockeySDK*.nupkg", "./output");
+
+	NuGetPack("./FeedbackOnly/HockeySDK.nuspec", new NuGetPackSettings {
+		Version = NUGET_VERSION,
+		BasePath = basePath,
+		Verbosity = NuGetVerbosity.Detailed
+	});
+
+	if (!DirectoryExists ("./FeedbackOnly/output"))
+		CreateDirectory ("./FeedbackOnly/output");
+
+	CopyFiles ("./HockeySDK*.nupkg", "./FeedbackOnly/output");
 });
+
+// Create nuget with nothing but Feedback
+// Task ("feedbackonlynuget")
+// 	.IsDependentOn ("libs")
+// 	.Does (() => 
+// {
+// 	// NuGet on mac trims out the first ./ so adding it twice works around
+// 	var basePath = IsRunningOnUnix () ? (System.IO.Directory.GetCurrentDirectory().ToString() + @"/.") : "./";
+
+// 	NuGetPack ("./FeedbackOnly/HockeySDK.nuspec", new NuGetPackSettings {
+// 		Version = NUGET_VERSION,
+// 		BasePath = basePath,
+// 		Verbosity = NuGetVerbosity.Detailed
+// 	});
+
+// 	if (!DirectoryExists ("./FeedbackOnly/output"))
+// 		CreateDirectory ("./FeedbackOnly/output");
+
+// 	CopyFiles ("./HockeySDK*.nupkg", "./FeedbackOnly/output");
+// });
 
 Task ("components")
 	.IsDependentOn ("samples")
