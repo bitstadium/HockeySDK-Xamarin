@@ -123,14 +123,6 @@ namespace HockeyApp.iOS
 
 		private delegate void ReporterDelegate(IntPtr ex);
 
-//		static void ConvertToNsExceptionAndAbort(object e)
-//		{
-//			var nse = new NSException(".NET Exception", e.ToString(), null);
-//			var uncaught = NSGetUncaughtExceptionHandler();
-//			var dele = (ReporterDelegate)Marshal.GetDelegateForFunctionPointer(uncaught, typeof(ReporterDelegate));
-//			dele(nse.Handle);
-//		}
-
 		private void ConvertToNsExceptionAndAbort(object e)
 		{
             Console.WriteLine("ConvertToNSExceptionAndAbort");
