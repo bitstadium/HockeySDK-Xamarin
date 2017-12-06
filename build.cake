@@ -104,31 +104,11 @@ Task ("nuget")
 		Verbosity = NuGetVerbosity.Detailed
 	});
 
-	if (!DirectoryExists ("./FeedbackOnly/output"))
-		CreateDirectory ("./FeedbackOnly/output");
+	if (!DirectoryExists ("./output/FeedbackOnly"))
+		CreateDirectory ("./output/FeedbackOnly");
 
-	CopyFiles ("./HockeySDK*.nupkg", "./FeedbackOnly/output");
+	CopyFiles ("./HockeySDK*.nupkg", "./output/FeedbackOnly");
 });
-
-// Create nuget with nothing but Feedback
-// Task ("feedbackonlynuget")
-// 	.IsDependentOn ("libs")
-// 	.Does (() => 
-// {
-// 	// NuGet on mac trims out the first ./ so adding it twice works around
-// 	var basePath = IsRunningOnUnix () ? (System.IO.Directory.GetCurrentDirectory().ToString() + @"/.") : "./";
-
-// 	NuGetPack ("./FeedbackOnly/HockeySDK.nuspec", new NuGetPackSettings {
-// 		Version = NUGET_VERSION,
-// 		BasePath = basePath,
-// 		Verbosity = NuGetVerbosity.Detailed
-// 	});
-
-// 	if (!DirectoryExists ("./FeedbackOnly/output"))
-// 		CreateDirectory ("./FeedbackOnly/output");
-
-// 	CopyFiles ("./HockeySDK*.nupkg", "./FeedbackOnly/output");
-// });
 
 Task ("components")
 	.IsDependentOn ("samples")
