@@ -93,21 +93,16 @@ Task ("nuget")
 		Verbosity = NuGetVerbosity.Detailed
 	});
 
-	if (!DirectoryExists ("./output"))
-		CreateDirectory ("./output");
-
-	CopyFiles ("./HockeySDK*.nupkg", "./output");
-
-	NuGetPack("./FeedbackOnly/HockeySDK.nuspec", new NuGetPackSettings {
+	NuGetPack("./HockeySDKFeedbackOnly.nuspec", new NuGetPackSettings {
 		Version = NUGET_VERSION,
 		BasePath = basePath,
 		Verbosity = NuGetVerbosity.Detailed
 	});
 
-	if (!DirectoryExists ("./output/FeedbackOnly"))
-		CreateDirectory ("./output/FeedbackOnly");
+	if (!DirectoryExists ("./output"))
+		CreateDirectory ("./output");
 
-	CopyFiles ("./HockeySDK*.nupkg", "./output/FeedbackOnly");
+	CopyFiles ("./HockeySDK*.nupkg", "./output");
 });
 
 Task ("components")

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>HockeySDK.Xamarin</id>
-    <title>HockeySDK.Xamarin</title>
+    <id>HockeySDK.Xamarin.FeedbackOnly</id>
+    <title>HockeySDK.Xamarin.FeedbackOnly</title>
     <version>$version$</version>
     <authors>Microsoft</authors>
     <owners>hockeyapp</owners>
