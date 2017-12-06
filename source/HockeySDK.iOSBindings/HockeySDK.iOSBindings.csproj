@@ -238,5 +238,8 @@
     <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings</Link>
     </BundleResource>
+     <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>
