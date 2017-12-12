@@ -33,12 +33,12 @@
         <Command>
           <type>BeforeBuild</type>
           <command>sh ./bootstrapper.sh -t bindings-android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
         <Command>
           <type>AfterClean</type>
           <command>rm -rf externals/android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
       </CustomCommands>
     </CustomCommands>
@@ -57,12 +57,12 @@
         <Command>
           <type>BeforeBuild</type>
           <command>sh ./bootstrapper.sh -t bindings-android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
         <Command>
           <type>AfterClean</type>
           <command>rm -rf externals/android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
       </CustomCommands>
     </CustomCommands>
@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\externals\android\HockeySDK.aar">
-      <Link>HockeySDK.aar</Link>
+      <Link>Jars\HockeySDK.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
 </Project>
