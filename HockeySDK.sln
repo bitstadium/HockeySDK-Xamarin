@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.AndroidBindings",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iOS", "iOS", "{6E723112-7F7B-4E6B-85CC-E7C4A0472163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.FeedbackOnly.iOSBindings", "source\HockeySDK.iOSBindings\HockeySDK.FeedbackOnly.iOSBindings.csproj", "{8CA3505E-1AD2-40C9-9224-EFCD859790F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.CrashOnly.iOSBindings", "source\HockeySDK.iOSBindings\HockeySDK.CrashOnly.iOSBindings.csproj", "{8CA3505E-1AD2-40C9-9224-EFCD859790F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeySDK.iOS", "source\HockeySDK.iOS\HockeySDK.iOS.csproj", "{EF713164-3A82-460B-A66A-1CE2ECD16D95}"
 EndProject
