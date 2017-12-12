@@ -11,11 +11,13 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <AssemblyName>HockeySDK.AndroidBindings</AssemblyName>
-    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidTlsProvider></AndroidTlsProvider>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <NoWarn>CS0109,CS0114</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
-    <JavaDocPaths>Jars\HockeySDK-Android\docs</JavaDocPaths>
+    <JavaDocPaths>..\..\externals\android\docs</JavaDocPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,12 +34,12 @@
         <Command>
           <type>BeforeBuild</type>
           <command>sh ./bootstrapper.sh -t bindings-android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
         <Command>
           <type>AfterClean</type>
           <command>rm -rf externals/android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
       </CustomCommands>
     </CustomCommands>
@@ -56,12 +58,12 @@
         <Command>
           <type>BeforeBuild</type>
           <command>sh ./bootstrapper.sh -t bindings-android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
         <Command>
           <type>AfterClean</type>
           <command>rm -rf externals/android</command>
-          <workingdir>${ProjectDir}/../..</workingdir>
+          <workingdir>${SolutionDir}</workingdir>
         </Command>
       </CustomCommands>
     </CustomCommands>
@@ -84,7 +86,6 @@
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
     <TransformFile Include="Transforms\Metadata.xml" />
-    <TransformFile Include="Transforms\Parameters.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
@@ -92,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\externals\android\HockeySDK.aar">
-      <Link>HockeySDK.aar</Link>
+      <Link>Jars\HockeySDK.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
 </Project>

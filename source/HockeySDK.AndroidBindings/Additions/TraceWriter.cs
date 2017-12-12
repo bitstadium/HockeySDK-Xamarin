@@ -17,11 +17,7 @@ namespace HockeyApp.Android
         private static string _PhoneManufacturer = UNKNOWN_STATIC;
         private static string _PhoneModel = UNKNOWN_STATIC;
         private static readonly int _Version = (int)Build.VERSION.SdkInt;
-        private static bool _IncludeDeviceData = true;
         private const string UNKNOWN_DYNAMIC = "Unknown: call TraceWriter.Initialize(listener) after CrashManager.Initialize";
-        private static string _User = UNKNOWN_DYNAMIC;
-        private static string _Contact = UNKNOWN_DYNAMIC;
-        private static string _Description = UNKNOWN_DYNAMIC;
         public static bool AllowCachedDescription = false;
         public static string[] AppNamespaces = null;
 

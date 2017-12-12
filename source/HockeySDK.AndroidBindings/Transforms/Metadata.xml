@@ -7,26 +7,19 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-    <!-- Rename com.nokia.* -->
+  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']" />
+  <remove-node path="/api/package[@name='net.hockeyapp.android.listeners']/class[@name='DownloadFileListener']" />
+
   <attr path="/api/package[@name='net.hockeyapp.android']" name="managedName">HockeyApp.Android</attr>
-
-  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='LoginTask']" />
-  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='CheckUpdateTask']" />
-  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='DownloadFileTask']" />
-  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='ParseFeedbackTask']" />
-  <remove-node path="/api/package[@name='net.hockeyapp.android.tasks']/class[@name='SendFeedbackTask']" />
-
   <attr path="/api/package[@name='net.hockeyapp.android.adapters']" name="managedName">HockeyApp.Android.Adapters</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.listeners']" name="managedName">HockeyApp.Android.Listeners</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.metrics']" name="managedName">HockeyApp.Android.Metrics</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.metrics.model']" name="managedName">HockeyApp.Android.Metrics.Model</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.objects']" name="managedName">HockeyApp.Android.Objects</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android.tasks']" name="managedName">HockeyApp.Android.Tasks</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.utils']" name="managedName">HockeyApp.Android.Utils</attr>
   <attr path="/api/package[@name='net.hockeyapp.android.views']" name="managedName">HockeyApp.Android.Views</attr>
 
   <!-- Remapping CrashManager Register and Initialize Methods in order to Add C# Extension Methods -->
-  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='CrashManager' and count(parameter)=0]" name="visibility">private</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" name="visibility">internal</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=1 and parameter[1][@type='android.content.Context']]" name="managedName">DoRegister</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='register' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String']]" name="visibility">internal</attr>
@@ -40,10 +33,10 @@
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='initialize' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='net.hockeyapp.android.CrashManagerListener']]" name="managedName">DoInitialize</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='initialize' and count(parameter)=4 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.String'] and parameter[4][@type='net.hockeyapp.android.CrashManagerListener']]" name="visibility">internal</attr>
   <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='CrashManager']/method[@name='initialize' and count(parameter)=4 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.String'] and parameter[4][@type='net.hockeyapp.android.CrashManagerListener']]" name="managedName">DoInitialize</attr>
-	
-  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='UpdateActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
-  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='FeedbackActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
 
-  <remove-node path="/api/package[@name='net.hockeyapp.android.metrics']/class[@name='MetricsManager']/constructor[@name='MetricsManager' and count(parameter)=5 and parameter[1][@type='android.content.Context'] and parameter[2][@type='net.hockeyapp.android.metrics.TelemetryContext'] and parameter[3][@type='net.hockeyapp.android.metrics.Sender'] and parameter[4][@type='net.hockeyapp.android.metrics.Persistence'] and parameter[5][@type='net.hockeyapp.android.metrics.Channel']]" />
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='UpdateFragment']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android']/class[@name='FeedbackActivity']/method[@name='getLayoutView']" name="managedReturn">Android.Views.View</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.metrics']/class[@name='Sender']/method[@name='getPersistence' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='net.hockeyapp.android.metrics']/class[@name='MetricsManager']/method[@name='getChannel' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
 
 </metadata>

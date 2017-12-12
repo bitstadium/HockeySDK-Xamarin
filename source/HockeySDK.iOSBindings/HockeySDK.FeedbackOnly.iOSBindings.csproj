@@ -3,21 +3,21 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{64574EFC-9C95-4764-ABAC-6A9A721CB366}</ProjectGuid>
+    <ProjectGuid>{11EE153F-FC90-412C-BF29-7546A74283D4}</ProjectGuid>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>HockeyApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>HockeySDK.iOSBindings</AssemblyName>
+    <AssemblyName>HockeySDK.FeedbackOnly.iOSBindings</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <IntermediateOutputPath>obj\full\Debug</IntermediateOutputPath>
-    <OutputPath>bin\full\Debug</OutputPath>
-    <DefineConstants>__IOS__;__MOBILE__;DEBUG;__UNIFIED__</DefineConstants>
+    <IntermediateOutputPath>obj\feedbackonly\Debug</IntermediateOutputPath>
+    <OutputPath>bin\feedbackonly\Debug</OutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__;FEEDBACKONLY</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -38,11 +38,10 @@
     </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <IntermediateOutputPath>obj\full\Release</IntermediateOutputPath>
-    <OutputPath>bin\full\Release</OutputPath>
-    <DefineConstants>__UNIFIED__</DefineConstants>
+    <IntermediateOutputPath>obj\feedbackonly\Release</IntermediateOutputPath>
+    <OutputPath>bin\feedbackonly\Release</OutputPath>
+    <DefineConstants>__UNIFIED__;FEEDBACKONLY</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -76,14 +75,14 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\ios\libHockeySDK.a">
-      <Link>libHockeySDK.a</Link>
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\libHockeySDKFeedbackOnly.a">
+      <Link>libHockeySDKFeedbackOnly.a</Link>
     </ObjcBindingNativeLibrary>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Additions.cs" />
-    <Compile Include="libHockeySDK.linkwith.cs">
-      <DependentUpon>libHockeySDK.a</DependentUpon>
+    <Compile Include="libHockeySDKFeedbackOnly.linkwith.cs">
+      <DependentUpon>libHockeySDKFeedbackOnly.a</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
@@ -238,7 +237,7 @@
     <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings</Link>
     </BundleResource>
-     <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings">
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings</Link>
     </BundleResource>
   </ItemGroup>
