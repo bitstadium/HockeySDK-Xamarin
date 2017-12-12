@@ -70,14 +70,15 @@ Task ("externals-ios")
 
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDK.a");
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKCrashOnly/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDKCrashOnly.a");
-	
+	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKFeedbackOnly/HockeySDK.embeddedframework/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDKFeedbackOnly.a");
+
 	CopyDirectory ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle", "./externals/ios/HockeySDKResources.bundle");
 });
 
 // Create a common externals task depending on platform specific ones
 Task ("externals").IsDependentOn ("externals-ios").IsDependentOn ("externals-android");
 
-
+// Create default nuget with all features.
 Task ("nuget")
 	.IsDependentOn ("libs")
 	.Does (() => 
@@ -86,6 +87,12 @@ Task ("nuget")
 	var basePath = IsRunningOnUnix () ? (System.IO.Directory.GetCurrentDirectory().ToString() + @"/.") : "./";
 
 	NuGetPack ("./HockeySDK.nuspec", new NuGetPackSettings {
+		Version = NUGET_VERSION,
+		BasePath = basePath,
+		Verbosity = NuGetVerbosity.Detailed
+	});
+
+	NuGetPack("./HockeySDKFeedbackOnly.nuspec", new NuGetPackSettings {
 		Version = NUGET_VERSION,
 		BasePath = basePath,
 		Verbosity = NuGetVerbosity.Detailed

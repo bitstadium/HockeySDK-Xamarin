@@ -20,6 +20,7 @@ namespace HockeyApp.iOS
         Other = 99
     }
 
+	#if !CRASHONLY && !FEEDBACKONLY
     [Native]
     public enum BITAuthenticatorIdentificationType : ulong /* nuint */ {
         Anonymous,
@@ -28,35 +29,35 @@ namespace HockeyApp.iOS
         Device,
         WebAuth
     }
+	#endif
 
+	#if !CRASHONLY && !FEEDBACKONLY
     [Native]
     public enum BITAuthenticatorAppRestrictionEnforcementFrequency : ulong /* nuint */ {
         FirstLaunch,
         AppActive
     }
+	#endif
 
+	#if !FEEDBACKONLY
     [Native]
     public enum BITCrashManagerStatus : ulong /* nuint */ {
         Disabled = 0,
         AlwaysAsk = 1,
         AutoSend = 2
     }
+	#endif
 
-//    public struct BITCrashManagerCallbacks
-//    {
-//        unsafe void* context;
-//
-//        unsafe BITCrashManagerPostCrashSignalCallback* handleSignal;
-//    }
-
+	#if !FEEDBACKONLY
     [Native]
     public enum BITCrashManagerUserInput : ulong /* nuint */ {
         DontSend = 0,
         Send = 1,
         AlwaysSend = 2
     }
+	#endif
 
-    #if !CRASHONLY
+	#if !CRASHONLY && !FEEDBACKONLY
     [Native]
     public enum BITUpdateSetting : ulong /* nuint */ {
         CheckStartup = 0,
@@ -65,7 +66,7 @@ namespace HockeyApp.iOS
     }
     #endif
 
-    #if !CRASHONLY
+    #if !CRASHONLY && !FEEDBACKONLY
     [Native]
     public enum BITStoreUpdateSetting : long /* nint */ {
         CheckDaily = 0,
@@ -101,6 +102,7 @@ namespace HockeyApp.iOS
     }
     #endif
 
+	#if !FEEDBACKONLY
     [Native]
     public enum BITCrashErrorReason : long /* nint */ {
         ErrorUnknown,
@@ -108,8 +110,9 @@ namespace HockeyApp.iOS
         APIReceivedEmptyResponse,
         APIErrorWithStatusCode
     }
+	#endif
 
-    #if !CRASHONLY
+    #if !CRASHONLY &&!FEEDBACKONLY
     [Native]
     public enum BITUpdateErrorReason : long /* nint */ {
         ErrorUnknown,
@@ -133,7 +136,7 @@ namespace HockeyApp.iOS
     }
     #endif
 
-    #if !CRASHONLY
+    #if !CRASHONLY && !FEEDBACKONLY
     [Native]
     public enum BITAuthenticatorReason : long /* nint */ {
         ErrorUnknown,
@@ -150,5 +153,4 @@ namespace HockeyApp.iOS
     public enum BITHockeyErrorReason : long /* nint */ {
         ErrorUnknown
     }
-
 }
