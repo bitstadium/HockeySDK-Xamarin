@@ -6,7 +6,7 @@ var COMPONENT_VERSION = "5.0.0.0";
 var NUGET_VERSION = "5.0.0";
 
 var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.0.2.zip";
-var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.0.0.zip";
+var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.1.0.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
@@ -73,14 +73,15 @@ Task ("externals-ios")
 
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDK.a");
 	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKCrashOnly/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDKCrashOnly.a");
-	
+	CopyFile ("./externals/ios/HockeySDK-iOS/HockeySDKFeedbackOnly/HockeySDK.embeddedframework/HockeySDK.framework/HockeySDK", "./externals/ios/libHockeySDKFeedbackOnly.a");
+
 	CopyDirectory ("./externals/ios/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle", "./externals/ios/HockeySDKResources.bundle");
 });
 
 // Create a common externals task depending on platform specific ones
 Task ("externals").IsDependentOn ("externals-ios").IsDependentOn ("externals-android");
 
-
+// Create default nuget with all features.
 Task ("nuget")
 	.IsDependentOn ("libs")
 	.Does (() => 
@@ -89,6 +90,12 @@ Task ("nuget")
 	var basePath = IsRunningOnUnix () ? (System.IO.Directory.GetCurrentDirectory().ToString() + @"/.") : "./";
 
 	NuGetPack ("./HockeySDK.nuspec", new NuGetPackSettings {
+		Version = NUGET_VERSION,
+		BasePath = basePath,
+		Verbosity = NuGetVerbosity.Detailed
+	});
+
+	NuGetPack("./HockeySDKFeedbackOnly.nuspec", new NuGetPackSettings {
 		Version = NUGET_VERSION,
 		BasePath = basePath,
 		Verbosity = NuGetVerbosity.Detailed

@@ -24,8 +24,16 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-ios" workingdir="${ProjectDir}/../.." />
-        <Command type="AfterClean" command="rm -rf externals/ios" workingdir="${ProjectDir}/../.." />
+        <Command>
+          <type>BeforeBuild</type>
+          <command>sh ./bootstrapper.sh -t bindings-ios</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>rm -rf externals/ios</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -40,8 +48,16 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="sh ./bootstrapper.sh -t bindings-ios" workingdir="${ProjectDir}/../.." />
-        <Command type="AfterClean" command="rm -rf externals/ios" workingdir="${ProjectDir}/../.." />
+        <Command>
+          <type>BeforeBuild</type>
+          <command>sh ./bootstrapper.sh -t bindings-ios</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>rm -rf externals/ios</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -220,6 +236,9 @@
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings">
       <Link>Resources\HockeySDKResources.bundle\zh-Hans.lproj\HockeySDK.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings">
+      <Link>Resources\HockeySDKResources.bundle\tr.lproj\HockeySDK.strings</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

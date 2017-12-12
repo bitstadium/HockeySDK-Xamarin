@@ -15,9 +15,16 @@
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
       <CustomCommands>
-        <Command type="Build" command="sh ./bootstrapper.sh -t nuget" workingdir="${ProjectDir}/../.." />
-        <Command type="Clean" command="sh ./bootstrapper.sh -t clean" workingdir="${ProjectDir}/../.." />
-        <Command type="Execute" command="" />
+        <Command>
+          <type>Build</type>
+          <command>sh ./bootstrapper.sh -t nuget</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
+        <Command>
+          <type>Clean</type>
+          <command>sh ./bootstrapper.sh -t clean</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -27,11 +34,22 @@
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
       <CustomCommands>
-        <Command type="Build" command="sh ./bootstrapper.sh -t components" workingdir="${ProjectDir}/../.." />
-        <Command type="Clean" command="sh ./bootstrapper.sh -t clean" workingdir="${ProjectDir}/../.." />
-        <Command type="Execute" command="" />
+        <Command>
+          <type>Build</type>
+          <command>sh ./bootstrapper.sh -t components</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
+        <Command>
+          <type>Clean</type>
+          <command>sh ./bootstrapper.sh -t clean</command>
+          <workingdir>${ProjectDir}/../..</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Program</StartAction>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
