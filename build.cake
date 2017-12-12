@@ -50,6 +50,9 @@ Task ("externals-android")
 
 	var aar = GetFiles ("./externals/android/**/*.aar").FirstOrDefault ();
 	CopyFile (aar, "./externals/android/HockeySDK.aar");
+
+	var docs = GetDirectories ("./externals/android/HockeySDK-Android-*/docs").FirstOrDefault ();
+	CopyDirectory (docs, "./externals/android/docs");
 });
 
 Task ("externals-ios")
