@@ -6,8 +6,7 @@ var COMPONENT_VERSION = "5.0.0.0";
 var NUGET_VERSION = "5.0.0";
 
 var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.0.2.zip";
-// var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.0.0.zip";
-var IOS_URL = "https://mobilecentersdkdev.blob.core.windows.net/hockeyapp/HockeySDK-iOS-5.0.1.zip";
+var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.1.0.zip";
 
 var SAMPLES = new [] {
 	"./samples/HockeyAppSampleAndroid.sln",
