@@ -1,4 +1,4 @@
-## Version 5.0.0
+## Version 5.1.0
 
 HockeySDK-Xamarin implements support for HockeyApp in your iOS and Android applications.
 
@@ -6,7 +6,7 @@ The following features are currently supported:
 
 1. **Collect crash reports:** If your app crashes, a crash log is written to the device's storage. If the user starts the app again, they will be asked to submit the crash report to HockeyApp. This works for both beta and live apps, i.e. those submitted to the App Store. Crash logs contain viable information for you to help resolve the issue. Furthermore, you as a developer can add additional information to the report as well.
 
-2. **User Metrics:** Understand user behavior to improve your app. Track usage through daily and monthly active users. Monitor crash impacted users. Measure customer engagement through session count. You can also track custom events and view the aggregate results on the HockeyApp dashboard. 
+2. **User Metrics:** Understand user behavior to improve your app. Track usage through daily and monthly active users. Monitor crash impacted users. Measure customer engagement through session count. You can also track custom events and view the aggregate results on the HockeyApp dashboard. On Android, this feature requires a minimum API level of 14 (Android 4.x Ice Cream Sandwich).
 
 3. **Update Ad-Hoc / Enterprise apps:** The app will check with HockeyApp if a new version for your Ad-Hoc or Enterprise build is available. If yes, it will show an alert view to the user and let him see the release notes, the version history and start the installation process right away.
 
@@ -24,7 +24,7 @@ It is super easy to use HockeyApp in your Xamarin app. Have a look at our [docum
 
 Please visit [our landing page](https://support.hockeyapp.net/kb) as a starting point for all of our documentation and check out our [getting started documentation](https://support.hockeyapp.net/kb/client-integration-cross-platform/how-to-integrate-hockeyapp-with-xamarin), [changelog](https://github.com/bitstadium/HockeySDK-Xamarin/releases), and our [troubleshooting section](https://support.hockeyapp.net/kb/client-integration-cross-platform/how-to-integrate-hockeyapp-with-xamarin#5-troubleshooting).
 
-The Xamarin SDK wraps our native SDKs – [HockeySDK-iOS 5.0.0](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/5.0.0) and [HockeySDK-Android 5.0.2](https://github.com/bitstadium/HockeySDK-Android/releases/tag/5.0.2). For more info on advanced, platform-specific behaviors, check out the documentation for [HockeySDK-iOS](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-ios) and [HockeySDK-Android](https://support.hockeyapp.net/kb/client-integration-android/hockeyapp-for-android-sdk).
+The Xamarin SDK wraps our native SDKs – [HockeySDK-iOS 5.1.0](https://github.com/bitstadium/HockeySDK-iOS/releases/tag/5.1.0) and [HockeySDK-Android 5.0.4](https://github.com/bitstadium/HockeySDK-Android/releases/tag/5.0.4). For more info on advanced, platform-specific behaviors, check out the documentation for [HockeySDK-iOS](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-ios) and [HockeySDK-Android](https://support.hockeyapp.net/kb/client-integration-android/hockeyapp-for-android-sdk).
 
 ## 3. Contributing
 
