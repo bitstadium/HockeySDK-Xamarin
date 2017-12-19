@@ -9,13 +9,20 @@ namespace HockeyApp.Android
 	{
 		private static bool connectedToUnhandledExceptionEvents = false;
 		private static readonly object crashManagerLock = new object();
-		private static bool terminateOnUnobservedTaskException;
+		private static bool terminateOnUnobservedTaskException = false;
+        private static bool logUnobservedTaskException = true;
 
 		public static bool TerminateOnUnobservedTaskException
 		{
 			get { return terminateOnUnobservedTaskException; }
 			set { terminateOnUnobservedTaskException = value; }
 		}
+
+        public static bool LogUnobservedTaskException
+        {
+            get { return logUnobservedTaskException; }
+            set { logUnobservedTaskException = value; }
+        }
 
 		public static void Register(global::Android.Content.Context context)
 		{
@@ -73,7 +80,10 @@ namespace HockeyApp.Android
 
 				AndroidEnvironment.UnhandledExceptionRaiser += (sender, e) => TraceWriter.WriteTrace(e.Exception);
 				AppDomain.CurrentDomain.UnhandledException += (sender, e) => TraceWriter.WriteTrace(e.ExceptionObject);
-				TaskScheduler.UnobservedTaskException += (sender, e) => TraceWriter.WriteTrace(e.Exception, terminateOnUnobservedTaskException);
+				TaskScheduler.UnobservedTaskException += (sender, e) => {
+                    if (logUnobservedTaskException)
+                        TraceWriter.WriteTrace(e.Exception, terminateOnUnobservedTaskException);
+                } ;
 
 				connectedToUnhandledExceptionEvents = true;
 			}
