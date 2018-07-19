@@ -22,7 +22,7 @@ Task ("libs")
 	.Does (() => 
 {
 	NuGetRestore ("./HockeySDK.sln");
-	DotNetBuild ("./HockeySDK.sln", c => c.Configuration = "Release");
+	MSBuild ("./HockeySDK.sln", c => c.Configuration = "Release");
 });
 
 Task ("samples")
@@ -31,7 +31,7 @@ Task ("samples")
 {
 	foreach (var s in SAMPLES) {
 		NuGetRestore (s);
-		DotNetBuild (s, c => c.Configuration = "Release");
+		MSBuild (s, c => c.Configuration = "Release");
 	}
 });
 
@@ -133,10 +133,10 @@ Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
 Task ("clean").Does (() =>
 {
 	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+		CleanDirectory ("./externals");
 
 	if (DirectoryExists ("./output"))
-		DeleteDirectory ("./output", true);
+		CleanDirectory ("./output");
 
 	DeleteFiles("./*.nupkg");
 	CleanDirectories ("./**/bin");
