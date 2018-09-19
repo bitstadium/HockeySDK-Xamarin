@@ -31,7 +31,7 @@ Task ("samples")
 {
 	foreach (var s in SAMPLES) {
 		NuGetRestore (s);
-		MSBuild (s, c => c.Configuration = "Debug");
+		MSBuild (s, c => c.Configuration = "Release");
 	}
 });
 
