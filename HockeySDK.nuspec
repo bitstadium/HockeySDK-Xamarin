@@ -5,13 +5,13 @@
     <title>HockeySDK.Xamarin</title>
     <version>$version$</version>
     <authors>Microsoft</authors>
-    <owners>hockeyapp</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <owners>microsoft,hockeyapp</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>HockeyApp SDK for Xamarin Applications. Use HockeyApp to collect crash reports.</summary>
     <description>
       HockeyApp SDK for Xamarin Applications. Use HockeyApp to collect crash reports.
     </description>
-    <copyright>Copyright © Microsoft Corporation. All Rights Reserved.</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <licenseUrl>https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md</licenseUrl>
     <projectUrl>https://hockeyapp.net</projectUrl>
     <iconUrl>https://rink.hockeyapp.net/images/icon-120.png</iconUrl>
