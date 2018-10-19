@@ -35,6 +35,34 @@ namespace HockeyAppSampleiOS
 
                     new StringElement("Crashed Last Run:", hockey.CrashManager.DidCrashInLastSession.ToString())
                 },
+                new Section {
+                    new StringElement("Test Anonymous Auth", () => {
+                        hockey.Authenticator.CleanupInternalStorage();
+                        hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.Anonymous;
+                        hockey.Authenticator.AuthenticateInstallation();
+                    }),
+                    new StringElement("Test Device Auth", () => {
+                        hockey.Authenticator.CleanupInternalStorage();
+                        hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.Device;
+                        hockey.Authenticator.AuthenticateInstallation();
+                    }),
+                    new StringElement("Test Email Address Auth", () => {
+                        hockey.Authenticator.CleanupInternalStorage();
+                        hockey.Authenticator.AuthenticationSecret = "YOUR-APP-SECRET";
+                        hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.HockeyAppEmail;
+                        hockey.Authenticator.AuthenticateInstallation();
+                    }),
+                    new StringElement("Test User Auth", () => {
+                        hockey.Authenticator.CleanupInternalStorage();
+                        hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.HockeyAppUser;
+                        hockey.Authenticator.AuthenticateInstallation();
+                    }),
+                    new StringElement("Test Web Auth", () => {
+                        hockey.Authenticator.CleanupInternalStorage();
+                        hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.WebAuth;
+                        hockey.Authenticator.AuthenticateInstallation();
+                    })
+                },
                 #endif
                 new Section {
                     new StringElement ("Throw Managed .NET Exception", () => {
