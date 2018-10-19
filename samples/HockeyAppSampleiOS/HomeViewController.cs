@@ -7,6 +7,9 @@ namespace HockeyAppSampleiOS
 {
     public class HomeViewController : DialogViewController
     {
+        readonly BITHockeyManager hockey = BITHockeyManager.SharedHockeyManager;
+        StringElement authorized;
+
         public HomeViewController () : base (UITableViewStyle.Plain, new RootElement (""), false)
         {
         }
@@ -14,9 +17,7 @@ namespace HockeyAppSampleiOS
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-
-            var hockey = BITHockeyManager.SharedHockeyManager;
-            var authorized = new StringElement("Authorized:", String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType));
+            authorized = new StringElement("Authorized:", String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType));
 
             Root = new RootElement ("HockeyApp Sample") {
                 #if !CRASHONLY
@@ -41,8 +42,7 @@ namespace HockeyAppSampleiOS
                     new StringElement("Test Anonymous Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.Anonymous;
-                        hockey.Authenticator.AuthenticateInstallation();
-                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
+                        hockey.Authenticator.IdentifyWithCompletion(HandleBITAuthenticatorIdentifyCallback);
                     }),
                     new StringElement("Test Device Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
@@ -53,14 +53,12 @@ namespace HockeyAppSampleiOS
                         hockey.Authenticator.CleanupInternalStorage();
                         hockey.Authenticator.AuthenticationSecret = "YOUR-APP-SECRET";
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.HockeyAppEmail;
-                        hockey.Authenticator.AuthenticateInstallation();
-                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
+                        hockey.Authenticator.IdentifyWithCompletion(HandleBITAuthenticatorIdentifyCallback);
                     }),
                     new StringElement("Test User Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.HockeyAppUser;
-                        hockey.Authenticator.AuthenticateInstallation();
-                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
+                        hockey.Authenticator.IdentifyWithCompletion(HandleBITAuthenticatorIdentifyCallback);
                     }),
                     new StringElement("Test Web Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
@@ -70,6 +68,7 @@ namespace HockeyAppSampleiOS
                     new StringElement("Reset Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
                         authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, "None");
+                        authorized.GetContainerTableView().ReloadData();
                     })
                 },
                 #endif
@@ -89,6 +88,20 @@ namespace HockeyAppSampleiOS
                 }
             };
         }
+
+        public void HandleBITAuthenticatorIdentifyCallback(bool identified, Foundation.NSError error)
+        {
+            if (authorized != null)
+            {
+                // Execute operation in UI thread
+                BeginInvokeOnMainThread(() =>
+                {
+                    authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
+                    authorized.GetContainerTableView().ReloadData();
+                });
+            }
+        }
+
     }
 
     public class HockeyAppSampleException : System.Exception

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Foundation;
+﻿using Foundation;
 using HockeyApp.iOS;
 using UIKit;
 
@@ -31,15 +27,16 @@ namespace HockeyAppSampleiOS
             //Start the manager
             manager.StartManager ();
 
+            homeViewController = new HomeViewController();
+
             #if !CRASHONLY
             //Authenticate (there are other authentication options)
-            manager.Authenticator.AuthenticateInstallation ();
+            manager.Authenticator.IdentifyWithCompletion(homeViewController.HandleBITAuthenticatorIdentifyCallback);
             #endif
 
             // create a new window instance based on the screen size
             window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-            homeViewController = new HomeViewController ();
             navController = new UINavigationController (homeViewController);
             window.RootViewController = navController;
 
@@ -53,9 +50,10 @@ namespace HockeyAppSampleiOS
         {
             if (BITHockeyManager.SharedHockeyManager.Authenticator.HandleOpenUrl(url, sourceApplication, annotation))
             {
+                homeViewController.HandleBITAuthenticatorIdentifyCallback(true, null);
                 return true;
             }
-            /* Your own custom URL handlers */
+            homeViewController.HandleBITAuthenticatorIdentifyCallback(false, null);
             return false;
         }
     }
