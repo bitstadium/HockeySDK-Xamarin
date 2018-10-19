@@ -16,6 +16,7 @@ namespace HockeyAppSampleiOS
             base.ViewDidLoad ();
 
             var hockey = BITHockeyManager.SharedHockeyManager;
+            var authorized = new StringElement("Authorized:", String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType));
 
             Root = new RootElement ("HockeyApp Sample") {
                 #if !CRASHONLY
@@ -29,17 +30,19 @@ namespace HockeyAppSampleiOS
                     new StringElement("Submit New Feedback", () => {
                         hockey.FeedbackManager.ShowFeedbackComposeView();
                     }),
-					new StringElement("Track Event", () => {
-						hockey.MetricsManager.TrackEvent("My Sample Event");
-					}),
+                    new StringElement("Track Event", () => {
+                        hockey.MetricsManager.TrackEvent("My Sample Event");
+                    }),
 
                     new StringElement("Crashed Last Run:", hockey.CrashManager.DidCrashInLastSession.ToString())
                 },
                 new Section {
+                    authorized,
                     new StringElement("Test Anonymous Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.Anonymous;
                         hockey.Authenticator.AuthenticateInstallation();
+                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
                     }),
                     new StringElement("Test Device Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
@@ -51,16 +54,22 @@ namespace HockeyAppSampleiOS
                         hockey.Authenticator.AuthenticationSecret = "YOUR-APP-SECRET";
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.HockeyAppEmail;
                         hockey.Authenticator.AuthenticateInstallation();
+                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
                     }),
                     new StringElement("Test User Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.HockeyAppUser;
                         hockey.Authenticator.AuthenticateInstallation();
+                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType);
                     }),
                     new StringElement("Test Web Auth", () => {
                         hockey.Authenticator.CleanupInternalStorage();
                         hockey.Authenticator.IdentificationType = BITAuthenticatorIdentificationType.WebAuth;
                         hockey.Authenticator.AuthenticateInstallation();
+                    }),
+                    new StringElement("Reset Auth", () => {
+                        hockey.Authenticator.CleanupInternalStorage();
+                        authorized.Value = String.Format("{0} ({1})", hockey.Authenticator.Identified, "None");
                     })
                 },
                 #endif
@@ -71,12 +80,12 @@ namespace HockeyAppSampleiOS
 
                     }),
 
-					new StringElement ("Throw NSException", () => {
+                    new StringElement ("Throw NSException", () => {
 
-						var storyboard = UIStoryboard.FromName("Main", null);
-						var vc = storyboard.InstantiateViewController("SomeViewControllerWithNoStoryboardID");
+                        var storyboard = UIStoryboard.FromName("Main", null);
+                        var vc = storyboard.InstantiateViewController("SomeViewControllerWithNoStoryboardID");
 
-					})
+                    })
                 }
             };
         }
