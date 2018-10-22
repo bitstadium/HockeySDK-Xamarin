@@ -46,6 +46,7 @@ namespace HockeyAppSampleiOS
             return true;
         }
 
+        #if !CRASHONLY
         public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
         {
             if (BITHockeyManager.SharedHockeyManager.Authenticator.HandleOpenUrl(url, sourceApplication, annotation))
@@ -56,6 +57,7 @@ namespace HockeyAppSampleiOS
             homeViewController.HandleBITAuthenticatorIdentifyCallback(false, null);
             return false;
         }
+        #endif
     }
 }
 

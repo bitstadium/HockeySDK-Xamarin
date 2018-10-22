@@ -17,7 +17,10 @@ namespace HockeyAppSampleiOS
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+
+            #if !CRASHONLY
             authorized = new StringElement("Authorized:", String.Format("{0} ({1})", hockey.Authenticator.Identified, hockey.Authenticator.IdentificationType));
+            #endif
 
             Root = new RootElement ("HockeyApp Sample") {
                 #if !CRASHONLY
@@ -89,6 +92,7 @@ namespace HockeyAppSampleiOS
             };
         }
 
+        #if !CRASHONLY
         public void HandleBITAuthenticatorIdentifyCallback(bool identified, Foundation.NSError error)
         {
             if (authorized != null)
@@ -101,6 +105,7 @@ namespace HockeyAppSampleiOS
                 });
             }
         }
+        #endif
 
     }
 
