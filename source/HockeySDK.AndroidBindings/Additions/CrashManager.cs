@@ -73,8 +73,13 @@ namespace HockeyApp.Android
 
 				AndroidEnvironment.UnhandledExceptionRaiser += (sender, e) => TraceWriter.WriteTrace(e.Exception);
 				AppDomain.CurrentDomain.UnhandledException += (sender, e) => TraceWriter.WriteTrace(e.ExceptionObject);
-				TaskScheduler.UnobservedTaskException += (sender, e) => TraceWriter.WriteTrace(e.Exception, terminateOnUnobservedTaskException);
-
+				TaskScheduler.UnobservedTaskException += (sender, e) =>
+				{
+						if (!e.Observed)
+						{
+								TraceWriter.WriteTrace(e.Exception, terminateOnUnobservedTaskException);
+						}
+				};
 				connectedToUnhandledExceptionEvents = true;
 			}
 		}
