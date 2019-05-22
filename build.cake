@@ -2,10 +2,10 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var COMPONENT_VERSION = "5.1.2.0";
-var NUGET_VERSION = "5.1.2";
+var COMPONENT_VERSION = "5.2.0.0";
+var NUGET_VERSION = "5.2.0";
 
-var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.1.0.zip";
+var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.2.0.zip";
 var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.1.2.zip";
 
 var SAMPLES = new [] {
