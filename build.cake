@@ -2,10 +2,10 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var COMPONENT_VERSION = "5.1.2.0";
-var NUGET_VERSION = "5.1.2";
+var COMPONENT_VERSION = "5.2.0.0";
+var NUGET_VERSION = "5.2.0";
 
-var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.1.0.zip";
+var ANDROID_URL = "https://download.hockeyapp.net/sdk/android/HockeySDK-Android-5.2.0.zip";
 var IOS_URL = "https://download.hockeyapp.net/sdk/ios/HockeySDK-iOS-5.1.2.zip";
 
 var SAMPLES = new [] {
@@ -22,7 +22,7 @@ Task ("libs")
 	.Does (() => 
 {
 	NuGetRestore ("./HockeySDK.sln");
-	DotNetBuild ("./HockeySDK.sln", c => c.Configuration = "Release");
+	MSBuild ("./HockeySDK.sln", c => c.Configuration = "Release");
 });
 
 Task ("samples")
@@ -31,7 +31,7 @@ Task ("samples")
 {
 	foreach (var s in SAMPLES) {
 		NuGetRestore (s);
-		DotNetBuild (s, c => c.Configuration = "Release");
+		MSBuild (s, c => c.Configuration = "Release");
 	}
 });
 
@@ -133,10 +133,10 @@ Task ("all").IsDependentOn ("nuget").IsDependentOn ("components");
 Task ("clean").Does (() =>
 {
 	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+		CleanDirectory ("./externals");
 
 	if (DirectoryExists ("./output"))
-		DeleteDirectory ("./output", true);
+		CleanDirectory ("./output");
 
 	DeleteFiles("./*.nupkg");
 	CleanDirectories ("./**/bin");
